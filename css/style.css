@@ -6,6 +6,7 @@
   line-height: 1em;
   padding: 0;
   margin:0;
+  outline: none;
 }
 button {
   transition-duration: 1s;
@@ -75,19 +76,8 @@ option{
 i{
   color: skyblue;
 }
-.main_bg{
-  top:0;
-  left: 0;
+.main_img{
   width: 100vw;
-  height: 25vh;
-  background-image: url(../img/main.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  position: fixed;
-}
-.content{
-  margin-top: 25vh;
 }
 .tab_container{
   display: flex;
@@ -111,6 +101,11 @@ i{
 }
 .checkbox_label-active{
   background: linear-gradient(90deg, skyblue, transparent);
+}
+.orchestra_input-box{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 75%;
 }
 .file_upload{
   border:1px solid skyblue;

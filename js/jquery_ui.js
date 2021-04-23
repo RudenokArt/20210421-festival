@@ -6,12 +6,12 @@
 
 // ========== DATA PICKER ==========
   $( function() {
-    $('input[name="date"]').datepicker();
+    $('input[name="Дата рождения"]').datepicker();
   } );
 
 // ========== MASK INPUT ==========
-  $('input[name="phone"]').mask('+7(999) 999-9999');
-  $('input[name="discount_value"]').mask('99%');
+  $('input[name="Телефон"]').mask('+7(999) 999-9999');
+  $('input[name="Скидка"]').mask('99%');
 
 
 // ========== CHECKBOX + RADIO ==========

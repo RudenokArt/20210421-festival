@@ -12,4 +12,3 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="main_bg"></div>
