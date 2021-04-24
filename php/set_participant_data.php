@@ -8,7 +8,7 @@ foreach ($data as $key => $value) {
   $sql=$sql.'`'.$key.'`="'.$value.'",';
 }
 $sql=trim($sql,',');
-$sql='UPDATE `festival_participant` SET '.$sql.' WHERE id=1';
+$sql='UPDATE `festival_participant` SET '.$sql.' WHERE id='.$data->id;
 $mysqli->query($sql);
-echo $sql;
+print_r($data);
 ?>

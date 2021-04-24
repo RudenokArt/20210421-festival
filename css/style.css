@@ -27,6 +27,7 @@ input[type="checkbox"]{
 }
 select,
 textarea,
+input[type="password"],
 input[type="text"]{
   padding: 10px;
   height: 40px;
@@ -38,6 +39,8 @@ textarea:focus,
 textarea:active,
 select:focus,
 select:active,
+input[type="password"]:focus,
+input[type="password"]:active,
 input[type="text"]:focus,
 input[type="text"]:active{
   border:1px solid skyblue;
@@ -79,13 +82,16 @@ i{
 .main_img{
   width: 100vw;
 }
+.tabs{
+  padding: 0 !important;
+}
 .tab_container{
   display: flex;
   flex-wrap: wrap;
 }
 .tab_item{
   width: 300px;
-  padding: 5px;
+  padding: 10px;
 }
 .tab_content,
 .tab_title{
@@ -94,7 +100,6 @@ i{
 }
 .checkbox_label,.checkbox_label-active{
   display: flex;
-
   padding: 10px;
   cursor: pointer;
   transition-duration: 1s;
@@ -106,6 +111,9 @@ i{
   display: flex;
   flex-wrap: wrap;
   max-width: 75%;
+}
+button[name="button_exit"] i{
+  transform: rotate(180deg);
 }
 .file_upload{
   border:1px solid skyblue;
@@ -136,4 +144,21 @@ input[type="file"]{
   height: 100%;
   width: 100%;
   opacity: 0;
+}
+.popup_wrapper{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: rgba(0,0,0,0.2);
+}
+.popup{
+  margin:auto;
+  margin-top:25%;
+  box-shadow: 0px 0px 10px 0px #000000;
+}
+.warning{
+  color:red;
 }
