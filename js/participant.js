@@ -6,6 +6,7 @@ var radioArr=[];
 // ========= ACTIONS =========
 checkboxLabel();
 getRadioPoint();
+radioPoint();
 
 
 
