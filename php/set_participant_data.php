@@ -10,5 +10,5 @@ foreach ($data as $key => $value) {
 $sql=trim($sql,',');
 $sql='UPDATE `festival_participant` SET '.$sql.' WHERE id='.$data->id;
 $mysqli->query($sql);
-print_r($data);
+print_r($sql);
 ?>

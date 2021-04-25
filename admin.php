@@ -23,13 +23,27 @@
     <?php foreach ($tr as $tr_key => $tr_value) { ?>
       <tr>
         <?php for ($i=0; $i < count($th); $i++) { ?>
-          <td><?php echo $tr_value[$th[$i]] ?></td>
+          <td>
+            <?php $fileName=strtr($tr_value[$th[$i]],' ', '_');
+            if ($th[$i]=='photo'||in_array($th[$i], $cdArr)) {?>
+              <a href="user_upload/<?php echo $fileName ?>" 
+                download="<?php echo $fileName ?>">
+                <?php echo $tr_value[$th[$i]] ?>
+              </a>
+            <?php } else{  ?>
+              <?php echo $tr_value[$th[$i]] ?>
+            <?php } ?>
+            
+          </td>
         <?php } ?>
       </tr>
     <?php } ?>
   </table>
 
 
+
+
+  ?>
 
   <?php 
 

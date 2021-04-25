@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 24 2021 г., 20:09
+-- Время создания: Апр 25 2021 г., 19:40
 -- Версия сервера: 5.6.47
 -- Версия PHP: 7.1.33
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `festival_participant` (
   `id` int(10) NOT NULL,
   `password` varchar(250) NOT NULL,
+  `photo` varchar(250) NOT NULL,
   `ФИО` varchar(250) NOT NULL,
   `Дата рождения` varchar(250) NOT NULL,
   `Возрастная категория` varchar(250) NOT NULL,
@@ -43,28 +44,27 @@ CREATE TABLE `festival_participant` (
   `Уровень мастерства` varchar(250) NOT NULL,
   `Сертификат` varchar(250) NOT NULL,
   `Пакет` varchar(250) NOT NULL,
-  `С точки (вход)` varchar(250) NOT NULL,
   `Коментарий` varchar(250) NOT NULL,
-  `1 окт. 9.00-11.00 Мохамед` varchar(250) DEFAULT NULL,
+  `1 окт. 09.00-11.00 Мохамед` varchar(250) DEFAULT NULL,
   `1 окт. 11.15-13.15 Оксана` varchar(250) DEFAULT NULL,
   `1 окт. 14.30-16.00 Рогова А.` varchar(250) DEFAULT NULL,
   `1 окт. 16.15-18.15 Мохамед` varchar(250) DEFAULT NULL,
-  `1 окт. 18,30-20.30 Оксана` varchar(250) DEFAULT NULL,
-  `2 окт. 9.00-11.00 Аида` varchar(250) DEFAULT NULL,
+  `1 окт. 18.30-20.30 Оксана` varchar(250) DEFAULT NULL,
+  `2 окт. 09.00-11.00 Аида` varchar(250) DEFAULT NULL,
   `2 окт. 11.15-13.15 Оксана` varchar(250) DEFAULT NULL,
-  `3 окт. 9.00-11.00 Аида` varchar(250) DEFAULT NULL,
+  `3 окт. 09.00-11.00 Аида` varchar(250) DEFAULT NULL,
   `3 окт. 11.15-13.15 Мохамед` varchar(250) DEFAULT NULL,
-  `Классический ориенталь` varchar(250) DEFAULT NULL,
-  `CD Эстрадная песня CD` varchar(250) DEFAULT NULL,
-  `Ориентал Классика CD` varchar(250) DEFAULT NULL,
-  `Беледи/Шааби CD` varchar(250) DEFAULT NULL,
+  `Классический Ориенталь CD` varchar(250) DEFAULT NULL,
+  `Эстрадная песня CD` varchar(250) DEFAULT NULL,
+  `Беледи-Шааби CD` varchar(250) DEFAULT NULL,
   `Египетский Фольклор CD` varchar(250) DEFAULT NULL,
   `Неегипетский Фольклор CD` varchar(250) DEFAULT NULL,
-  `Шоу/табла CD` varchar(250) DEFAULT NULL,
+  `Шоу-табла CD` varchar(250) DEFAULT NULL,
   `Показательное выступление CD` varchar(250) DEFAULT NULL,
-  `Ориентал Классика ОРКЕСТР` varchar(250) DEFAULT NULL,
-  `Беледи/импровизация + Табла соло ОРКЕСТР` varchar(250) DEFAULT NULL,
-  `Беледи/Шааби ОРКЕСТР` varchar(250) DEFAULT NULL,
+  `Классический Ориенталь ОРКЕСТР` varchar(250) DEFAULT NULL,
+  `Беледи-импровизация + Табла соло ОРКЕСТР` varchar(250) DEFAULT NULL,
+  `Беледи-Шааби ОРКЕСТР` varchar(250) DEFAULT NULL,
+  `Табла соло импровизация ОРКЕСТР` varchar(250) DEFAULT NULL,
   `Показательное выступление ОРКЕСТР` varchar(250) DEFAULT NULL,
   `Корона МираМар Оркестр` varchar(250) DEFAULT NULL,
   `пятница обед 1` varchar(250) DEFAULT NULL,
@@ -79,8 +79,14 @@ CREATE TABLE `festival_participant` (
 -- Дамп данных таблицы `festival_participant`
 --
 
-INSERT INTO `festival_participant` (`id`, `password`, `ФИО`, `Дата рождения`, `Возрастная категория`, `email`, `Телефон`, `Страна`, `Город`, `Студия`, `Руководитель`, `Скидка`, `Уровень мастерства`, `Сертификат`, `Пакет`, `С точки (вход)`, `Коментарий`, `1 окт. 9.00-11.00 Мохамед`, `1 окт. 11.15-13.15 Оксана`, `1 окт. 14.30-16.00 Рогова А.`, `1 окт. 16.15-18.15 Мохамед`, `1 окт. 18,30-20.30 Оксана`, `2 окт. 9.00-11.00 Аида`, `2 окт. 11.15-13.15 Оксана`, `3 окт. 9.00-11.00 Аида`, `3 окт. 11.15-13.15 Мохамед`, `Классический ориенталь`, `CD Эстрадная песня CD`, `Ориентал Классика CD`, `Беледи/Шааби CD`, `Египетский Фольклор CD`, `Неегипетский Фольклор CD`, `Шоу/табла CD`, `Показательное выступление CD`, `Ориентал Классика ОРКЕСТР`, `Беледи/импровизация + Табла соло ОРКЕСТР`, `Беледи/Шааби ОРКЕСТР`, `Показательное выступление ОРКЕСТР`, `Корона МираМар Оркестр`, `пятница обед 1`, `пятница обед 2`, `суббота обед 1`, `суббота обед 2`, `воскресенье обед 1`, `воскресенье обед 2`) VALUES
-(7, 'pas', 'Иванов', '04/01/2021', '', 'mail1', '+7(111) 111-1111', 'РФ', 'Москва', 'студия', 'руководитель', '20%', 'Любители - начинающие', 'Да', 'junior', 'Вход', '', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'трек1', 'трек1', 'трек1', 'трек1', 'трек1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `festival_participant` (`id`, `password`, `photo`, `ФИО`, `Дата рождения`, `Возрастная категория`, `email`, `Телефон`, `Страна`, `Город`, `Студия`, `Руководитель`, `Скидка`, `Уровень мастерства`, `Сертификат`, `Пакет`, `Коментарий`, `1 окт. 09.00-11.00 Мохамед`, `1 окт. 11.15-13.15 Оксана`, `1 окт. 14.30-16.00 Рогова А.`, `1 окт. 16.15-18.15 Мохамед`, `1 окт. 18.30-20.30 Оксана`, `2 окт. 09.00-11.00 Аида`, `2 окт. 11.15-13.15 Оксана`, `3 окт. 09.00-11.00 Аида`, `3 окт. 11.15-13.15 Мохамед`, `Классический Ориенталь CD`, `Эстрадная песня CD`, `Беледи-Шааби CD`, `Египетский Фольклор CD`, `Неегипетский Фольклор CD`, `Шоу-табла CD`, `Показательное выступление CD`, `Классический Ориенталь ОРКЕСТР`, `Беледи-импровизация + Табла соло ОРКЕСТР`, `Беледи-Шааби ОРКЕСТР`, `Табла соло импровизация ОРКЕСТР`, `Показательное выступление ОРКЕСТР`, `Корона МираМар Оркестр`, `пятница обед 1`, `пятница обед 2`, `суббота обед 1`, `суббота обед 2`, `воскресенье обед 1`, `воскресенье обед 2`) VALUES
+(7, 'pas', '7!!Иванов!!photo.png', 'Иванов', '04/01/2021', '', 'mail1', '+7(111) 111-1111', 'РФ', 'Москва', 'студия', 'руководитель', '20%', 'Любители - начинающие', 'Да', 'junior', 'test', '1', '1', '1', '1', '1', '1', '1', '1', '1', '7!!Иванов!!Классический Ориенталь CD.png', '1', '1', '1', '1', '1', '1', 'трек', '1трек', '1трек', '1трек', '1трек', '1трек', '1', '1', '1', '1', '1', '1'),
+(8, 'pas', '<a href=', '', '', '', 'mail2', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'pas', '<a href=', '', '', '', 'mail3', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'pas', '<a href=', '', '', '', 'mail4', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'pas', '<a href=', '', '', '', 'mail5', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'pas', '<a href=', '', '', '', 'mail6', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'pas', '<a href=', '', '', '', 'mail7 ', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -100,7 +106,7 @@ ALTER TABLE `festival_participant`
 -- AUTO_INCREMENT для таблицы `festival_participant`
 --
 ALTER TABLE `festival_participant`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
