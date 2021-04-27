@@ -1,4 +1,28 @@
+hr{
+  margin:20px;
+  border-width: 1px;
+  border-color:skyblue;
+  border-style: solid;
+  /*opacity: 0.5;*/
+}
+td{
+  /*border:1px solid grey;*/
+  line-height: 1em;
+  padding: 5px;
+}
+table{
+  border-collapse: collapse;
+}
+label{
+  cursor: pointer;
+}
 
+label i{
+  color: skyblue;
+}
+input[type="checkbox"]{
+  opacity: 0;
+}
 input[type="text"]{
   width: 275px;
 }
@@ -36,7 +60,6 @@ input[type="text"]{
   margin:auto;
   height: 50px;
   display: flex;
- 
 }
 .tab_item-title div{
   /*border:1px solid red;*/

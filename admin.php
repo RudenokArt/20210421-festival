@@ -2,17 +2,16 @@
 <link rel="stylesheet" href="css/admin.css">
 <?php include_once 'php/users_get_data.php' ?>
 <?php include_once 'php/get_meta.php' ?>
+<?php include_once 'php/category_get_data.php' ?>
 
 <?php $profileMeta=array_keys(get_users_data()[0]); ?>
 <?php $profileData=get_users_data(); ?>
-
+ 
 
 <div class="test">
-  <?php print_r(masterlList('master')) ?>
-  <br>
-  <?php print_r(masterlList('cd')) ?>
-  <br>
-  <?php print_r(masterlList('orchestra')) ?>
+  <?php foreach (getCategoryData() as $key => $value) {?>
+    <br><?php print_r($value) ?>
+   <?php } ?>
 </div>
 
 <div id="tabs">
@@ -53,8 +52,9 @@
     <div class="select_wrapper">
       <select name="meta_type">
         <option value="master">Мастер-классы</option>
-        <option value="cd">Номинации по CD</option>
+        <option value="cd">Номинации под CD</option>
         <option value="orchestra">Номинации под ОРКЕСТР</option>
+        <option value="food">Питание</option>
       </select>
     </div>
     <div>
@@ -71,10 +71,37 @@
 <div class="meta_list">
   <div>
     <table>
-     <?php foreach (masterlList('master') as $key => $value) { ?>
       <tr>
+        <th colspan="4">
+          Мастер-классы
+        </th>
+      </tr>
+      <?php foreach (masterlList('master') as $key => $value) { ?>
+        <tr>
+          <td>
+            <?php echo($value['id']) ?>
+            <form action="php/remove_meta.php" method="post" class="remove_meta">
+              <input type="text" value="<?php echo($value['id']) ?>"
+              class="input_id" name="remove_meta" readonly >
+            </form>
+          </td>
+          <td>
+            <button name="remove_meta">
+             <i class="fa fa-trash" aria-hidden="true"></i>
+           </button>
+         </td>
+         <td>
+          <form action="php/edit_meta.php" method="post" class="edit_meta">
+            <input type="text" value="<?php echo($value['id']) ?>"
+            class="input_id" name="meta_id" readonly >
+            <input type="text" name="master_name"
+            value="<?php echo($value['master']) ?>">
+          </form>
+        </td>
         <td>
-          <?php echo($value['master']) ?>
+          <button value="<?php echo($value['id']) ?>" name="edit_meta">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          </button>
         </td>
       </tr>
     <?php }  ?>
@@ -83,25 +110,119 @@
 
 <div>
   <table>
-    <?php foreach (masterlList('cd') as $key => $value) { ?>
     <tr>
+      <th colspan="4">
+        Номинации под cd
+      </th>
+    </tr>
+    <?php foreach (masterlList('cd') as $key => $value) { ?>
+      <tr>
+       <tr>
+        <td>
+          <?php echo($value['id']) ?>
+          <form action="php/remove_meta.php" method="post" class="remove_meta">
+            <input type="text" value="<?php echo($value['id']) ?>"
+            class="input_id" name="remove_meta" readonly >
+          </form>
+        </td>
+        <td>
+          <button name="remove_meta">
+           <i class="fa fa-trash" aria-hidden="true"></i>
+         </button>
+       </td>
+       <td>
+        <form action="php/edit_meta.php" method="post" class="edit_meta">
+          <input type="text" value="<?php echo($value['id']) ?>"
+          class="input_id" name="meta_id" readonly >
+          <input type="text" name="cd_name"
+          value="<?php echo($value['cd']) ?>">
+        </form>
+      </td>
       <td>
-        <?php echo($value['cd']) ?>
+        <button value="<?php echo($value['id']) ?>" name="edit_meta">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
       </td>
     </tr>
-  <?php }  ?>
+  </tr>
+<?php }  ?>
 </table>
 </div>
 
 <div>
   <table>
-   <?php foreach (masterlList('orchestra') as $key => $value) { ?>
     <tr>
-      <td>
-        <?php echo($value['orchestra']) ?>
-      </td>
+      <th colspan="4">
+        Номинации под оркестр
+      </th>
     </tr>
-  <?php }  ?>
+     <?php foreach (masterlList('orchestra') as $key => $value) { ?>
+      <tr>
+      <td>
+        <?php echo($value['id']) ?>
+        <form action="php/remove_meta.php" method="post" class="remove_meta">
+          <input type="text" value="<?php echo($value['id']) ?>"
+          class="input_id" name="remove_meta" readonly >
+        </form>
+      </td>
+      <td>
+        <button name="remove_meta">
+         <i class="fa fa-trash" aria-hidden="true"></i>
+       </button>
+     </td>
+     <td>
+      <form action="php/edit_meta.php" method="post" class="edit_meta">
+        <input type="text" value="<?php echo($value['id']) ?>"
+        class="input_id" name="meta_id" readonly >
+        <input type="text" name="orchestra_name"
+        value="<?php echo($value['orchestra']) ?>">
+      </form>
+    </td>
+    <td>
+      <button value="<?php echo($value['id']) ?>" name="edit_meta">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+      </button>
+    </td>
+  </tr>
+<?php }  ?>
+</table>
+</div>
+<div>
+  <table>
+    <tr>
+      <th colspan="4">
+        Питание
+      </th>
+    </tr>
+     <?php foreach (masterlList('food') as $key => $value) { ?>
+      <tr>
+      <td>
+        <?php echo($value['id']) ?>
+        <form action="php/remove_meta.php" method="post" class="remove_meta">
+          <input type="text" value="<?php echo($value['id']) ?>"
+          class="input_id" name="remove_meta" readonly >
+        </form>
+      </td>
+      <td>
+        <button name="remove_meta">
+         <i class="fa fa-trash" aria-hidden="true"></i>
+       </button>
+     </td>
+     <td>
+      <form action="php/edit_meta.php" method="post" class="edit_meta">
+        <input type="text" value="<?php echo($value['id']) ?>"
+        class="input_id" name="meta_id" readonly >
+        <input type="text" name="food_name"
+        value="<?php echo($value['food']) ?>">
+      </form>
+    </td>
+    <td>
+      <button value="<?php echo($value['id']) ?>" name="edit_meta">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+      </button>
+    </td>
+  </tr>
+<?php }  ?>
 </table>
 </div>
 
@@ -109,6 +230,5 @@
 
 </div>
 </div>
-
 <script src="js/admin.js"></script>
 <?php include_once 'footer.php'; ?>

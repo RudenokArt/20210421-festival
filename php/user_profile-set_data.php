@@ -5,8 +5,12 @@ print_r($_FILES);
 echo '<br>';
 print_r($_POST);
 
-uploadUserPhoto('photo');
-uploadUserPhoto('certificate');
+if ($_FILES['photo']['name']!='') {
+  uploadUserPhoto('photo');
+}
+if ($_FILES['certificate']['name']!='') {
+  uploadUserPhoto('certificate');
+}
 foreach ($_POST as $key => $value) {
   updateUserData($key,$value);
 }

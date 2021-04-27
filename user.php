@@ -1,5 +1,8 @@
 <?php include_once 'header.php' ?>
 <?php include_once 'php/user_profile-get_data.php'; ?>
+<?php include_once 'php/get_meta.php' ?>
+<?php include_once 'php/user_category_get_data.php'; ?>
+<?php include_once 'php/user_orchestra_get.php'; ?>
 <link rel="stylesheet" href="css/user.css?<?php echo time(); ?>">
 <?php if (!$_SESSION['login']) {
   ?><script>document.location.href='index.php';</script><?
@@ -9,8 +12,6 @@
   Выход
 </button>
 <img src="img/main.jpg" alt="MiraMar" class="main_img">
-
-<div class="test"></div>
 
 <div id="tabs">
   <ul>
@@ -77,7 +78,7 @@
           </div>
           <div class="tab_item-content">
             <input value="<?php echo getUserData()['email'] ?>"
-            type="text" name="email">
+            type="text" name="email" readonly>
           </div>
         </div>
         <div class="tab_item">
@@ -167,15 +168,23 @@
   </div>
 </div>
 <div>
+  <div class="tab_item">
+    <div class="tab_item-title">
+      <div>Скидка %:</div>
+    </div>
+    <div class="tab_item-content">
+      <input value="<?php echo getUserData()['discount'] ?>"
+      type="text" name="discount">
+    </div>
+  </div>
   <div class="tab_item" style="display: none;">
     <div class="tab_item-content">
       <input type="text" value="<?php echo $_SESSION['id']; ?>" name="user_id">
     </div>
   </div>
-
   <div class="tab_item">
     <div class="tab_item-title">
-      <div>ФОТО:</div>
+      <div>Сертификат:</div>
     </div>
     <div class="tab_item-content">
       <div class="tab_content">
@@ -194,7 +203,6 @@
       </div>
     </div>
   </div>
-
   <div class="tab_item">
     <div class="tab_item-content">
       <button>
@@ -208,11 +216,224 @@
 </form>
 </div>
 
-
-<div id="tabs-2">2</div>
-<div id="tabs-3">3</div>
+<div id="tabs-2">
+  <form method="post" action="php/user_category_set_data.php">
+    <div class="tab_content">
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>Мастер-классы:</div>
+        </div>
+        <div class="tab_item-content">
+          <?php foreach (masterlList('master') as $key => $value) {?>
+            <table>
+              <tr>
+                <td>
+                  <label>
+                    <input name="<?php echo $value['master'] ?>" 
+                    <?php if(in_array($value['id'],getUserCategory())){?>
+                      checked="checked"
+                    <?php  } ?>
+                    value="<?php echo $value['id'] ?>" type="checkbox">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <?php echo $value['master'] ?>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          <?php  } ?>
+        </div>
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>Номинации под CD:</div>
+        </div>
+        <div class="tab_item-content">
+          <?php foreach (masterlList('cd') as $key => $value) {?>
+            <table>
+              <tr>
+                <td>
+                  <label>
+                    <input name="<?php echo $value['cd'] ?>" 
+                    <?php if(in_array($value['id'],getUserCategory())){?>
+                      checked="checked"
+                    <?php  } ?>
+                    value="<?php echo $value['id'] ?>" type="checkbox">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <?php echo $value['cd'] ?>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          <?php  } ?>
+        </div>
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>Номинации под ОРКЕСТР:</div>
+        </div>
+        <div class="tab_item-content">
+          <?php foreach (masterlList('orchestra') as $key => $value) {?>
+            <table>
+              <tr>
+                <td>
+                  <label>
+                    <input name="<?php echo $value['orchestra'] ?>" 
+                    <?php if(in_array($value['id'],getUserCategory())){?>
+                      checked="checked"
+                    <?php  } ?>
+                    value="<?php echo $value['id'] ?>" type="checkbox">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <?php echo $value['orchestra'] ?>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          <?php  } ?>
+        </div>
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>Питание:</div>
+        </div>
+        <div class="tab_item-content">
+          <?php foreach (masterlList('food') as $key => $value) {?>
+            <table>
+              <tr>
+                <td>
+                  <label>
+                    <input name="<?php echo $value['food'] ?>" 
+                    <?php if(in_array($value['id'],getUserCategory())){?>
+                      checked="checked"
+                    <?php  } ?>
+                    value="<?php echo $value['id'] ?>" type="checkbox">
+                    <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    <?php echo $value['food'] ?>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          <?php  } ?>
+        </div>
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-content">
+          <button>
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Сохранить <br>список категорий
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
+<div id="tabs-3">
+  <form action="php/user_file_upload.php" 
+  enctype="multipart/form-data" method="post">
+  <div class="tab_content">
+    <div class="tab_item">
+      <div class="tab_item-title">
+        <div>КОМПОЗИЦИЯ ПОД CD:</div>
+      </div>
+      <div class="tab_item-content">
+        <div class="tab_content">
+          <div class="upload_wrapper">
+            <div class="upload_icon">
+              <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+              <br>
+              <span>empty</span>
+            </div>
+            <input type="file" name="track">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>Номинация:</div>
+        </div>
+        <div class="tab_item-content">
+          <div class="select_wrapper">
+            <select name="track_name">
+              <?php
+              foreach (masterlList('cd') as $key => $value) {?>
+                <option value="<?php print_r($value['cd']) ?>">
+                  <?php print_r($value['cd']) ?>
+                </option>
+              <?php  } ?>
+            </select>
+          </div>
+        </div>
+        <input type="text" name="user" style="display: none;"
+        value="<?php echo getUserData()['id'].'!!'.getUserData()['fio'] ?>">
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>С точки / вход:</div>
+        </div>
+        <div class="tab_item-content">
+          <div class="select_wrapper">
+            <select name="track_type">
+              <option value="point">С точки</option>
+              <option value="output">Вход</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="tab_item">
+        <div class="tab_item-content">
+          <button>
+            <i class="fa fa-upload" aria-hidden="true"></i>
+            Отправить <br> файл на сервер
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>
+<form action="php/user_orchestra_set.php" method="post">
+
+  <div class="tab_content">
+    <?php  foreach (masterlList('orchestra') as $key => $value) {?>
+      <div class="tab_item">
+        <div class="tab_item-title">
+          <div>
+            Композиция для 
+            <?php echo $value['orchestra'] ?>
+            <?php echo $value['id'] ?>
+            <?php print_r(getUserOrchestra($value['id'])[0]['orchestra']) ?>
+          </div>
+        </div>
+        <div class="tab_item-content">
+          <input type="text"name="<?php echo $value['id'] ?>"
+          value="<?php echo getUserOrchestra($value['id'])[0]['orchestra'] ?>">
+        </div>
+      </div>
+    <?php  } ?>
+    <div class="tab_item">
+      <div class="tab_item-content">
+        <button>
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          Сохранить <br> список композиций
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+</div>
+
+</div>
+
+
+<div class="test">
+  <?php foreach (getUserOrchestra(41) as $key => $value) {?>
+    <br> <?php //print_r($value) ?>
+  <?php  } ?>
+</div>
 
 <script src="js/user.js"></script>
 <?php include_once 'footer.php' ?>

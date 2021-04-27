@@ -23,7 +23,12 @@ table{
 }
 .meta_list{
   display: flex;
+  flex-wrap: wrap;
 }
 .meta_list div{
   margin:10px;
+}
+.input_id{
+  width: 40px !important;
+  display: none;
 }
