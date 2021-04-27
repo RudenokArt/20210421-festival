@@ -1,0 +1,16 @@
+.popup_wrapper{
+  position: absolute;
+  background-color: rgba(0,0,0,0.2);
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.popup{
+  margin: auto;
+}
+.popup div{
+  line-height: 1em;
+  padding: 5px;
+}

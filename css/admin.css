@@ -1,7 +1,29 @@
+td,th{
+  padding: 5px; 
+  line-height: 1em;
+  border:1px solid grey;
+}
 table{
   border-collapse: collapse;
 }
-th,td{
-  border:1px solid black;
-  padding: 5px;
+.ui-tabs-panel{
+  overflow: auto;
+}
+.new_meta,.new_meta form{
+  display: flex;
+  justify-content: flex-start; 
+}
+.new_meta div{
+  margin:auto;
+  margin-left: 0;
+  margin-right: 20px;
+}
+.ui-tabs-tab{
+  padding: 5px !important;
+}
+.meta_list{
+  display: flex;
+}
+.meta_list div{
+  margin:10px;
 }

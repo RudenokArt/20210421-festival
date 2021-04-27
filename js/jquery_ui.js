@@ -1,17 +1,14 @@
-  
-// ========== TABS ==========
   $( function() {
-    $("#tabs").tabs();
+    $( "#tabs" ).tabs();
   } );
 
-// ========== DATA PICKER ==========
   $( function() {
-    $('input[name="Дата рождения"]').datepicker();
+    $( 'input[name="date"]' ).datepicker({dateFormat: "dd.mm.yy"});
   } );
 
-// ========== MASK INPUT ==========
-  $('input[name="Телефон"]').mask('+7(999) 999-9999');
-  $('input[name="Скидка"]').mask('99%');
+  $('input[name="phone"]').mask("+7(999) 999-9999");
+  $('input[name="date"]').mask("99.99.9999");
 
-
-// ========== CHECKBOX + RADIO ==========
+    $( function() {
+    $( "#accordion" ).accordion({active:''});
+  } );

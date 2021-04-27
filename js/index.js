@@ -1,50 +1,48 @@
 
 
-// ========= LISTENERS =========
-
-$('button[name="reg_button"]').click(function(){
-  var flag=true;
-  var arr=$('.reg_form input');
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].value=='') {
-      arr[i].style.outline='1px solid red';
-      $('.warning').html('');
-      flag=false;
-    } else if (arr[1].value.trim()!=arr[2].value.trim()) {
-      $('.warning').html('Пароли не совпадают!');
-      flag=false;
-    }  else{
-      arr[i].style.outline='none';
-      $('.warning').html('');
+// ========== LISTENERS ==========
+$('#reg_button').click(function () {
+  var arr=$('#reg_form input');
+  if (formCheck(arr)) {
+    if (arr[1].value.trim()==arr[2].value.trim()) {
+      $.post('php/reg_user.php', $('#reg_form').serialize(), regRequest);
+    }else{
+      alert('Пароли не совпадают');
     }
   }
-  if (flag) {
-    $.post('php/reg_participant.php', $('.reg_form').serialize(),login);
+});
+$('#log_button').click(function () {
+  var arr=$('#log_form input');
+  if (formCheck(arr)) {
+   $.post('php/log_user.php', $('#log_form').serialize(), logRequest);
   }
 });
-$('button[name="login_button"]').click(function () {
-  var arr = $('.login_form input');
+
+// ========== FUNCTIONS ==========
+function formCheck (arr) {
   var flag=true;
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].value=='') {
-      arr[i].style.outline='1px solid red';
-      $('.warning').html('');
+   for (var i = 0; i < arr.length; i++) {
+    if(arr[i].value==''){
+      arr[i].style.outline ='1px solid red';
       flag=false;
-    }  else{
-      arr[i].style.outline='none';
-      $('.warning').html('');
+    }else{
+      arr[i].style.outline ='1px solid transparent';
     }
   }
-  if (flag) {
-    $.post('php/log_participant.php', $('.login_form').serialize(),login);
+  return flag;
+}
+function regRequest (data) {
+  if (data=='email') {
+    alert('Пользователь с таким Email уже зарегистрирован!');
+  }else{
+    $.post('php/log_user.php', $('#reg_form').serialize(), logRequest);
   }
-});
-// ========= FUNCTIONS =========
-
-function login (data) {
-  console.log(data);
-  var arr=JSON.parse(data);
-  $('.warning').html(arr[1]);
-  if (arr[0]) {document.location.href='participant.php';}
-  //
+}
+function logRequest (data) {
+  if (data=='log_pas') {
+    alert('Неверный логин или пароль!')
+  }else{
+    console.log('login');
+    document.location.href='user.php';
+  }
 }

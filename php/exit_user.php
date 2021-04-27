@@ -1,9 +1,9 @@
 <?php 
 
 session_start();
-$_SESSION['login']=false;
-$_SESSION['id'] = null;
-
-
+$_SESSION['id']=null;
+$_SESSION['login']=null;
+session_destroy();
+echo 'exit';
 
 ?>
