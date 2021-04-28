@@ -3,6 +3,10 @@ td,th{
   line-height: 1em;
   border:1px solid grey;
 }
+th{
+  font-weight: bold;
+  color:grey;
+}
 table{
   border-collapse: collapse;
 }

@@ -14,6 +14,10 @@ if ($_FILES['certificate']['name']!='') {
 foreach ($_POST as $key => $value) {
   updateUserData($key,$value);
 }
+
+include_once 'send_mail.php';
+send_mail_update_user_data();
+
 echo '<br><br>Данные отправлены на сервер!';
 echo '<meta http-equiv="refresh" content="2; url=../user.php" />';
 
@@ -36,5 +40,6 @@ function updateUserData($key,$value){
   SET `'.$key.'`="'.trim($value).'" WHERE id='.$_POST['user_id'];
   $mysqli->query($sql);
 }
+
 
 ?>

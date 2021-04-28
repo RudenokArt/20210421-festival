@@ -14,3 +14,11 @@
   line-height: 1em;
   padding: 5px;
 }
+.password_recovery{
+  color:blue;
+  text-align: right;
+  cursor: pointer;
+}
+.password_recovery:hover{
+  text-decoration: underline;
+}

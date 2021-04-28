@@ -17,6 +17,12 @@ $('#log_button').click(function () {
    $.post('php/log_user.php', $('#log_form').serialize(), logRequest);
   }
 });
+$('.password_recovery').click(function () {
+  var mail=prompt('Email указанный при регистрации:').trim();
+  $.post('php/password_recover.php',{data:mail}, function(data){
+    alert('Пароль отправлен на почту: '+data);
+  });
+});
 
 // ========== FUNCTIONS ==========
 function formCheck (arr) {

@@ -1,7 +1,7 @@
 <?php include_once 'header.php'; ?>
 <link rel="stylesheet" href="css/index.css">
 <?php if ($_SESSION['login']) {
-  ?><script>document.location.href='user.php';</script><?
+  ?><script>document.location.href='user.php';</script><?php
 } ?>
 <img src="img/main.jpg" alt="MiraMar" class="main_img">
 <div class="popup_wrapper">
@@ -30,6 +30,9 @@
         Вход
       </button>
     </div>
+    <div class="password_recovery">
+      Забыли пароль?
+    </div>
   </div>
   <div id="tabs-2">
    <form action="" id="reg_form">
@@ -54,7 +57,7 @@
  <button id="reg_button">
   <i class="fa fa-check" aria-hidden="true"></i>
   Регистрация
- </button>
+</button>
 </div>
 </div>
 </div>
@@ -66,6 +69,6 @@
 
 
 
-<script src="js/index.js"></script>
+<script src="js/index.js?<?php echo time() ?>"></script>
 <?php include_once 'footer.php'; ?>
 

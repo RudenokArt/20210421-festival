@@ -177,40 +177,81 @@
       type="text" name="discount">
     </div>
   </div>
-  <div class="tab_item" style="display: none;">
-    <div class="tab_item-content">
-      <input type="text" value="<?php echo $_SESSION['id']; ?>" name="user_id">
-    </div>
-  </div>
   <div class="tab_item">
     <div class="tab_item-title">
-      <div>Сертификат:</div>
+      <div>Выбор пакета:</div>
     </div>
     <div class="tab_item-content">
-      <div class="tab_content">
-        <div class="upload_wrapper">
-          <div class="upload_icon">
-            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-            <br>
-            <span>empty</span>
-          </div>
-          <input type="file" name="certificate">
+      <div class="select_wrapper">
+        <select name="package">
+          <option  <?php 
+          if (getUserData()['package']=='maxi') {
+            echo 'selected="selected"';
+          } ?>   >
+          maxi
+        </option>
+        <option  <?php 
+        if (getUserData()['package']=='midi') {
+          echo 'selected="selected"';
+        } ?>   >
+        midi
+      </option>
+      <option  <?php 
+      if (getUserData()['package']=='mini') {
+        echo 'selected="selected"';
+      } ?>   >
+      mini
+    </option>
+    <option  <?php 
+      if (getUserData()['package']=='junior') {
+        echo 'selected="selected"';
+      } ?>   >
+      junior
+    </option>
+    <option  <?php 
+      if (getUserData()['package']=='study') {
+        echo 'selected="selected"';
+      } ?>   >
+      study
+    </option>
+  </select>
+</div>
+</div>
+</div>
+<div class="tab_item" style="display: none;">
+  <div class="tab_item-content">
+    <input type="text" value="<?php echo $_SESSION['id']; ?>" name="user_id">
+  </div>
+</div>
+<div class="tab_item">
+  <div class="tab_item-title">
+    <div>Сертификат:</div>
+  </div>
+  <div class="tab_item-content">
+    <div class="tab_content">
+      <div class="upload_wrapper">
+        <div class="upload_icon">
+          <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+          <br>
+          <span>empty</span>
         </div>
-        <div class="tab_image">
-          <img src="user_upload/<?php echo getUserData()['certificate']?>" 
-          alt="certificate">
-        </div>
+        <input type="file" name="certificate">
+      </div>
+      <div class="tab_image">
+        <img src="user_upload/<?php echo getUserData()['certificate']?>" 
+        alt="certificate">
       </div>
     </div>
   </div>
-  <div class="tab_item">
-    <div class="tab_item-content">
-      <button>
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-        Сохранить <br>настройки профиля
-      </button>
-    </div>
+</div>
+<div class="tab_item">
+  <div class="tab_item-content">
+    <button>
+      <i class="fa fa-floppy-o" aria-hidden="true"></i>
+      Сохранить <br>настройки профиля
+    </button>
   </div>
+</div>
 </div>
 </div> 
 </form>
@@ -402,8 +443,6 @@
           <div>
             Композиция для 
             <?php echo $value['orchestra'] ?>
-            <?php echo $value['id'] ?>
-            <?php print_r(getUserOrchestra($value['id'])[0]['orchestra']) ?>
           </div>
         </div>
         <div class="tab_item-content">

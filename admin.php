@@ -3,15 +3,17 @@
 <?php include_once 'php/users_get_data.php' ?>
 <?php include_once 'php/get_meta.php' ?>
 <?php include_once 'php/category_get_data.php' ?>
+<?php include_once 'php/users_get_category.php' ?>
+<?php include_once 'php/users_files_list.php' ?>
 
 <?php $profileMeta=array_keys(get_users_data()[0]); ?>
 <?php $profileData=get_users_data(); ?>
- 
+
 
 <div class="test">
-  <?php foreach (getCategoryData() as $key => $value) {?>
+  <?php foreach (userFilesList(14) as $key => $value) {?>
     <br><?php print_r($value) ?>
-   <?php } ?>
+  <?php } ?>
 </div>
 
 <div id="tabs">
@@ -22,11 +24,26 @@
   </ul>
   <div id="tabs-1">
     <table>
+
       <tr>
         <?php foreach ($profileMeta as $key => $value) {?>
           <th><?php echo $value ?></th>
         <?php } ?>
+        <?php foreach (masterlList('master') as $key => $value) {?>
+          <th><?php echo($value['master']) ?></th>
+        <?php } ?>
+        <?php foreach (masterlList('cd') as $key => $value) {?>
+          <th><?php echo($value['cd']) ?></th>
+        <?php } ?>
+        <?php foreach (masterlList('orchestra') as $key => $value) {?>
+          <th><?php echo($value['orchestra']) ?></th>
+        <?php } ?>
+        <?php foreach (masterlList('food') as $key => $value) {?>
+          <th><?php echo($value['food']) ?></th>
+        <?php } ?>
+        <th>files</th>
       </tr>
+
       <?php foreach ($profileData as $key => $value) {?>
        <tr>
          <?php foreach ($value as $subkey => $subvalue) {?>
@@ -38,14 +55,63 @@
             <?php } else{echo $subvalue;} ?>
           </td>
         <?php } ?>
-      </tr>
-    <?php }  ?>
-  </table>
-</div>
-<div id="tabs-2">
- Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Переписали, запятой города имеет по всей жаренные родного реторический заманивший маленькая, подзаголовок залетают дорогу, вдали рукопись. Города, рыбными, имеет. Грустный, речью!
-</div>
-<div id="tabs-3">
+        <?php foreach (masterlList('master') as $keyList => $valueList)  {?>
+          <td>
+            <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              echo true;
+            } ?>
+            
+            <br>
+          </td>
+        <?php  }  ?>
+        <?php foreach (masterlList('cd') as $keyList => $valueList) {?>
+          <td>
+            <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              echo true;
+            } ?>
+            
+            <br>
+          </td>
+        <?php  }  ?>
+        <?php foreach (masterlList('orchestra') as $keyList => $valueList) {?>
+          <td>
+            <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              echo true;
+            } ?>
+            <?php 
+            if (isset(getUsersCategory($value['id'],$valueList['id'])[0]['orchestra'])){
+              echo getUsersCategory($value['id'],$valueList['id'])[0]['orchestra'];}
+              ?>
+              <br>
+            </td>
+          <?php  }  ?>
+          <?php foreach (masterlList('food') as $keyList => $valueList) {?>
+            <td>
+              <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+                echo true;
+              } ?>
+
+              <br>
+            </td>
+          <?php  }  ?>
+          <td>
+            <?php foreach (userFilesList($value['id']) as $keyFile => $valueFile) {?>
+              <a href="user_upload/<?php echo $valueFile ?>" download >
+                <?php echo $valueFile ?>
+              </a>
+              <br><br>
+            <?php } ?>
+
+          </td>
+        </tr>
+      <?php } ?>
+
+    </table>
+  </div>
+  <div id="tabs-2">
+   Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Переписали, запятой города имеет по всей жаренные родного реторический заманивший маленькая, подзаголовок залетают дорогу, вдали рукопись. Города, рыбными, имеет. Грустный, речью!
+ </div>
+ <div id="tabs-3">
   <div class="new_meta">
    <form action="php/new_meta.php" id="add_meta" method="post">
     <div>Добавить:</div>
@@ -156,35 +222,35 @@
         Номинации под оркестр
       </th>
     </tr>
-     <?php foreach (masterlList('orchestra') as $key => $value) { ?>
+    <?php foreach (masterlList('orchestra') as $key => $value) { ?>
       <tr>
-      <td>
-        <?php echo($value['id']) ?>
-        <form action="php/remove_meta.php" method="post" class="remove_meta">
+        <td>
+          <?php echo($value['id']) ?>
+          <form action="php/remove_meta.php" method="post" class="remove_meta">
+            <input type="text" value="<?php echo($value['id']) ?>"
+            class="input_id" name="remove_meta" readonly >
+          </form>
+        </td>
+        <td>
+          <button name="remove_meta">
+           <i class="fa fa-trash" aria-hidden="true"></i>
+         </button>
+       </td>
+       <td>
+        <form action="php/edit_meta.php" method="post" class="edit_meta">
           <input type="text" value="<?php echo($value['id']) ?>"
-          class="input_id" name="remove_meta" readonly >
+          class="input_id" name="meta_id" readonly >
+          <input type="text" name="orchestra_name"
+          value="<?php echo($value['orchestra']) ?>">
         </form>
       </td>
       <td>
-        <button name="remove_meta">
-         <i class="fa fa-trash" aria-hidden="true"></i>
-       </button>
-     </td>
-     <td>
-      <form action="php/edit_meta.php" method="post" class="edit_meta">
-        <input type="text" value="<?php echo($value['id']) ?>"
-        class="input_id" name="meta_id" readonly >
-        <input type="text" name="orchestra_name"
-        value="<?php echo($value['orchestra']) ?>">
-      </form>
-    </td>
-    <td>
-      <button value="<?php echo($value['id']) ?>" name="edit_meta">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-      </button>
-    </td>
-  </tr>
-<?php }  ?>
+        <button value="<?php echo($value['id']) ?>" name="edit_meta">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  <?php }  ?>
 </table>
 </div>
 <div>
@@ -194,35 +260,35 @@
         Питание
       </th>
     </tr>
-     <?php foreach (masterlList('food') as $key => $value) { ?>
+    <?php foreach (masterlList('food') as $key => $value) { ?>
       <tr>
-      <td>
-        <?php echo($value['id']) ?>
-        <form action="php/remove_meta.php" method="post" class="remove_meta">
+        <td>
+          <?php echo($value['id']) ?>
+          <form action="php/remove_meta.php" method="post" class="remove_meta">
+            <input type="text" value="<?php echo($value['id']) ?>"
+            class="input_id" name="remove_meta" readonly >
+          </form>
+        </td>
+        <td>
+          <button name="remove_meta">
+           <i class="fa fa-trash" aria-hidden="true"></i>
+         </button>
+       </td>
+       <td>
+        <form action="php/edit_meta.php" method="post" class="edit_meta">
           <input type="text" value="<?php echo($value['id']) ?>"
-          class="input_id" name="remove_meta" readonly >
+          class="input_id" name="meta_id" readonly >
+          <input type="text" name="food_name"
+          value="<?php echo($value['food']) ?>">
         </form>
       </td>
       <td>
-        <button name="remove_meta">
-         <i class="fa fa-trash" aria-hidden="true"></i>
-       </button>
-     </td>
-     <td>
-      <form action="php/edit_meta.php" method="post" class="edit_meta">
-        <input type="text" value="<?php echo($value['id']) ?>"
-        class="input_id" name="meta_id" readonly >
-        <input type="text" name="food_name"
-        value="<?php echo($value['food']) ?>">
-      </form>
-    </td>
-    <td>
-      <button value="<?php echo($value['id']) ?>" name="edit_meta">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-      </button>
-    </td>
-  </tr>
-<?php }  ?>
+        <button value="<?php echo($value['id']) ?>" name="edit_meta">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  <?php }  ?>
 </table>
 </div>
 

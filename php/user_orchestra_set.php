@@ -3,6 +3,10 @@ include_once 'db_connect.php';
 session_start();
 print_r($_POST);
 setUserOrchestra();
+
+include_once 'send_mail.php';
+send_mail_update_user_data();
+
 echo '<br><br>Данные отправлены на сервер!';
 echo '<meta http-equiv="refresh" content="2; url=../user.php#tabs-3" />';
 
