@@ -13,6 +13,7 @@
 </button>
 <img src="img/main.jpg" alt="MiraMar" class="main_img">
 
+
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">
@@ -116,18 +117,17 @@
           </div>
           <div class="tab_item-content">
             <input value="<?php echo getUserData()['age'] ?>"
-            type="text" name="age">
+            type="text" name="age" readonly >
           </div>
         </div>
         <div class="tab_item">
           <div class="tab_item-title">
-            <div>Уровень мастертсва:</div>
+            <div>Уровень мастерства:</div>
           </div>
           <div class="tab_item-content">
             <div class="select_wrapper">
               <select name="skill">
-                <option  <?php 
-                if (getUserData()['skill']=='Профессионалы') {
+                <option  <?php if (getUserData()['skill']=='Профессионалы') {
                   echo 'selected="selected"';
                 } ?>   >
                 Профессионалы
@@ -164,6 +164,14 @@
     <div class="tab_item-content">
       <input value="<?php echo getUserData()['manager'] ?>"
       type="text" name="manager">
+    </div>
+  </div>
+  <div class="tab_item">
+    <div class="tab_item-title">
+      <div>Комментарий:</div>
+    </div>
+    <div class="tab_item-content">
+      <textarea name="coment"><?php echo getUserData()['coment'] ?></textarea>
     </div>
   </div>
 </div>
@@ -203,18 +211,18 @@
       mini
     </option>
     <option  <?php 
-      if (getUserData()['package']=='junior') {
-        echo 'selected="selected"';
-      } ?>   >
-      junior
-    </option>
-    <option  <?php 
-      if (getUserData()['package']=='study') {
-        echo 'selected="selected"';
-      } ?>   >
-      study
-    </option>
-  </select>
+    if (getUserData()['package']=='junior') {
+      echo 'selected="selected"';
+    } ?>   >
+    junior
+  </option>
+  <option  <?php 
+  if (getUserData()['package']=='study') {
+    echo 'selected="selected"';
+  } ?>   >
+  study
+</option>
+</select>
 </div>
 </div>
 </div>
@@ -245,6 +253,7 @@
   </div>
 </div>
 <div class="tab_item">
+  <div class="tab_item-title"></div>
   <div class="tab_item-content">
     <button>
       <i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -258,7 +267,7 @@
 </div>
 
 <div id="tabs-2">
-  <form method="post" action="php/user_category_set_data.php">
+  <form method="post" action="php/user_category_set_data.php" class="ajax_form">
     <div class="tab_content">
       <div class="tab_item">
         <div class="tab_item-title">
@@ -322,7 +331,8 @@
                     <?php if(in_array($value['id'],getUserCategory())){?>
                       checked="checked"
                     <?php  } ?>
-                    value="<?php echo $value['id'] ?>" type="checkbox">
+                    value="<?php echo $value['id'] ?>" 
+                    class="orchestraCheckbox" type="checkbox">
                     <i class="fa fa-circle-o" aria-hidden="true"></i>
                     <?php echo $value['orchestra'] ?>
                   </label>
@@ -356,26 +366,31 @@
           <?php  } ?>
         </div>
       </div>
-      <div class="tab_item">
-        <div class="tab_item-content">
-          <button>
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-            Сохранить <br>список категорий
-          </button>
-        </div>
-      </div>
     </div>
   </form>
+  <div class="tab_item">
+    <div class="tab_item-title"></div>
+    <div class="tab_item-content">
+      <button name="category_set_data">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Сохранить <br>список категорий
+      </button>
+    </div>
+  </div>
 </div>
 
 <div id="tabs-3">
-  <form action="php/user_file_upload.php" 
-  enctype="multipart/form-data" method="post">
+
   <div class="tab_content">
-    <div class="tab_item">
+    <div>
+     <form action="php/user_file_upload.php" 
+     enctype="multipart/form-data" method="post"> 
+     <div class="tab_item">
       <div class="tab_item-title">
         <div>КОМПОЗИЦИЯ ПОД CD:</div>
       </div>
+    </div> 
+     <div class="tab_item">
       <div class="tab_item-content">
         <div class="tab_content">
           <div class="upload_wrapper">
@@ -389,54 +404,72 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="tab_item">
-        <div class="tab_item-title">
-          <div>Номинация:</div>
-        </div>
-        <div class="tab_item-content">
-          <div class="select_wrapper">
-            <select name="track_name">
-              <?php
-              foreach (masterlList('cd') as $key => $value) {?>
-                <option value="<?php print_r($value['cd']) ?>">
-                  <?php print_r($value['cd']) ?>
-                </option>
-              <?php  } ?>
-            </select>
-          </div>
-        </div>
-        <input type="text" name="user" style="display: none;"
-        value="<?php echo getUserData()['id'].'!!'.getUserData()['fio'] ?>">
+    <div class="tab_item">
+      <div class="tab_item-title">
+        <div>Номинация:</div>
       </div>
-      <div class="tab_item">
-        <div class="tab_item-title">
-          <div>С точки / вход:</div>
-        </div>
-        <div class="tab_item-content">
-          <div class="select_wrapper">
-            <select name="track_type">
-              <option value="point">С точки</option>
-              <option value="output">Вход</option>
-            </select>
-          </div>
+      <div class="tab_item-content">
+        <div class="select_wrapper">
+          <select name="track_name">
+            <?php
+            foreach (masterlList('cd') as $key => $value) {?>
+              <option value="<?php print_r($value['cd']) ?>">
+                <?php print_r($value['cd']) ?>
+              </option>
+            <?php  } ?>
+          </select>
         </div>
       </div>
-      <div class="tab_item">
-        <div class="tab_item-content">
-          <button>
-            <i class="fa fa-upload" aria-hidden="true"></i>
-            Отправить <br> файл на сервер
-          </button>
+      <input value="<?php echo getUserData()['id'].'!!'.getUserData()['fio']
+      .'!!'.getUserData()['age'].'!!'.getUserData()['skill']  ?>"
+      type="text" name="user" style="display: none;" >
+    </div>
+    <div class="tab_item">
+      <div class="tab_item-title">
+        <div>С точки / выход:</div>
+      </div>
+      <div class="tab_item-content">
+        <div class="select_wrapper">
+          <select name="track_type">
+            <option value="point">С точки</option>
+            <option value="output">Выход</option>
+          </select>
         </div>
       </div>
     </div>
-  </div>
-</form>
-<hr>
-<form action="php/user_orchestra_set.php" method="post">
+    <div class="tab_item">
+      <div class="tab_item-title"></div>
+      <div class="tab_item-content">
+        <button>
+          <i class="fa fa-upload" aria-hidden="true"></i>
+          Отправить <br> файл на сервер
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 
-  <div class="tab_content">
+<div>
+  <div class="tab_item">
+    <div class="tab_item-title">
+      <div>Загруженные композиции:</div>
+    </div>
+    <div class="tab_item-list">
+      <?php include_once 'php/users_files_list.php' ?>
+      <?php foreach (userFilesList(getUserData()['id']) as $keyFile => $valueFile) {?>
+        <a href="user_upload/<?php echo $valueFile ?>" download >
+          <?php echo $valueFile ?>
+        </a>
+        <br><br>
+      <?php } ?>
+    </div>
+  </div>
+
+
+</div>
+
+<div>
+  <form action="php/user_orchestra_set.php" method="post" class="ajax_form">
     <?php  foreach (masterlList('orchestra') as $key => $value) {?>
       <div class="tab_item">
         <div class="tab_item-title">
@@ -447,32 +480,31 @@
         </div>
         <div class="tab_item-content">
           <input type="text"name="<?php echo $value['id'] ?>"
-          value="<?php echo getUserOrchestra($value['id'])[0]['orchestra'] ?>">
+          value="<?php echo getUserOrchestra($value['id'])[0]['orchestra'] ?>"
+          class="orchestraInput" >
         </div>
       </div>
     <?php  } ?>
-    <div class="tab_item">
-      <div class="tab_item-content">
-        <button>
-          <i class="fa fa-floppy-o" aria-hidden="true"></i>
-          Сохранить <br> список композиций
-        </button>
-      </div>
+  </form>
+  <div class="tab_item">
+    <div class="tab_item-title"></div>
+    <div class="tab_item-content">
+      <button name="category_set_data">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Сохранить <br> список композиций
+      </button>
     </div>
   </div>
-</form>
+</div>
 
+</div>
 
 </div>
 
 </div>
 
+<div class="test"></div>
 
-<div class="test">
-  <?php foreach (getUserOrchestra(41) as $key => $value) {?>
-    <br> <?php //print_r($value) ?>
-  <?php  } ?>
-</div>
 
-<script src="js/user.js"></script>
+<script src="js/user.js?<?php echo time(); ?>"></script>
 <?php include_once 'footer.php' ?>

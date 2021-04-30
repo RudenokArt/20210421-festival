@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 28 2021 г., 19:49
+-- Время создания: Апр 29 2021 г., 23:13
 -- Версия сервера: 5.6.47
 -- Версия PHP: 7.1.33
 
@@ -74,17 +74,18 @@ CREATE TABLE `festival_participant` (
   `discount` int(10) NOT NULL,
   `package` varchar(250) NOT NULL,
   `photo` varchar(250) NOT NULL,
-  `certificate` varchar(250) NOT NULL
+  `certificate` varchar(250) NOT NULL,
+  `coment` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `festival_participant`
 --
 
-INSERT INTO `festival_participant` (`id`, `password`, `email`, `fio`, `date`, `phone`, `country`, `city`, `age`, `skill`, `studio`, `manager`, `discount`, `package`, `photo`, `certificate`) VALUES
-(14, 'пас1', 'лог1', 'ФИО', '01.04.2021', '+7(333) 333-3333', 'Страна', 'Город', 'Юниоры', 'Любители продолжающие', 'Студия', 'Руководитель', 20, 'junior', 'photo!!14!!ФИО.png', 'certificate!!14!!ФИО.png'),
-(16, 'пас3', 'лог3', 'фио', '26.04.2021', '+7(111) 111-1111', 'РФ', 'СПБ', 'возр', 'Любители продолжающие', 'студ', 'рук', 0, '', '1619465272.png', 'certificate!!16!!фио.png'),
-(58, 'art', 'RudenokArt@yandex.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '');
+INSERT INTO `festival_participant` (`id`, `password`, `email`, `fio`, `date`, `phone`, `country`, `city`, `age`, `skill`, `studio`, `manager`, `discount`, `package`, `photo`, `certificate`, `coment`) VALUES
+(14, 'пас1', 'лог1', 'ФИО', '01.01.2000', '+7(333) 333-3333', 'Страна', 'Город', 'Взрослые 1 (20-30 лет)', 'Любители продолжающие', 'Студия', 'Руководитель', 20, 'junior', 'photo!!14!!ФИО.png', 'certificate!!14!!ФИО.png', 'комент'),
+(16, 'пас3', 'лог3', 'фио', '26.04.2021', '+7(111) 111-1111', 'РФ', 'СПБ', 'возр', 'Любители продолжающие', 'студ', 'рук', 0, '', '1619465272.png', 'certificate!!16!!фио.png', ''),
+(58, 'art', 'RudenokArt@yandex.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -107,9 +108,6 @@ INSERT INTO `festival_user_category` (`user`, `category`, `orchestra`) VALUES
 (16, 36, ''),
 (16, 37, ''),
 (16, 39, 'Композиция'),
-(14, 33, ''),
-(14, 35, ''),
-(14, 42, ''),
 (57, 33, ''),
 (57, 34, ''),
 (57, 35, ''),
@@ -120,7 +118,12 @@ INSERT INTO `festival_user_category` (`user`, `category`, `orchestra`) VALUES
 (57, 40, 'Композиция для orc 1 '),
 (57, 41, 'Композиция для orc 1 '),
 (57, 42, ''),
-(57, 44, '');
+(57, 44, ''),
+(14, 33, ''),
+(14, 35, ''),
+(14, 39, 'Композиция'),
+(14, 41, 'Композиция'),
+(14, 42, '');
 
 --
 -- Индексы сохранённых таблиц

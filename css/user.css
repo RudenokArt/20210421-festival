@@ -40,6 +40,7 @@ input[type="text"]{
 .tab_content{
   /*border:1px solid red;*/
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .tab_image{
@@ -54,17 +55,30 @@ input[type="text"]{
 }
 .tab_item{
   padding: 5px;
+  max-width: 300px;
+  text-align: left;
+
 }
 .tab_item-title{
   /*border:1px solid blue;*/
   margin:auto;
   height: 50px;
   display: flex;
+  color:royalblue;
+}
+.tab_item-content{
+  text-align: left;
+}
+.tab_item-list{
+  padding-top:1em;
+  line-height: 1em;
 }
 .tab_item-title div{
   /*border:1px solid red;*/
+  font-weight: 600 !important;
   margin:auto;
   margin-left: 0;
+  margin-bottom:0;
   line-height: 1em;
 }
 .upload_wrapper{
@@ -87,3 +101,4 @@ input[type="file"]{
   margin:auto;
   font-size: 54px;
 }
+

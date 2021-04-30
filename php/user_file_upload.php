@@ -1,4 +1,4 @@
-<?php 
+<?php     header('Content-type: text/html; charset=utf-8');
 print_r($_FILES);
 ?><br><?
 print_r($_POST);
@@ -8,7 +8,7 @@ include_once 'send_mail.php';
 send_mail_update_user_data();
 
 echo '<br><br>ФАЙЛ ЗАГРУЖЕН НА СЕРВЕР!';
-//echo '<meta http-equiv="refresh" content="2; url=../user.php#tabs-3" />';
+echo '<meta http-equiv="refresh" content="2; url=../user.php#tabs-3" />';
 
 
 function userFileUpload(){

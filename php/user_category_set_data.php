@@ -1,14 +1,14 @@
-<?php 
+<?php     header('Content-type: text/html; charset=utf-8');
 include_once 'db_connect.php';
 session_start();
-print_r($_POST);
+//print_r($_POST);
 setUserCategory();
 
 include_once 'send_mail.php';
 send_mail_update_user_data();
 
-echo '<br><br>Данные отправлены на сервер!';
-echo '<meta http-equiv="refresh" content="2; url=../user.php#tabs-2" />';
+echo 'Данные отправлены на сервер!';
+//echo '<meta http-equiv="refresh" content="2; url=../user.php#tabs-2" />';
 
 
 

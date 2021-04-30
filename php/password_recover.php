@@ -1,4 +1,4 @@
-<?php 
+<?php     header('Content-type: text/html; charset=utf-8');
 include_once 'db_connect.php';
 include_once 'send_mail.php';
 $sql='SELECT * FROM `festival_participant` WHERE `email`="'.$_POST['data'].'"';

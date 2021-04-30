@@ -1,4 +1,4 @@
-<?php 
+<?php     header('Content-type: text/html; charset=utf-8');
 session_start();
 function sendMail($text,$subject,$receiver){
   $Text=$text;

@@ -10,12 +10,7 @@
 <?php $profileData=get_users_data(); ?>
 
 
-<div class="test">
-  <?php foreach (userFilesList(14) as $key => $value) {?>
-    <br><?php print_r($value) ?>
-  <?php } ?>
-</div>
-
+<div class="test"></div>
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Участники</a></li>
@@ -23,7 +18,35 @@
     <li><a href="#tabs-3">Метаданные</a></li>
   </ul>
   <div id="tabs-1">
-    <table>
+    <div class="export_block">
+      <div>
+        <button>
+          <i class="fa fa-download" aria-hidden="true"></i>
+          Экспорт в .csv
+        </button>
+      </div>
+      <div></div>
+    </div>
+    <table class="user_table">
+
+      <tr>
+        <?php foreach ($profileMeta as $key => $value) {?>
+          <th><input type="text" class="filter" ></th>
+        <?php } ?>
+        <?php foreach (masterlList('master') as $key => $value) {?>
+          <th><input type="text" class="filter" ></th>
+        <?php } ?>
+        <?php foreach (masterlList('cd') as $key => $value) {?>
+          <th><input type="text" class="filter" ></th>
+        <?php } ?>
+        <?php foreach (masterlList('orchestra') as $key => $value) {?>
+          <th><input type="text" class="filter" ></th>
+        <?php } ?>
+        <?php foreach (masterlList('food') as $key => $value) {?>
+          <th><input type="text" class="filter" ></th>
+        <?php } ?>
+        <th><input type="text" class="filter" ></th>
+      </tr>
 
       <tr>
         <?php foreach ($profileMeta as $key => $value) {?>
@@ -45,7 +68,7 @@
       </tr>
 
       <?php foreach ($profileData as $key => $value) {?>
-       <tr>
+       <tr class="user_tr">
          <?php foreach ($value as $subkey => $subvalue) {?>
           <td>
             <?php if ($subkey=='photo' || $subkey=='certificate') {?>
@@ -60,8 +83,6 @@
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
               echo true;
             } ?>
-            
-            <br>
           </td>
         <?php  }  ?>
         <?php foreach (masterlList('cd') as $keyList => $valueList) {?>
@@ -69,8 +90,6 @@
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
               echo true;
             } ?>
-            
-            <br>
           </td>
         <?php  }  ?>
         <?php foreach (masterlList('orchestra') as $keyList => $valueList) {?>
@@ -82,7 +101,6 @@
             if (isset(getUsersCategory($value['id'],$valueList['id'])[0]['orchestra'])){
               echo getUsersCategory($value['id'],$valueList['id'])[0]['orchestra'];}
               ?>
-              <br>
             </td>
           <?php  }  ?>
           <?php foreach (masterlList('food') as $keyList => $valueList) {?>
@@ -90,8 +108,6 @@
               <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
                 echo true;
               } ?>
-
-              <br>
             </td>
           <?php  }  ?>
           <td>
@@ -101,7 +117,6 @@
               </a>
               <br><br>
             <?php } ?>
-
           </td>
         </tr>
       <?php } ?>
@@ -296,5 +311,5 @@
 
 </div>
 </div>
-<script src="js/admin.js"></script>
+<script src="js/admin.js?<?php echo time(); ?>"></script>
 <?php include_once 'footer.php'; ?>
