@@ -1,0 +1,1 @@
+<?php $packageArr=['maxi','midi','mini','junior','study','ALL-WS'] ?>

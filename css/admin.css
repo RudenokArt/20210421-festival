@@ -53,3 +53,70 @@ table{
   font-weight: bold;
   font-size: 18px;
 }
+.add_pice{
+  padding: 20px;
+}
+.price_popup-wrapper{
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  display: none;
+}
+.preloader{
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  display: none;
+}
+.preloader div{
+  font-size: 72px;
+  color: grey;
+  margin:auto;
+  animation-name:rotation; 
+  animation-duration:1s; 
+  animation-timing-function:linear;
+  animation-iteration-count:infinite; 
+}
+@keyframes rotation {
+  from { 
+    transform: rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg);
+  }
+}
+.price_popup{
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+  position:relative;
+}
+.price_popup div{
+  padding: 5px;
+}
+.price_item input[type="text"],
+.price_popup input[type="text"]{
+  width: 100px;
+}
+button[name="price_popup-close"]{
+  margin-left: 100%;
+  margin-top:-40px;
+}
+.price_list{
+  display: flex;
+}
+.price_item{
+  padding: 5px;
+  line-height: 1em;
+  display: flex;
+}
+.price_item div{
+  padding: 5px;
+}

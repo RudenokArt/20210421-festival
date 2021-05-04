@@ -1,6 +1,7 @@
 *,body,div,li,ul,ol,p,span,select,option,textarea,
 input,table,th,td,tr{
   box-sizing: border-box;
+  line-height: 1em;
   line-height: 0;
   margin:0;
   padding: 0;

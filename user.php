@@ -185,45 +185,26 @@
       type="text" name="discount">
     </div>
   </div>
+  <?php include_once 'php/package_get_data.php' ?>
   <div class="tab_item">
     <div class="tab_item-title">
       <div>Выбор пакета:</div>
     </div>
     <div class="tab_item-content">
+
       <div class="select_wrapper">
         <select name="package">
-          <option  <?php 
-          if (getUserData()['package']=='maxi') {
-            echo 'selected="selected"';
-          } ?>   >
-          maxi
-        </option>
-        <option  <?php 
-        if (getUserData()['package']=='midi') {
-          echo 'selected="selected"';
-        } ?>   >
-        midi
-      </option>
-      <option  <?php 
-      if (getUserData()['package']=='mini') {
-        echo 'selected="selected"';
-      } ?>   >
-      mini
-    </option>
-    <option  <?php 
-    if (getUserData()['package']=='junior') {
-      echo 'selected="selected"';
-    } ?>   >
-    junior
-  </option>
-  <option  <?php 
-  if (getUserData()['package']=='study') {
-    echo 'selected="selected"';
-  } ?>   >
-  study
-</option>
-</select>
-</div>
+          <?php foreach ($packageArr as $key => $value) { ?>
+            <option  <?php 
+            if (getUserData()['package']==$value) {
+              echo 'selected="selected"';
+            } ?>   >
+            <?php echo $value; ?>
+          </option>
+        <?php } ?>
+      </select>
+    </div>
+
 </div>
 </div>
 <div class="tab_item" style="display: none;">
@@ -390,7 +371,7 @@
         <div>КОМПОЗИЦИЯ ПОД CD:</div>
       </div>
     </div> 
-     <div class="tab_item">
+    <div class="tab_item">
       <div class="tab_item-content">
         <div class="tab_content">
           <div class="upload_wrapper">

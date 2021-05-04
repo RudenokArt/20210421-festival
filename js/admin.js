@@ -21,6 +21,7 @@ $('button[name="remove_meta"]').click(function (e) {
     form.submit();
   }
 });
+
 $('button[name="edit_meta"]').click(function (e) {
   e.preventDefault();
   if (confirm('Категория будет изменена!')) {
@@ -28,6 +29,7 @@ $('button[name="edit_meta"]').click(function (e) {
     form.submit();
   }
 });
+
 $('.filter').change(function () {
   var tr=$('.user_tr');
   $(tr).css({'display':''});
@@ -43,6 +45,7 @@ $('.filter').change(function () {
     }
   }
 });
+
 $('.export_block button').click(function () {
   var table=$('.user_table');
   var tr=$(table).children().children();
@@ -60,4 +63,39 @@ $('.export_block button').click(function () {
     $('.export_block div')[1].innerHTML=
     '<a href="data/export.csv" download>Скачать .csv</a>';
   });
+});
+
+$('button[name="price_save"]').click(function () {
+  var date=$('input[name="price_date"]').prop('value');
+  if (date=='') {
+    alert('Укажите дату прайса!');
+  }  else{
+     $('.preloader').css({'display':'flex'});
+    $.post('php/price_check_have.php',{data:date}, function(data){
+     var arr=JSON.parse(data);
+     if (arr.length>0) {
+       setTimeout(function () {
+        $('.preloader').css({'display':'none'});
+        alert('Прайс на указанную дату уже внесен в базу!');
+      }, 1000);
+     }else{ $('#save_price-form').submit();    }
+  });
+  }
+});
+
+$('button[name="price_popup-close"]').click(function () {
+  $('.price_popup-wrapper').fadeOut();
+});
+
+$('button[name="add_pice"]').click(function () {
+  $('.price_popup-wrapper').fadeIn();
+  $('.price_popup-wrapper').css({'display':'flex'});
+});
+
+$('button[name="price_delete"]').click(function (e) {
+  e.preventDefault();
+  if (confirm('Прайс от '+this.value+' будет удален!')) {
+    $(this).parent()[0].submit();
+  }
+  
 });
