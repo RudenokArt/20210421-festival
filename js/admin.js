@@ -66,7 +66,7 @@ $('.export_block button').click(function () {
 });
 
 $('button[name="price_save"]').click(function () {
-  var date=$('input[name="price_date"]').prop('value');
+  var date=$('#new_price_date').prop('value');
   if (date=='') {
     alert('Укажите дату прайса!');
   }  else{
@@ -97,5 +97,18 @@ $('button[name="price_delete"]').click(function (e) {
   if (confirm('Прайс от '+this.value+' будет удален!')) {
     $(this).parent()[0].submit();
   }
-  
 });
+$('button[name="price_edit"]').click(function () {
+  var form=$(this).parent().parent().siblings('.price_edit-form');
+  if (confirm('Цены будут обновлены!')) {form.submit();}
+});
+$('button[name="payment_add"]').click(function (e) {
+  e.preventDefault();
+  var date=$('#payment_add-form input[name="payment_date"]').prop('value');
+  var amount=$('#payment_add-form input[name="payment_amount"]').prop('value');
+  if (date==''||amount=='') {
+    alert('Дата и сумма квитанции обязательны к заполнению!');
+  }else{
+    $('#payment_add-form')[0].submit();
+  }
+})

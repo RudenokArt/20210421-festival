@@ -1,22 +1,27 @@
 <?php     header('Content-type: text/html; charset=utf-8');
 include_once 'db_connect.php';
+
 print_r($_POST);
-priceAdd();
-echo '<br><br>Прайс добавлен в базу!';
+priceEdit();
+echo '<br><br>Данные сохранены!';
 echo '<meta http-equiv="refresh" content="2; url=../admin.php#tabs-4" />';
 
 
-function priceAdd(){
+
+
+function priceEdit(){
   global $mysqli;
   foreach ($_POST as $key => $value) {
     if ($key!='price_date') {
-      $arr=explode('||', $key);
-      $sql='INSERT INTO `festival_price`(`date`, `meta_type`,`meta`, `price`) 
-      VALUES ("'.$_POST['price_date'].'","'.$arr[0].'","'.$arr[1].'","'.$value.'")';
+      $sql='UPDATE `festival_price` SET `price`='.$value.' 
+      WHERE `date`="'.$_POST['price_date'].'" AND `meta`="'.$key.'"';
       $mysqli->query($sql);
     }
   }
 }
+
+
+
 
 
 ?>

@@ -12,7 +12,9 @@ table{
 }
 .ui-tabs-panel{
   overflow: auto;
+  min-height: 90vh;
 }
+
 .new_meta,.new_meta form{
   display: flex;
   justify-content: flex-start; 
@@ -101,6 +103,8 @@ table{
 .price_popup div{
   padding: 5px;
 }
+input[name="payment_amount"],
+input[name="payment_date"],
 .price_item input[type="text"],
 .price_popup input[type="text"]{
   width: 100px;
@@ -119,4 +123,11 @@ button[name="price_popup-close"]{
 }
 .price_item div{
   padding: 5px;
+}
+.ui-accordion-content-active{
+  height: 75vh !important;
+  overflow: scroll;
+}
+.payment_add-block{
+  /*display: flex;*/
 }

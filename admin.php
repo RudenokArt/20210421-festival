@@ -7,6 +7,7 @@
 <?php include_once 'php/users_files_list.php' ?>
 <?php include_once 'php/package_get_data.php' ?>
 <?php include_once 'php/price_get_data.php' ?>
+<?php include_once 'php/payments_get_data.php' ?>
 
 <?php $profileMeta=array_keys(get_users_data()[0]); ?>
 <?php $profileData=get_users_data(); ?>
@@ -17,6 +18,7 @@
     <li><a href="#tabs-2">Судьи</a></li>
     <li><a href="#tabs-3">Метаданные</a></li>
     <li><a href="#tabs-4">Прайсы</a></li>
+    <li><a href="#tabs-5">Оплаты</a></li>
   </ul>
 
   <div id="tabs-1"><?php include_once 'includes/admin_usertable.php' ?></div>
@@ -29,239 +31,84 @@
 
   <div id="tabs-3"><?php include_once 'includes/admin_metadata.php'?></div>
 
-  <div id="tabs-4">
+  <div id="tabs-4"><?php include_once 'includes/admin_price.php' ?></div>
 
-    <div class="add_pice">
-     <button name="add_pice">
-       <i class="fa fa-plus" aria-hidden="true"></i>
-       Добавить прайс
-     </button>
-   </div>
-
-   <div id="accordion">
-    <?php foreach (priceGetData() as $key => $value) { ?>
-     <h3>
-      Прайс от: <?php echo $key ?>
-    </h3>
-    <div>
-      <div class="price_item">
-        <div>
-         <form action="">
-          <button title="Сохранить прайс">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-          </button>
-        </form> 
-      </div>
-      <div>
-       <form action="php/price_delete.php" method="post">
-        <input type="hidden" name="price_delete"
-        value="<?php print_r($key) ?>">
-        <button title="Удалить прайс" name="price_delete"
-        value="<?php print_r($key) ?>">
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      </button>
-    </form> 
-  </div>
-</div>
-<div class="price_item">
-
-  <div>
-    <table>
-      <tr><th colspan="2">Мастер-классы</th></tr>
-      <?php foreach ($value as $subkey => $subvalue) {?>
-        <?php if ($subvalue[1]=='master') { ?>
+  <div id="tabs-5">
+    <div class="payment_add-block">
+      <form action="php/payment_add.php" method="post" id="payment_add-form">
+        <table>
           <tr>
-            <td><?php echo $subvalue[2] ?></td>
+            <th colspan="4">
+              Добавить квитанцию
+            </th>
+          </tr>
+          <tr>
+            <td>Дата:</td>
+            <td>Участник</td>
+            <td colspan="2">Сумма</td>
+          </tr>
+          <tr>
             <td>
-              <input type="text" value="<?php echo $subvalue[3] ?>">
+              <input type="text" name="payment_date">
+            </td>
+            <td>
+              <div class="select_wrapper">
+                <select name="user_id">
+                  <?php foreach ($profileData as $key => $value) {?>
+                    <option value="<?php echo $value['id'] ?>">
+                      <?php echo $value['fio'] ?>
+                      ||
+                      <?php echo $value['email'] ?>
+                    </option>
+                  <?php } ?>
+                </select>
+              </div>  
+            </td>
+            <td>
+              <input type="text" name="payment_amount">
+            </td>
+            <td>
+              <button name="payment_add">
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </button>
             </td>
           </tr>
-        <?php } ?>
-      <?php  } ?>
-    </table>
-  </div>
-
-  <div>
-    <table>
-      <tr><th colspan="2">Номинации под cd</th></tr>
-      <?php foreach ($value as $subkey => $subvalue) {?>
-        <?php if ($subvalue[1]=='cd') { ?>
-          <tr>
-            <td><?php echo $subvalue[2] ?></td>
-            <td>
-              <input type="text" value="<?php echo $subvalue[3] ?>">
-            </td>
-          </tr>
-        <?php } ?>
-      <?php  } ?>
-    </table>
-  </div>
-
-  <div>
-    <table>
-      <tr><th colspan="2">Номинации под оркестр</th></tr>
-      <?php foreach ($value as $subkey => $subvalue) {?>
-        <?php if ($subvalue[1]=='orchestra') { ?>
-          <tr>
-            <td><?php echo $subvalue[2] ?></td>
-            <td>
-              <input type="text" value="<?php echo $subvalue[3] ?>">
-            </td>
-          </tr>
-        <?php } ?>
-      <?php  } ?>
-    </table>
-  </div>
-
-  <div>
-    <table>
-      <tr><th colspan="2">Питание</th></tr>
-      <?php foreach ($value as $subkey => $subvalue) {?>
-        <?php if ($subvalue[1]=='food') { ?>
-          <tr>
-            <td><?php echo $subvalue[2] ?></td>
-            <td>
-              <input type="text" value="<?php echo $subvalue[3] ?>">
-            </td>
-          </tr>
-        <?php } ?>
-      <?php  } ?>
-    </table>
-  </div>
-
-  <div>
-    <table>
-      <tr><th colspan="2">Пакеты</th></tr>
-      <?php foreach ($value as $subkey => $subvalue) {?>
-        <?php if ($subvalue[1]=='package') { ?>
-          <tr>
-            <td><?php echo $subvalue[2] ?></td>
-            <td>
-              <input type="text" value="<?php echo $subvalue[3] ?>">
-            </td>
-          </tr>
-        <?php } ?>
-      <?php  } ?>
-    </table>
-  </div>
-
-</div>
-</div>
-<?php  }  ?>
-</div>
-
-
-</div>
-</div>
-
-
-<div class="price_popup-wrapper">
- <div class="price_popup">
-  <div>
-    <button name="price_popup-close">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </button>
-  </div>
-  <form action="php/price_add.php" method="post" id="save_price-form">
-    <div>
-      <b>Дата:</b>
-      <input type="text" name="price_date">
+        </table>
+      </form>
     </div>
-    <div class="price_list">
-      <div>
-        <table>
+
+    <div class="paymetn_table">
+      <table>
+        <tr>
+          <th>Дата</th>
+          <th>Участник</th>
+          <th>Сумма</th>
+        </tr>
+        <?php foreach (paymentsGetData() as $key => $value) {?>
           <tr>
-            <th colspan="2">Мастер-классы:</th>
-          </tr>
-          <?php foreach (masterlList('master') as $key => $value) { ?>
-            <tr>
-              <td><?php echo $value['master']; ?></td>
-              <td>
-                <input type="text" name="<?php echo 'master||'.$value['master'] ?>">
+            <td>
+              <?php echo $value['id'] ?><br>
+              <?php echo $value['date'] ?>
               </td>
-            </tr>
-          <?php  } ?>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <th colspan="2">Номинации под CD:</th>
+            <td><?php echo $value[0].' || '.$value[1] ?></td>
+            <td><?php echo $value['amount'] ?></td>
           </tr>
-          <?php foreach (masterlList('cd') as $key => $value) { ?>
-            <tr>
-              <td><?php echo $value['cd']; ?></td>
-              <td>
-                <input type="text" name="<?php echo 'cd||'.$value['cd'] ?>">
-              </td>
-            </tr>
-          <?php  } ?>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <th colspan="2">Номинации под оркестр:</th>
-          </tr>
-          <?php foreach (masterlList('orchestra') as $key => $value) { ?>
-            <tr>
-              <td><?php echo $value['orchestra']; ?></td>
-              <td>
-                <input type="text" 
-                name="<?php echo 'orchestra||'.$value['orchestra']  ?>">
-              </td>
-            </tr>
-          <?php  } ?>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <th colspan="2">Питание:</th>
-          </tr>
-          <?php foreach (masterlList('food') as $key => $value) { ?>
-            <tr>
-              <td><?php echo $value['food']; ?></td>
-              <td>
-                <input type="text" name="<?php echo 'food||'.$value['food'] ?>">
-              </td>
-            </tr>
-          <?php  } ?>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <th colspan="2">Пакеты:</th>
-          </tr>
-          <?php foreach ($packageArr as $key => $value) { ?>
-            <tr>
-              <td><?php echo $value; ?></td>
-              <td>
-                <input type="text" name="<?php echo 'package||'.$value ?>">
-              </td>
-            </tr>
-          <?php  } ?>
-        </table>
-      </div>
+        <?php  } ?>
+      </table>
+
+      
+      
     </div>
-  </form>
 
-  <div>
-    <button name="price_save">
-      <i class="fa fa-floppy-o" aria-hidden="true"></i>
-      Сохранить прайс
-    </button>
+
+    <div class="test"></div>
+
   </div>
 
 </div>
 
-<div class="preloader">
-  <div>
-    <i class="fa fa-cog" aria-hidden="true"></i>
-  </div>
-</div>
-</div>
+
+<?php include_once 'includes/admin_price_popup.php' ?>
 
 <script src="js/admin.js?<?php echo time(); ?>"></script>
 <?php include_once 'footer.php'; ?>
