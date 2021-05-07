@@ -20,7 +20,7 @@
             <tr>
               <td><?php echo $value['master']; ?></td>
               <td>
-                <input type="text" name="<?php echo 'master||'.$value['master'] ?>">
+                <input type="text" name="<?php echo $value['id'] ?>">
               </td>
             </tr>
           <?php  } ?>
@@ -35,7 +35,7 @@
             <tr>
               <td><?php echo $value['cd']; ?></td>
               <td>
-                <input type="text" name="<?php echo 'cd||'.$value['cd'] ?>">
+                <input type="text" name="<?php echo $value['id'] ?>">
               </td>
             </tr>
           <?php  } ?>
@@ -50,8 +50,7 @@
             <tr>
               <td><?php echo $value['orchestra']; ?></td>
               <td>
-                <input type="text" 
-                name="<?php echo 'orchestra||'.$value['orchestra']  ?>">
+                <input type="text" name="<?php echo $value['id'] ?>">
               </td>
             </tr>
           <?php  } ?>
@@ -66,7 +65,7 @@
             <tr>
               <td><?php echo $value['food']; ?></td>
               <td>
-                <input type="text" name="<?php echo 'food||'.$value['food'] ?>">
+                <input type="text" name="<?php echo $value['id'] ?>">
               </td>
             </tr>
           <?php  } ?>
@@ -81,7 +80,7 @@
             <tr>
               <td><?php echo $value; ?></td>
               <td>
-                <input type="text" name="<?php echo 'package||'.$value ?>">
+                <input type="text" name="<?php echo $value ?>">
               </td>
             </tr>
           <?php  } ?>

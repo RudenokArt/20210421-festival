@@ -45,7 +45,7 @@
                   <td><?php echo $subvalue[2] ?></td>
                   <td>
                     <input type="text" value="<?php echo $subvalue[3] ?>"
-                    name="<?php echo $subvalue[2] ?>">
+                    name="<?php echo $subvalue[0] ?>">
                   </td>
                 </tr>
               <?php } ?>
@@ -62,7 +62,7 @@
                   <td><?php echo $subvalue[2] ?></td>
                   <td>
                     <input type="text" value="<?php echo $subvalue[3] ?>"
-                    name="<?php echo $subvalue[2] ?>">
+                    name="<?php echo $subvalue[0] ?>">
                   </td>
                 </tr>
               <?php } ?>
@@ -79,7 +79,7 @@
                   <td><?php echo $subvalue[2] ?></td>
                   <td>
                     <input type="text" value="<?php echo $subvalue[3] ?>"
-                    name="<?php echo $subvalue[2] ?>">
+                    name="<?php echo $subvalue[0] ?>">
                   </td>
                 </tr>
               <?php } ?>
@@ -96,7 +96,7 @@
                   <td><?php echo $subvalue[2] ?></td>
                   <td>
                     <input type="text" value="<?php echo $subvalue[3] ?>"
-                    name="<?php echo $subvalue[2] ?>">
+                    name="<?php echo $subvalue[0] ?>">
                   </td>
                 </tr>
               <?php } ?>
@@ -113,7 +113,7 @@
                   <td><?php echo $subvalue[2] ?></td>
                   <td>
                     <input type="text" value="<?php echo $subvalue[3] ?>"
-                    name="<?php echo $subvalue[2] ?>">
+                    name="<?php echo $subvalue[0] ?>">
                   </td>
                 </tr>
               <?php } ?>

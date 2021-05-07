@@ -14,7 +14,7 @@ function priceEdit(){
   foreach ($_POST as $key => $value) {
     if ($key!='price_date') {
       $sql='UPDATE `festival_price` SET `price`='.$value.' 
-      WHERE `date`="'.$_POST['price_date'].'" AND `meta`="'.$key.'"';
+      WHERE `id`="'.$key.'"';
       $mysqli->query($sql);
     }
   }

@@ -70,8 +70,8 @@ $('button[name="price_save"]').click(function () {
   if (date=='') {
     alert('Укажите дату прайса!');
   }  else{
-     $('.preloader').css({'display':'flex'});
-    $.post('php/price_check_have.php',{data:date}, function(data){
+   $('.preloader').css({'display':'flex'});
+   $.post('php/price_check_have.php',{data:date}, function(data){
      var arr=JSON.parse(data);
      if (arr.length>0) {
        setTimeout(function () {
@@ -79,8 +79,8 @@ $('button[name="price_save"]').click(function () {
         alert('Прайс на указанную дату уже внесен в базу!');
       }, 1000);
      }else{ $('#save_price-form').submit();    }
-  });
-  }
+   });
+ }
 });
 
 $('button[name="price_popup-close"]').click(function () {
@@ -98,10 +98,12 @@ $('button[name="price_delete"]').click(function (e) {
     $(this).parent()[0].submit();
   }
 });
+
 $('button[name="price_edit"]').click(function () {
   var form=$(this).parent().parent().siblings('.price_edit-form');
   if (confirm('Цены будут обновлены!')) {form.submit();}
 });
+
 $('button[name="payment_add"]').click(function (e) {
   e.preventDefault();
   var date=$('#payment_add-form input[name="payment_date"]').prop('value');
@@ -111,4 +113,32 @@ $('button[name="payment_add"]').click(function (e) {
   }else{
     $('#payment_add-form')[0].submit();
   }
-})
+});
+
+$('button[name="payment_delete"]').click(function () {
+  if (confirm('Квитанция будет удалена!')) {
+    $(this).siblings('form')[0].submit();
+  }
+});
+
+$('button[name="payment_edit"]').click(function () {
+  if (confirm('Данные будут изменены!')) {
+    $(this).parent().siblings('form')[0].submit();
+  }
+});
+
+$('input[name="payment_filter"]').change(function () {
+  var filter=$('input[name="payment_filter"]');
+  var tr=$('.paynent_tr');
+  $(tr).css({'display':''});
+  for (var i = 0; i < filter.length; i++) {
+    for (var j = 0; j < tr.length; j++) {
+      var input=$(tr[j]).children('td').children('input[type="text"]');
+      var search=filter[i].value.trim().toLowerCase();
+      if (!input[i].value.trim().toLowerCase().includes(search,0)&&search!='') {
+        tr[j].style.display='none';
+      }
+    }
+  }
+});
+

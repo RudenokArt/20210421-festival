@@ -2,7 +2,7 @@
 include_once 'db_connect.php';
 print_r($_POST);
 paymentAdd();
-echo '<br><br>Прайс добавлен в базу!';
+echo '<br><br>Квитанция добавлена в базу!';
 echo '<meta http-equiv="refresh" content="2; url=../admin.php#tabs-5" />';
 
 

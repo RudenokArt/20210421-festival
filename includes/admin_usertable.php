@@ -46,8 +46,11 @@
         <?php } ?>
         <th>files</th>
       </tr>
-
+      <?php $userCategoryArr=[]; ?>
       <?php foreach ($profileData as $key => $value) {?>
+        <?php array_push($userCategoryArr,$value['id']) ?>
+        <?php $userCategoryArr[$value['id']]=[] ?>
+        <?php array_push($userCategoryArr[$value['id']], $value['package']); ?>
        <tr class="user_tr">
          <?php foreach ($value as $subkey => $subvalue) {?>
           <td>
@@ -61,6 +64,7 @@
         <?php foreach (masterlList('master') as $keyList => $valueList)  {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              array_push($userCategoryArr[$value['id']], $valueList['master']);
               echo true;
             } ?>
           </td>
@@ -68,6 +72,7 @@
         <?php foreach (masterlList('cd') as $keyList => $valueList) {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              array_push($userCategoryArr[$value['id']], $valueList['cd']);
               echo true;
             } ?>
           </td>
@@ -75,6 +80,7 @@
         <?php foreach (masterlList('orchestra') as $keyList => $valueList) {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+              array_push($userCategoryArr[$value['id']], $valueList['orchestra']);
               echo true;
             } ?>
             <?php 
@@ -86,6 +92,7 @@
           <?php foreach (masterlList('food') as $keyList => $valueList) {?>
             <td>
               <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
+                array_push($userCategoryArr[$value['id']], $valueList['food']);
                 echo true;
               } ?>
             </td>

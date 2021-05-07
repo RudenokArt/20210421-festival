@@ -2,12 +2,15 @@
     $( "#tabs" ).tabs();
   } );
   $( function() {
-    $( 'input[name="date"]' ).datepicker({dateFormat: "dd.mm.yy"});
+    $( 'input[name="date"]' ).datepicker({
+      dateFormat: "dd.mm.yy",
+      changeYear: true,
+    });
   } );
   $( function() {
     $( 'input[name="price_date"]' ).datepicker({dateFormat: "yy-mm-dd"});
   } );
-$( function() {
+  $( function() {
     $( 'input[name="payment_date"]' ).datepicker({dateFormat: "yy-mm-dd"});
   } );
   $('input[name="phone"]').mask("+7(999) 999-9999");

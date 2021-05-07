@@ -38,6 +38,7 @@ table{
   width: 40px !important;
   display: none;
 }
+input[name="payment_filter"],
 .filter{
   width: 100% !important;
   min-width: 100px;
@@ -129,5 +130,8 @@ button[name="price_popup-close"]{
   overflow: scroll;
 }
 .payment_add-block{
-  /*display: flex;*/
+  padding: 10px;
+}
+.paymetn_table{
+  padding: 10px;
 }
