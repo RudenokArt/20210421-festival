@@ -65,7 +65,7 @@
                 <input type="file" name="photo">
               </div>
               <div class="tab_image">
-                <img src="user_upload/<?php echo getUserData()['photo']?>" 
+                <img src="user_upload/<?php echo getUserData()['photo'].'?'.time()?>" 
                 alt="photo">
               </div>
             </div>
@@ -227,7 +227,7 @@
         <input type="file" name="certificate">
       </div>
       <div class="tab_image">
-        <img src="user_upload/<?php echo getUserData()['certificate']?>" 
+        <img src="user_upload/<?php echo getUserData()['certificate'].'?'.time()?>" 
         alt="certificate">
       </div>
     </div>

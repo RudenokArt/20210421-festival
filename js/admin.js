@@ -1,4 +1,8 @@
 
+// ========== ACTIONS ==========
+calculationTotal('amount_1');
+calculationTotal('amount_2');
+calculationTotal('amount_3');
 
 
 // ========== LISTENERS ==========
@@ -59,6 +63,7 @@ $('.export_block button').click(function () {
   }
   var data=JSON.stringify(arr);
   $.post('php/export_csv.php',{data:data}, function(data){
+    console.log(data);
     alert('Выгрузка данных завершена!');
     $('.export_block div')[1].innerHTML=
     '<a href="data/export.csv" download>Скачать .csv</a>';
@@ -142,3 +147,22 @@ $('input[name="payment_filter"]').change(function () {
   }
 });
 
+$('.admin_calculation-close button').click(function(){
+  $(this).parent().parent().parent().fadeOut();
+});
+
+$('.admin_calculation-open button').click(function () {
+  $(this).siblings('.admin_calculation-popup_wrapper').fadeIn();
+  $(this).siblings('.admin_calculation-popup_wrapper').css({'display':'flex'});
+});
+
+// ========== FUNCTIONS ==========
+
+function calculationTotal (node){
+  var arr=$('.'+node+'');
+  var total=0;
+  for (var i = 0; i < arr.length; i++) {
+    total=total+Number(arr[i].innerHTML.trim());
+  }
+  $('.'+node+'-total').html(total);
+}

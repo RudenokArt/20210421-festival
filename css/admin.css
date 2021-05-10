@@ -10,6 +10,12 @@ th{
 table{
   border-collapse: collapse;
 }
+*{
+  line-height: 1em;
+}
+b{
+  font-weight: bold !important;
+}
 .ui-tabs-panel{
   overflow: auto;
   min-height: 90vh;
@@ -60,7 +66,8 @@ input[name="payment_filter"],
   padding: 20px;
 }
 .price_popup-wrapper{
-  position: absolute;
+  overflow: scroll;
+  position: fixed;
   top:0;
   left: 0;
   height: 100%;
@@ -134,4 +141,32 @@ button[name="price_popup-close"]{
 }
 .paymetn_table{
   padding: 10px;
+}
+.admin_calculation-popup div{
+  line-height: 1em;
+  padding: 5px;
+}
+.admin_calculation-popup_wrapper{
+  position:fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+}
+.admin_calculation-popup{
+  display: flex;
+  margin:auto;
+  background-color: white;
+  padding: 5px;
+}
+.admin_calculation-close{
+  position:relative;
+}
+.admin_calculation-close button{
+  position:absolute;
+  right: -20px;
+  top: -20px;
 }
