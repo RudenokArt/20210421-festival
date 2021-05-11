@@ -15,10 +15,19 @@ function priceGetData(){
     $price[$value]=[];
     $sql=$mysqli->query('SELECT * FROM `festival_price`WHERE `date`="'.$value.'"');
     while ($result=mysqli_fetch_array($sql)) {
-     array_push($price[$value],
-      [$result['id'],$result['meta_type'],$result['meta'],$result['price']]) ;
+      if ($result['meta_type']=='package') {
+       $meta=$result['meta'];
+     }else{
+      $subSql=$mysqli->query('SELECT `'.$result['meta_type'].'` FROM `festival_meta`
+        WHERE `id`="'.$result['meta'].'"');
+      while ($subResult=mysqli_fetch_array($subSql)) 
+      {
+        $meta=$subResult[0];
+      }
     }
-  }
+    array_push($price[$value],
+      [$result['id'],$result['meta_type'],$meta,$result['price'],$result['meta']]) ;
+  } }
   return $price;
 }
 
@@ -44,23 +53,109 @@ function dateConvertor($str){
   return $date;
 }
 
-function userPriceGetData($user){
-  global $userCategoryArr;
+function userPriceCreate($user){
   foreach (priceGetData() as $key => $value) {
     if ($key==userPriceSelect($user)) {
       $price=$value;
     }
   }
-  $arr=[];
-  $amount=0;
-  foreach ($price as $key => $value) {
-    if (in_array($value[2], $userCategoryArr[$user])) {
-      array_push($arr,[$value[2],$value[3]]);
-      $amount=$amount+$value[3];
+  return $price;
+}
+
+function userPriceSetNomination($user){
+  global $userCategoryArr;
+  $price=userPriceCreate($user);
+  for ($i=0; $i < count($price) ; $i++) { 
+    array_push($price[$i],'false');
+    $cdCount=0;
+    $orchestraCount=0;
+    foreach ($userCategoryArr[$user] as $key => $value) {
+      if ($value[1]=='package') {
+        $userPackage=$value[0];
+      }
+      if ($value[1]=='cd') {
+        $cdCount=$cdCount+1;
+      }
+      if ($value[1]=='orchestra') {
+        $orchestraCount=$orchestraCount+1;
+      }
+      if ($value[0]==$price[$i][4]) {
+        $price[$i][5]='true';
+      }
     }
   }
-  $arr=[$amount,$arr];
-  return $arr;
+  return [$price,$userPackage,$cdCount,$orchestraCount];
+}
+
+function userPriceCheckNomination($user){
+  global $mainMasterPackageArr;
+  global $cdPackageArr;
+  global $orchestraPackageArr;
+  global $masterPackageArr;
+  $price=userPriceSetNomination($user)[0];
+  $userPackage=userPriceSetNomination($user)[1];
+  $cdCount=userPriceSetNomination($user)[2];
+  $orchestraCount=userPriceSetNomination($user)[3];
+  $flag=0;
+  $masterFlag=0;
+  for ($i=0; $i < count($price) ; $i++) { 
+    if ($price[$i][4]==getMainMaster() && in_array($userPackage, 
+      $mainMasterPackageArr)) {
+      $price[$i][5]='false';
+    }
+    if (in_array($userPackage,$cdPackageArr)&&$flag<1&&$price[$i][1]=='cd') {
+      $price[$i][5]='false';
+      $flag=$flag+1;
+    }
+    if(in_array($userPackage,$orchestraPackageArr)&&
+      $orchestraCount<1&&$flag<2&&$price[$i][1]=='cd')
+    {
+      $price[$i][5]='false';
+      $flag=$flag+1;
+    }
+    if(in_array($userPackage,$orchestraPackageArr)&&
+      $orchestraCount>0&&$flag<1&&$price[$i][1]=='cd')
+    {
+      $price[$i][5]='false';
+      $flag=$flag+1;
+    }
+    if(in_array($userPackage,$orchestraPackageArr)&&
+      $orchestraCount>0&&$flag<2&&$price[$i][1]=='orchestra')
+    {
+      $price[$i][5]='false';
+      $flag=$flag+1;
+    }
+    if($price[$i][1]=='master'&&
+      $price[$i][4]!=getMainMaster()&&
+      $masterFlag<$masterPackageArr[$userPackage]) 
+    {
+      $price[$i][5]='false';
+      $masterFlag=$masterFlag+1;
+    }
+  }
+  return $price;
+}
+
+function userPriceTotal($user){
+  $price=userPriceCheckNomination($user);
+  $total=0;
+  foreach ($price as $key => $value) {
+    if ($value[5]=='true') {
+      $total=$total+$value[3];
+    }
+  }
+  return $total;
+}
+
+function userPriceAmount($user){
+  $price=userPriceCheckNomination($user);
+  $amount=[];
+  foreach ($price as $key => $value) {
+    if ($value[5]=='true') {
+      array_push($amount, [$value[2],$value[3]]);
+    }
+  }
+  return $amount;
 }
 
 

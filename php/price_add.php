@@ -18,8 +18,8 @@ function priceAdd(){
         foreach ($metaData as $subkey => $subvalue) {
           if (strlen($subvalue)>1 and $subkey!='id') {
             echo $subkey.' '.$subvalue;
-            $subsql='INSERT INTO `festival_price`(`date`, `meta_type`,`meta`, `price`) 
-            VALUES ("'.$_POST['price_date'].'","'.$subkey.'","'.$subvalue.'","'.$value.'")';
+            $subsql='INSERT INTO `festival_price`(`date`,`meta_type`,`meta`,`price`) 
+            VALUES ("'.$_POST['price_date'].'","'.$subkey.'","'.$key.'","'.$value.'")';
             $mysqli->query($subsql);
           }
         }

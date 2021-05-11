@@ -50,7 +50,7 @@
       <?php foreach ($profileData as $key => $value) {?>
         <?php array_push($userCategoryArr,$value['id']) ?>
         <?php $userCategoryArr[$value['id']]=[] ?>
-        <?php array_push($userCategoryArr[$value['id']], $value['package']); ?>
+        <?php array_push($userCategoryArr[$value['id']],[$value['package'],'package']);?>
        <tr class="user_tr">
          <?php foreach ($value as $subkey => $subvalue) {?>
           <td>
@@ -64,7 +64,7 @@
         <?php foreach (masterlList('master') as $keyList => $valueList)  {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
-              array_push($userCategoryArr[$value['id']], $valueList['master']);
+              array_push($userCategoryArr[$value['id']],[$valueList['id'],'master']);
               echo true;
             } ?>
           </td>
@@ -72,7 +72,7 @@
         <?php foreach (masterlList('cd') as $keyList => $valueList) {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
-              array_push($userCategoryArr[$value['id']], $valueList['cd']);
+              array_push($userCategoryArr[$value['id']],[$valueList['id'],'cd']);
               echo true;
             } ?>
           </td>
@@ -80,7 +80,7 @@
         <?php foreach (masterlList('orchestra') as $keyList => $valueList) {?>
           <td>
             <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
-              array_push($userCategoryArr[$value['id']], $valueList['orchestra']);
+              array_push($userCategoryArr[$value['id']],[$valueList['id'],'orchestra']);
               echo true;
             } ?>
             <?php 
@@ -92,7 +92,7 @@
           <?php foreach (masterlList('food') as $keyList => $valueList) {?>
             <td>
               <?php if (sizeof(getUsersCategory($value['id'],$valueList['id']))>0) {
-                array_push($userCategoryArr[$value['id']], $valueList['food']);
+                array_push($userCategoryArr[$value['id']],[$valueList['id'],'food']);
                 echo true;
               } ?>
             </td>
