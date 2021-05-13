@@ -13,10 +13,10 @@ td{
 table{
   border-collapse: collapse;
 }
-label{
+
+/*label{
   cursor: pointer;
 }
-
 label i{
   color: skyblue;
 }
@@ -26,6 +26,8 @@ input[type="checkbox"]{
 input[type="text"]{
   width: 275px;
 }
+*/
+
 .extit_button i{
   transform:rotate(180deg);
 }

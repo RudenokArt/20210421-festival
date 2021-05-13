@@ -76,7 +76,9 @@ function userPriceSetNomination($user){
       if ($value[1]=='cd') {
         $cdCount=$cdCount+1;
       }
-      if ($value[1]=='orchestra') {
+      if ($value[1]=='orchestra'&& 
+        !in_array($value[0], getOverPocket())) 
+      {
         $orchestraCount=$orchestraCount+1;
       }
       if ($value[0]==$price[$i][4]) {
@@ -98,35 +100,43 @@ function userPriceCheckNomination($user){
   $orchestraCount=userPriceSetNomination($user)[3];
   $flag=0;
   $masterFlag=0;
+  $orchestraFlag=0;
   for ($i=0; $i < count($price) ; $i++) { 
     if ($price[$i][4]==getMainMaster() && in_array($userPackage, 
       $mainMasterPackageArr)) {
       $price[$i][5]='false';
     }
-    if (in_array($userPackage,$cdPackageArr)&&$flag<1&&$price[$i][1]=='cd') {
-      $price[$i][5]='false';
-      $flag=$flag+1;
-    }
-    if(in_array($userPackage,$orchestraPackageArr)&&
-      $orchestraCount<1&&$flag<2&&$price[$i][1]=='cd')
+    if (in_array($userPackage,$cdPackageArr)&&
+      $flag<1 && $price[$i][1]=='cd' && $price[$i][5]=='true') 
     {
       $price[$i][5]='false';
       $flag=$flag+1;
     }
-    if(in_array($userPackage,$orchestraPackageArr)&&
-      $orchestraCount>0&&$flag<1&&$price[$i][1]=='cd')
+    if (in_array($userPackage,$orchestraPackageArr)&&
+      $orchestraCount<1 &&
+      $flag<2 && $price[$i][1]=='cd' && $price[$i][5]=='true') 
     {
       $price[$i][5]='false';
       $flag=$flag+1;
     }
-    if(in_array($userPackage,$orchestraPackageArr)&&
-      $orchestraCount>0&&$flag<2&&$price[$i][1]=='orchestra')
+    if (in_array($userPackage,$orchestraPackageArr)&&
+      $orchestraCount>0 &&
+      $flag<1 && $price[$i][1]=='cd' && $price[$i][5]=='true') 
+    {
+      $price[$i][5]='false';
+      $flag=$flag+1;
+    }
+    if (in_array($userPackage,$orchestraPackageArr)&&
+      !in_array($price[$i][4], getOverPocket()) &&
+      $orchestraCount>0 &&
+      $flag<2 && $price[$i][1]=='orchestra' && $price[$i][5]=='true') 
     {
       $price[$i][5]='false';
       $flag=$flag+1;
     }
     if($price[$i][1]=='master'&&
       $price[$i][4]!=getMainMaster()&&
+      $price[$i][5]=='true' &&
       $masterFlag<$masterPackageArr[$userPackage]) 
     {
       $price[$i][5]='false';
@@ -145,6 +155,9 @@ function userPriceTotal($user){
     }
   }
   return $total;
+}
+function userPriceTotalDiscount($user,$discount){
+  return userPriceTotal($user)*(100-$discount)/100;
 }
 
 function userPriceAmount($user){

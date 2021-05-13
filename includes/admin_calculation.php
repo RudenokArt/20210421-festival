@@ -19,13 +19,13 @@
       <td><?php echo userPaymentsGetData($value['id'])[0]['date']; ?></td>
       <td><?php echo userPriceSelect($value['id']) ?></td>
       <td class="amount_1">
-        <?php echo userPriceTotal($value['id']) ?>
+        <?php echo userPriceTotalDiscount($value['id'],$value['discount']) ?>
       </td>
       <td class="amount_2">
         <?php echo userPaymentsAmount($value['id']); ?>
       </td>
       <td class="amount_3">
-        <?php echo userPriceTotal($value['id'])-userPaymentsAmount($value['id']) ?>
+        <?php echo userPriceTotalDiscount($value['id'],$value['discount'])-userPaymentsAmount($value['id'])  ?>
       </td>
       <td class="admin_calculation-open">
         <button>
@@ -44,7 +44,10 @@
                 <?php } ?>
               </div>
               <div>
-                <b>Итого: <?php echo userPriceTotal($value['id']) ?></b>
+                РАЗМЕР СКИДКИ: <?php echo $value['discount']; ?>
+              </div>
+              <div>
+                <b>Иого начислено: <?php echo userPriceTotal($value['id']) ?></b>
               </div>
             </div>
             <div>
@@ -88,4 +91,6 @@
   <th>Х</th>
 </tr>
 </table>
+
+
 

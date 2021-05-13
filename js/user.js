@@ -1,5 +1,5 @@
 // ========== ACTIONS ==========
-checkboxChecked();
+// checkboxChecked();
 orchestraInput();
 setAgeCategory();
 
@@ -14,7 +14,7 @@ $('button[name="exit_button"]').click(function () {
 $('input[type="file"]').change(function () {
   $(this).siblings().children('span').html(this.value);
 });
-$('input[type="checkbox"]').change(checkboxChecked);
+// $('input[type="checkbox"]').change(checkboxChecked);
 $('button[name="category_set_data"]').click(function () {
   var form=$('.ajax_form');
   $.post('php/user_category_set_data.php',$(form[0]).serialize(),function(){
@@ -27,16 +27,16 @@ $('.orchestraCheckbox').change(orchestraInput);
 $('input[name="date"]').change(setAgeCategory);
 // ========== FUNCTIONS ==========
 
-function checkboxChecked () {
-  var arr=$('input[type="checkbox"]');
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].checked) {
-      $(arr[i]).siblings('i').css({'background':'skyblue'});
-    }else{
-      $(arr[i]).siblings('i').css({'background':'transparent'});
-    }
-  }
-}
+// function checkboxChecked () {
+//   var arr=$('input[type="checkbox"]');
+//   for (var i = 0; i < arr.length; i++) {
+//     if (arr[i].checked) {
+//       $(arr[i]).siblings('i').css({'background':'skyblue'});
+//     }else{
+//       $(arr[i]).siblings('i').css({'background':'transparent'});
+//     }
+//   }
+// }
 function orchestraInput () {
   var checkbox=$('.orchestraCheckbox');
   var input=$('.orchestraInput');

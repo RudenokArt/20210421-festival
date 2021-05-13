@@ -32,33 +32,7 @@
   <div id="tabs-4"><?php include_once 'includes/admin_price.php' ?></div>
   <div id="tabs-5"><?php include_once 'includes/admin_payment.php' ?></div>
   <div id="tabs-6"><?php include_once 'includes/admin_calculation.php'; ?></div>
-  <div id="tabs-7">
-    <form action="php/package_get_data.php" method="post">
-      <table>
-        <tr>
-          <td>Обязательный мастер-класс:</td>
-          <td>
-            <div class="select_wrapper">
-              <select name="main_master">
-                <?php foreach (masterlList('master') as $key => $value) {?>
-                  <option
-                  <?php echo($value['id']==getMainMaster()?'selected':'')?>
-                  value="<?php echo $value['id'] ?>" >
-                  <?php echo $value['master']  ?>
-                </option>
-              <?php  } ?>
-            </select>
-          </div>
-        </td>
-        <td>
-          <button>
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-          </button>
-        </td>
-      </tr>
-    </table>
-  </form>
-</div>
+  <div id="tabs-7"><?php include_once 'includes/admin_package.php' ?></div>
 </div>
 <?php include_once 'includes/admin_price_popup.php' ?>
 <script src="js/admin.js?<?php echo time(); ?>"></script>

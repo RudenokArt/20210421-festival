@@ -6,7 +6,7 @@ function get_users_data(){
   global $mysqli;
   $arr=[];
   $sql = $mysqli->query('SELECT * FROM `festival_participant` 
-    ORDER BY `fio`');
+    ORDER BY `id`');
   while ($users=mysqli_fetch_assoc($sql)) {
     array_push($arr, $users);
   }

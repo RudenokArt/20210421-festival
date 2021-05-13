@@ -18,7 +18,8 @@ b{
 }
 .ui-tabs-panel{
   overflow: auto;
-  min-height: 90vh;
+  height: 90vh;
+
 }
 
 .new_meta,.new_meta form{
