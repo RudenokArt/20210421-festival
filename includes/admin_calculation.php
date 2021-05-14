@@ -19,13 +19,13 @@
       <td><?php echo userPaymentsGetData($value['id'])[0]['date']; ?></td>
       <td><?php echo userPriceSelect($value['id']) ?></td>
       <td class="amount_1">
-        <?php echo userPriceTotalDiscount($value['id'],$value['discount']) ?>
+        <?php echo userPriceTotal($value['id'],$value['discount']) ?>
       </td>
       <td class="amount_2">
         <?php echo userPaymentsAmount($value['id']); ?>
       </td>
       <td class="amount_3">
-        <?php echo userPriceTotalDiscount($value['id'],$value['discount'])-userPaymentsAmount($value['id'])  ?>
+        <?php echo userBallance($value['id'],$value['discount']); ?>
       </td>
       <td class="admin_calculation-open">
         <button>
@@ -44,10 +44,15 @@
                 <?php } ?>
               </div>
               <div>
-                РАЗМЕР СКИДКИ: <?php echo $value['discount']; ?>
+                Размер скидки: - <?php echo $value['discount']; ?> %
               </div>
               <div>
-                <b>Иого начислено: <?php echo userPriceTotal($value['id']) ?></b>
+                Сумма скидки: - <?php 
+                echo userDiscount($value['id'],$value['discount']) 
+                ?>
+              </div>
+              <div>
+                <b>Иого начислено: </b>
               </div>
             </div>
             <div>
@@ -66,7 +71,8 @@
             </div>
             <div>
               <hr>
-              ОСТАТОК<br>ЗАДОЛЖЕННОСТИ:<?php echo userPaymentsAmount($value['id']);?>
+              ОСТАТОК<br>ЗАДОЛЖЕННОСТИ: 
+              <?php echo userBallance($value['id'],$value['discount']); ?>
             </div>
           </div>
           <div class="admin_calculation-close">
@@ -91,6 +97,4 @@
   <th>Х</th>
 </tr>
 </table>
-
-
 

@@ -146,7 +146,7 @@ function userPriceCheckNomination($user){
   return $price;
 }
 
-function userPriceTotal($user){
+function userPriceTotal($user,$discount){
   $price=userPriceCheckNomination($user);
   $total=0;
   foreach ($price as $key => $value) {
@@ -154,10 +154,19 @@ function userPriceTotal($user){
       $total=$total+$value[3];
     }
   }
+  $total=$total-userDiscount($user,$discount);
   return $total;
 }
-function userPriceTotalDiscount($user,$discount){
-  return userPriceTotal($user)*(100-$discount)/100;
+
+function userDiscount($user,$discount){
+  $price=userPriceCheckNomination($user);
+  foreach ($price as $key => $value) {
+    if ($value[5]=='true' && $value[1]=='package') {
+      $package=$value[3];
+    }
+  }
+  $discount=$package*$discount/100;
+  return $discount;
 }
 
 function userPriceAmount($user){
@@ -170,6 +179,9 @@ function userPriceAmount($user){
   }
   return $amount;
 }
-
+function userBallance($user,$discount){
+  $ballance=userPriceTotal($user,$discount)-userPaymentsAmount($user);
+  return $ballance;
+}
 
 ?>
