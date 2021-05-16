@@ -52,7 +52,10 @@
                 ?>
               </div>
               <div>
-                <b>Иого начислено: </b>
+                <b>
+                  Иого начислено: 
+                  <?php echo userPriceTotal($value['id'],$value['discount']) ?> 
+                </b>
               </div>
             </div>
             <div>
@@ -98,3 +101,6 @@
 </tr>
 </table>
 
+<div class="test">
+ 
+</div>

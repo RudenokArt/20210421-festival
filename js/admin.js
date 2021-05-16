@@ -156,6 +156,30 @@ $('.admin_calculation-open button').click(function () {
   $(this).siblings('.admin_calculation-popup_wrapper').css({'display':'flex'});
 });
 
+$('button[name="track_delete"]').click(function(){
+  if (confirm('Трек будет удален!')) {
+    $(this).siblings('form')[0].submit();
+  }
+});
+$('button[name="photo_delete"]').click(function(){
+  if (confirm('ФОТО будет удалено!')) {
+    $(this).siblings('form')[0].submit();
+  }
+});
+$('button[name="certificate_delete"]').click(function(){
+  if (confirm('Сертификат будет удален!')) {
+    $(this).siblings('form')[0].submit();
+  }
+});
+$('button[name="delete_user"]').click(function(e){
+  e.preventDefault();
+  if (confirm('Профиль пользователя будет удален!')) {
+    $(this).siblings('form')[0].submit();
+  }
+});
+
+
+
 // ========== FUNCTIONS ==========
 
 function calculationTotal (node){

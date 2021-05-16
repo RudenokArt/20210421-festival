@@ -32,7 +32,7 @@ b{
   margin-right: 20px;
 }
 .ui-tabs-tab{
-  padding: 5px !important;
+  /*padding: 5px !important;*/
 }
 .meta_list{
   display: flex;
@@ -170,4 +170,11 @@ button[name="price_popup-close"]{
   position:absolute;
   right: -20px;
   top: -20px;
+}
+.files{
+  display: flex;
+  justify-content: flex-start;
+}
+.files div{
+  padding: 10px;
 }

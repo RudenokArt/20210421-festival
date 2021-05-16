@@ -25,6 +25,10 @@ $('button[name="category_set_data"]').click(function () {
 });
 $('.orchestraCheckbox').change(orchestraInput);
 $('input[name="date"]').change(setAgeCategory);
+$('input[name="discount"]').change(function(){
+  if (this.value>100) {this.value=100;}
+});
+
 // ========== FUNCTIONS ==========
 
 // function checkboxChecked () {

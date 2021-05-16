@@ -135,7 +135,7 @@ function userPriceCheckNomination($user){
       $flag=$flag+1;
     }
     if($price[$i][1]=='master'&&
-      $price[$i][4]!=getMainMaster()&&
+      //$price[$i][4]!=getMainMaster()&&
       $price[$i][5]=='true' &&
       $masterFlag<$masterPackageArr[$userPackage]) 
     {
@@ -179,6 +179,7 @@ function userPriceAmount($user){
   }
   return $amount;
 }
+
 function userBallance($user,$discount){
   $ballance=userPriceTotal($user,$discount)-userPaymentsAmount($user);
   return $ballance;

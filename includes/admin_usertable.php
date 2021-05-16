@@ -27,7 +27,6 @@
         <?php } ?>
         <th><input type="text" class="filter" ></th>
       </tr>
-
       <tr>
         <?php foreach ($profileMeta as $key => $value) {?>
           <th><?php echo $value ?></th>

@@ -21,6 +21,8 @@
     <li><a href="#tabs-5">Оплаты</a></li>
     <li><a href="#tabs-6">Расчеты</a></li>
     <li><a href="#tabs-7">Пакеты</a></li>
+    <li><a href="#tabs-8">Файлы</a></li>
+    <li><a href="#tabs-9">Удаление</a></li>
   </ul>
   <div id="tabs-1"><?php include_once 'includes/admin_usertable.php' ?></div>
   <div id="tabs-2">
@@ -33,6 +35,8 @@
   <div id="tabs-5"><?php include_once 'includes/admin_payment.php' ?></div>
   <div id="tabs-6"><?php include_once 'includes/admin_calculation.php'; ?></div>
   <div id="tabs-7"><?php include_once 'includes/admin_package.php' ?></div>
+  <div id="tabs-8"><?php include_once 'includes/admin_files.php' ?></div>
+  <div id="tabs-9"><?php include_once 'includes/admin_remove.php' ?></div>
 </div>
 <?php include_once 'includes/admin_price_popup.php' ?>
 <script src="js/admin.js?<?php echo time(); ?>"></script>
