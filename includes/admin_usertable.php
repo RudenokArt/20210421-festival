@@ -46,7 +46,7 @@
         <th>files</th>
       </tr>
       <?php $userCategoryArr=[]; ?>
-      <?php foreach ($profileData as $key => $value) {?>
+      <?php foreach ($profileData as $key => $value) { ?>
         <?php array_push($userCategoryArr,$value['id']) ?>
         <?php $userCategoryArr[$value['id']]=[] ?>
         <?php array_push($userCategoryArr[$value['id']],[$value['package'],'package']);?>
@@ -106,5 +106,11 @@
           </td>
         </tr>
       <?php } ?>
-
     </table>
+
+    <div class="test">
+      <?php foreach ($userCategoryArr[14] as $key => $value) {?>
+        <?php echo $key; ?><br>
+        <?php print_r($value) ?> <br><br>
+      <?php  } ?>
+    </div>

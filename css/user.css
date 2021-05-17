@@ -14,20 +14,6 @@ table{
   border-collapse: collapse;
 }
 
-/*label{
-  cursor: pointer;
-}
-label i{
-  color: skyblue;
-}
-input[type="checkbox"]{
-  opacity: 0;
-}
-input[type="text"]{
-  width: 275px;
-}
-*/
-
 .extit_button i{
   transform:rotate(180deg);
 }

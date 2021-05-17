@@ -1,8 +1,5 @@
 <div class="test">
-  <?php foreach ($profileData as $key => $value) { ?>
-    <?php print_r($value) ?><br><br>
-  <?php } ?>
-</div>
+  
 <table>
   <?php foreach ($profileData as $key => $value) { ?>
     <tr>

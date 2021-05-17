@@ -48,7 +48,12 @@
         <tr>
           <td><?php echo $value['id'] ?></td>
           <td><?php echo $value['fio'] ?></td>
-          <td><?php echo $value['photo'] ?></td>
+          <td>
+            <a href="user_upload/<?php echo $value['photo'] ?>"
+              download="download">
+              <?php echo $value['photo'] ?>
+            </a>
+          </td>
           <td>
             <form action="php/users_files_list.php" method="post">
               <input  value="<?php echo $value['id'] ?>" 
@@ -77,7 +82,12 @@
       <tr>
         <td><?php echo $value['id'] ?></td>
         <td><?php echo $value['fio'] ?></td>
-        <td><?php echo $value['certificate'] ?></td>
+        <td>
+          <a href="user_upload/<?php echo $value['certificate'] ?>"
+            download="download">
+            <?php echo $value['certificate'] ?>
+          </a>
+        </td>
         <td>
           <form action="php/users_files_list.php" method="post">
             <input  value="<?php echo $value['id'] ?>" 

@@ -33,6 +33,7 @@
         </button>
         <div class="admin_calculation-popup_wrapper">
           <div class="admin_calculation-popup">
+
             <div>
               <div><b>Номинации:</b></div>
               <div>
@@ -83,6 +84,7 @@
               <i class="fa fa-times" aria-hidden="true"></i>
             </button>
           </div>
+          
         </div>
       </div>
     </td>
