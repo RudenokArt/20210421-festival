@@ -41,6 +41,22 @@
             </div>
           </div>
         </div>
+        <div class="tab_item">
+          <div class="tab_item-title">
+            <div>Категория участника:<br>(Участник / Группа)</div>
+          </div>
+          <div class="tab_item-content">
+            <div class="select_wrapper">
+              <select name="participant_category">
+                <option value="participant">Участник</option>
+                <option <?php if (getUserData()['package']=='group') {?>
+                  selected="seleced"
+                <?php } ?>
+                value="group">Группа</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
         <div class="tab_item">
@@ -170,50 +186,51 @@
               echo 'selected="selected"';
               array_push($userCategoryArr[getUserData()['id']],
                 [$value,'package']);
-            } ?>   >
-            <?php echo $value; ?>
-          </option>
-        <?php } ?>
-      </select>
-    </div>
+              } ?>   >
+              <?php echo $value; ?>
+            </option>
+            <option class="group" value="group" style="display:none;"></option>
+          <?php } ?>
+        </select>
+      </div>
 
-</div>
-</div>
-<div class="tab_item" style="display: none;">
-  <div class="tab_item-content">
-    <input type="text" value="<?php echo $_SESSION['id']; ?>" name="user_id">
+    </div>
   </div>
-</div>
-<div class="tab_item">
-  <div class="tab_item-title">
-    <div>Сертификат:</div>
+  <div class="tab_item" style="display: none;">
+    <div class="tab_item-content">
+      <input type="text" value="<?php echo $_SESSION['id']; ?>" name="user_id">
+    </div>
   </div>
-  <div class="tab_item-content">
-    <div class="tab_content">
-      <div class="upload_wrapper">
-        <div class="upload_icon">
-          <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-          <br>
-          <span>empty</span>
+  <div class="tab_item">
+    <div class="tab_item-title">
+      <div>Сертификат:</div>
+    </div>
+    <div class="tab_item-content">
+      <div class="tab_content">
+        <div class="upload_wrapper">
+          <div class="upload_icon">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <br>
+            <span>empty</span>
+          </div>
+          <input type="file" name="certificate">
         </div>
-        <input type="file" name="certificate">
-      </div>
-      <div class="tab_image">
-        <img src="user_upload/<?php echo getUserData()['certificate'].'?'.time()?>" 
-        alt="certificate">
+        <div class="tab_image">
+          <img src="user_upload/<?php echo getUserData()['certificate'].'?'.time()?>" 
+          alt="certificate">
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="tab_item">
-  <div class="tab_item-title"></div>
-  <div class="tab_item-content">
-    <button>
-      <i class="fa fa-floppy-o" aria-hidden="true"></i>
-      Сохранить <br>настройки профиля
-    </button>
+  <div class="tab_item">
+    <div class="tab_item-title"></div>
+    <div class="tab_item-content">
+      <button>
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Сохранить <br>настройки профиля
+      </button>
+    </div>
   </div>
-</div>
 </div>
 </div> 
 </form>

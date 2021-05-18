@@ -45,6 +45,7 @@ b{
   width: 40px !important;
   display: none;
 }
+input[name="calculation_filter"],
 input[name="payment_filter"],
 .filter{
   width: 100% !important;
@@ -140,9 +141,7 @@ button[name="price_popup-close"]{
 .payment_add-block{
   padding: 10px;
 }
-.paymetn_table{
-  padding: 10px;
-}
+
 .admin_calculation-popup div{
   line-height: 1em;
   padding: 5px;

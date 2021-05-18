@@ -11,10 +11,11 @@ $('button[name="exit_button"]').click(function () {
     document.location.href='index.php';
   });
 });
+
 $('input[type="file"]').change(function () {
   $(this).siblings().children('span').html(this.value);
 });
-// $('input[type="checkbox"]').change(checkboxChecked);
+
 $('button[name="category_set_data"]').click(function () {
   var form=$('.ajax_form');
   $.post('php/user_category_set_data.php',$(form[0]).serialize(),function(){
@@ -29,18 +30,19 @@ $('input[name="discount"]').change(function(){
   if (this.value>100) {this.value=100;}
 });
 
+$('select[name="participant_category"]').change(function () {
+  var select=$('select[name="package"]')[0];
+  if (this.value=='group') {
+    select.value='group';
+    select.style.display='none';
+  }else{
+    select.style.display='block';
+  }
+});
+
 // ========== FUNCTIONS ==========
 
-// function checkboxChecked () {
-//   var arr=$('input[type="checkbox"]');
-//   for (var i = 0; i < arr.length; i++) {
-//     if (arr[i].checked) {
-//       $(arr[i]).siblings('i').css({'background':'skyblue'});
-//     }else{
-//       $(arr[i]).siblings('i').css({'background':'transparent'});
-//     }
-//   }
-// }
+
 function orchestraInput () {
   var checkbox=$('.orchestraCheckbox');
   var input=$('.orchestraInput');

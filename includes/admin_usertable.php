@@ -1,14 +1,14 @@
     <div class="export_block">
       <div>
-        <button>
+        <button name="export_button" value="user_table">
           <i class="fa fa-download" aria-hidden="true"></i>
           Экспорт в .csv
         </button>
       </div>
-      <div></div>
+      <div class="export_link"></div>
     </div>
-    <table class="user_table">
 
+    <table class="user_table">
       <tr>
         <?php foreach ($profileMeta as $key => $value) {?>
           <th><input type="text" class="filter" ></th>
@@ -107,10 +107,3 @@
         </tr>
       <?php } ?>
     </table>
-
-    <div class="test">
-      <?php foreach ($userCategoryArr[14] as $key => $value) {?>
-        <?php echo $key; ?><br>
-        <?php print_r($value) ?> <br><br>
-      <?php  } ?>
-    </div>

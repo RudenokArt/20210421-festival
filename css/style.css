@@ -1,5 +1,5 @@
 *,body,div,li,ul,ol,p,span,select,option,textarea,
-input,table,th,td,tr{
+input,table,th,td,tr,hr,span{
   box-sizing: border-box;
   line-height: 1em;
   line-height: 0;

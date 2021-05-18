@@ -50,23 +50,51 @@ $('.filter').change(function () {
   }
 });
 
-$('.export_block button').click(function () {
-  var table=$('.user_table');
+$('input[name="calculation_filter"]').change(function () {
+  var tr=$('.user_calc_tr');
+  $(tr).css({'display':''});
+  var filter=$('input[name="calculation_filter"]');
+  for (var i = 0; i < filter.length; i++) {
+    var cellValue=filter[i].value.trim().toLowerCase();
+    for (var k = 0; k < tr.length; k++) {
+      var td=$(tr[k]).children();
+      var userCell=td[i].innerHTML.toLowerCase().trim();
+      if(!userCell.includes(cellValue,0) && cellValue!=''){
+        tr[k].style.display='none';
+      }
+    }
+  }
+});
+
+$('button[name="export_button"]').click(function () {
+  var table=$('.'+this.value);
   var tr=$(table).children().children();
   var arr=[];
+  var k=0;
   for (var i = 1; i < tr.length; i++) {
-    arr[i]=[];
-    var td=$(tr[i]).children();
-    for(var j=0; j<td.length; j++){
-      arr[i].push(td[j].innerHTML.trim());
+    if (tr[i].style.display!='none') {
+      arr[k]=[];
+      var td;
+      if (tr[i].className=='paynent_tr') {
+        td=$(tr[i]).children('td').children('input');
+        console.log(tr);
+        for(var j=0; j<td.length; j++){
+          arr[k].push(td[j].value.trim());
+        }
+      }else{
+        td=$(tr[i]).children();
+        for(var j=0; j<td.length; j++){
+          arr[k].push(td[j].innerHTML.trim());
+        }
+      }
+      k=k+1;
     }
   }
   var data=JSON.stringify(arr);
   $.post('php/export_csv.php',{data:data}, function(data){
     console.log(data);
     alert('Выгрузка данных завершена!');
-    $('.export_block div')[1].innerHTML=
-    '<a href="data/export.csv" download>Скачать .csv</a>';
+    $('.export_link').html('<a href="data/export.csv" download>Скачать .csv</a>');
   });
 });
 

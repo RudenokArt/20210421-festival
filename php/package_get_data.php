@@ -1,10 +1,10 @@
 <?php 
-$packageArr=['mini','midi','maxi','junior','study','all_ws'];
+$packageArr=['mini','midi','maxi','junior','study','all_ws','group'];
 $mainMasterPackageArr=['mini','midi','maxi','junior'];
 $cdPackageArr=['mini','junior'];
 $orchestraPackageArr=['midi','maxi'];
 $masterPackageArr=['mini'=>4,'midi'=>6,'maxi'=>8,'junior'=>2,
-'study'=>3,'all_ws'=>10000];
+'study'=>3,'all_ws'=>10000,'group'=>0];
 
 setMainMaster();
 

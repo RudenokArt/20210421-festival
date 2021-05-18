@@ -1,5 +1,5 @@
 hr{
-  margin:20px;
+  margin:10px;
   border-width: 1px;
   border-color:skyblue;
   border-style: solid;
@@ -90,3 +90,8 @@ input[type="file"]{
   font-size: 54px;
 }
 
+.calculation_item{
+  line-height: 1em;
+  padding: 10px;
+  width: 300px;
+}
