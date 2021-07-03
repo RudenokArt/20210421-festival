@@ -9,7 +9,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
   <script src="https://use.fontawesome.com/e8a42d7e14.js"></script>
-  <link rel="stylesheet" href="css/style.css?<?php echo time() ?>">
+  <link rel="stylesheet" href="css/style.css?v=1">
   <title>MiraMar</title>
 </head>
 <body>

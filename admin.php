@@ -1,5 +1,5 @@
 <?php include_once 'header.php'; ?>
-<link rel="stylesheet" href="css/admin.css?<?php echo time(); ?>">
+<link rel="stylesheet" href="css/admin.css?v=1">
 <?php include_once 'php/users_get_data.php' ?>
 <?php include_once 'php/get_meta.php' ?>
 <?php include_once 'php/category_get_data.php' ?>
@@ -39,5 +39,5 @@
   <div id="tabs-9"><?php include_once 'includes/admin_remove.php' ?></div>
 </div>
 <?php include_once 'includes/admin_price_popup.php' ?>
-<script src="js/admin.js?<?php echo time(); ?>"></script>
+<script src="js/admin.js?v=1"></script>
 <?php include_once 'footer.php'; ?>

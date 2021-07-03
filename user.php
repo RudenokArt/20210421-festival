@@ -3,7 +3,7 @@
 <?php include_once 'php/get_meta.php' ?>
 <?php include_once 'php/user_category_get_data.php'; ?>
 <?php include_once 'php/user_orchestra_get.php'; ?>
-<link rel="stylesheet" href="css/user.css?<?php echo time(); ?>">
+<link rel="stylesheet" href="css/user.css?<?php echo time() ?>">
 <?php if (!$_SESSION['login']) {
   ?><script>document.location.href='index.php';</script><?
 } ?>
@@ -41,5 +41,5 @@
 <div class="test"></div>
 
 
-<script src="js/user.js?<?php echo time(); ?>"></script>
+<script src="js/user.js?<?php echo time() ?>"></script>
 <?php include_once 'footer.php' ?>

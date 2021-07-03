@@ -22,7 +22,7 @@
         </div>
         <div class="tab_item">
           <div class="tab_item-title">
-            <div>ФОТО:</div>
+            <div>ФОТО В ОБРАЗЕ:</div>
           </div>
           <div class="tab_item-content">
             <div class="tab_content">

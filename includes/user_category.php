@@ -57,15 +57,15 @@
           <div>Номинации под ОРКЕСТР:</div>
         </div>
         <div class="tab_item-content">
-          <?php foreach (masterlList('orchestra') as $key => $value) { 
-            array_push($userCategoryArr[getUserData()['id']],
-            [$value['id'],'orchestra']) ?>
+          <?php foreach (masterlList('orchestra') as $key => $value) { ?>
             <table>
               <tr>
                 <td>
                   <label>
                     <input name="<?php echo $value['orchestra'] ?>" 
-                    <?php if(in_array($value['id'],getUserCategory())){?>
+                    <?php if(in_array($value['id'],getUserCategory())){ 
+                      array_push($userCategoryArr[getUserData()['id']],
+                      [$value['id'],'orchestra']) ?>
                       checked="checked"
                     <?php  } ?>
                     value="<?php echo $value['id'] ?>" 

@@ -60,8 +60,9 @@ function setAgeCategory () {
   var arr=str.split('.');
   var bornDate=new Date();
   bornDate.setFullYear(arr[2],arr[1]-1,arr[0]);
-  tooday=Date.now();
+  tooday=new Date().setFullYear(2021,9,1);
   var age=(tooday-bornDate.getTime())/31536000000;
+  console.log(age);
   var category='Дети (7-10лет)';
   if (age>11) {category='Юниоры 1 (11-14 лет)';}
   if (age>15) {category='Юниоры 2 (15-19 лет)';}

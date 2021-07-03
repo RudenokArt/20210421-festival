@@ -1,5 +1,5 @@
 <?php include_once 'header.php'; ?>
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/index.css?<?php echo time() ?>">
 <?php if ($_SESSION['login']) {
   ?><script>document.location.href='user.php';</script><?php
 } ?>
