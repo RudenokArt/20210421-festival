@@ -1,0 +1,13 @@
+.warning {
+  color:  red;
+  width: 275px;
+}
+.tabs li{
+  padding: 10px !important;
+}
+.tabs div{
+  line-height: 1em !important;
+}
+.tag_item{
+  padding: 10px;
+}

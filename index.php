@@ -3,6 +3,7 @@
 <?php if ($_SESSION['login']) {
   ?><script>document.location.href='user.php';</script><?php
 } ?>
+
 <img src="img/main.jpg" alt="MiraMar" class="main_img">
 <div class="popup_wrapper">
   <div class="popup">
@@ -63,11 +64,6 @@
 </div>
 </div>
 </div>
-
-
-
-
-
 
 <script src="js/index.js?<?php echo time() ?>"></script>
 <?php include_once 'footer.php'; ?>
