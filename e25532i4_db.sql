@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost
--- Время создания: Авг 11 2021 г., 19:29
--- Версия сервера: 5.7.21-20-beget-5.7.21-20-1-log
--- Версия PHP: 5.6.40
+-- Хост: 127.0.0.1:3306
+-- Время создания: Авг 24 2021 г., 06:56
+-- Версия сервера: 5.6.47
+-- Версия PHP: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,19 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `m911958r_db`
+-- База данных: `e25532i4_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_judge`
+--
+
+CREATE TABLE `festival_judge` (
+  `id` int(8) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_judge`
+--
+
+INSERT INTO `festival_judge` (`id`, `email`, `name`, `password`) VALUES
+(6, 'mail@mail.ru', 'test', 'Password_1'),
+(7, 'mail2@mail.ru', '', 'Password_2');
 
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `festival_meta`
 --
--- Создание: Май 19 2021 г., 11:52
--- Последнее обновление: Июл 21 2021 г., 07:01
---
 
-DROP TABLE IF EXISTS `festival_meta`;
 CREATE TABLE `festival_meta` (
   `id` int(10) NOT NULL,
   `master` varchar(250) NOT NULL,
@@ -84,11 +100,7 @@ INSERT INTO `festival_meta` (`id`, `master`, `cd`, `orchestra`, `food`) VALUES
 --
 -- Структура таблицы `festival_participant`
 --
--- Создание: Май 19 2021 г., 11:52
--- Последнее обновление: Авг 11 2021 г., 00:04
---
 
-DROP TABLE IF EXISTS `festival_participant`;
 CREATE TABLE `festival_participant` (
   `id` int(10) NOT NULL,
   `password` varchar(250) NOT NULL,
@@ -224,18 +236,15 @@ INSERT INTO `festival_participant` (`id`, `password`, `email`, `fio`, `date`, `p
 (200, 'Bellydance13', 'ms.daryana13@mail.ru', 'Daryana Alianitskaya', '13.06.1998', '', 'Belarus', 'Vitebsk', 'Взрослые 1 (20-30 лет)', 'Любители начинающие', 'Azalais', 'Ani Avagimyan', 0, 'maxi', 'photo!!200!!Daryana Alianitskaya.jpeg', '', '+375298509555'),
 (203, '777Kbkz777', 'llliliya-2007@mail.ru', 'Милена Муртазина Наилевна', '24.04.2004', '+7(892) 724-3807', 'Россия', 'г. Набережные Челны', 'Юниоры 2 (15-19 лет)', 'Профессионалы', 'Индивидуальный Танцор', 'Милена Муртазина', 0, 'midi', 'photo!!203!!Милена Муртазина Наилевна.jpg', '', ''),
 (206, '1MPRE55ion90!', 'marinapervova@list.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '', ''),
-(207, 'wsxedc45', 'tenyukh-julia@mail.ru', 'Тенюх Юлия Анатольевна', '28.04.1988', '+7(981) 785-5731', 'Россия', 'Санкт-Петербург', 'Взрослые 2 (31-40лет)', 'Профессионалы', 'Жар-Птица', 'Юлия Тенюх', 0, 'mini', 'photo!!207!!Тенюх Юлия Анатольевна .jpeg', '', '');
+(207, 'wsxedc45', 'tenyukh-julia@mail.ru', 'Тенюх Юлия Анатольевна', '28.04.1988', '+7(981) 785-5731', 'Россия', 'Санкт-Петербург', 'Взрослые 2 (31-40лет)', 'Профессионалы', 'Жар-Птица', 'Юлия Тенюх', 0, 'mini', 'photo!!207!!Тенюх Юлия Анатольевна .jpeg', '', ''),
+(208, 'Password-2', 'mail@mail.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `festival_payment`
 --
--- Создание: Май 19 2021 г., 11:52
--- Последнее обновление: Авг 09 2021 г., 19:49
---
 
-DROP TABLE IF EXISTS `festival_payment`;
 CREATE TABLE `festival_payment` (
   `id` int(10) NOT NULL,
   `date` date NOT NULL,
@@ -440,10 +449,7 @@ INSERT INTO `festival_payment` (`id`, `date`, `user_id`, `amount`) VALUES
 --
 -- Структура таблицы `festival_price`
 --
--- Создание: Май 19 2021 г., 11:52
---
 
-DROP TABLE IF EXISTS `festival_price`;
 CREATE TABLE `festival_price` (
   `id` int(10) NOT NULL,
   `date` date NOT NULL,
@@ -582,11 +588,7 @@ INSERT INTO `festival_price` (`id`, `date`, `meta_type`, `meta`, `price`) VALUES
 --
 -- Структура таблицы `festival_user_category`
 --
--- Создание: Май 19 2021 г., 11:52
--- Последнее обновление: Авг 11 2021 г., 16:19
---
 
-DROP TABLE IF EXISTS `festival_user_category`;
 CREATE TABLE `festival_user_category` (
   `user` int(10) NOT NULL,
   `category` int(10) NOT NULL,
@@ -1940,6 +1942,12 @@ INSERT INTO `festival_user_category` (`user`, `category`, `orchestra`) VALUES
 --
 
 --
+-- Индексы таблицы `festival_judge`
+--
+ALTER TABLE `festival_judge`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `festival_meta`
 --
 ALTER TABLE `festival_meta`
@@ -1968,6 +1976,12 @@ ALTER TABLE `festival_price`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `festival_judge`
+--
+ALTER TABLE `festival_judge`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT для таблицы `festival_meta`
 --
 ALTER TABLE `festival_meta`
@@ -1977,7 +1991,7 @@ ALTER TABLE `festival_meta`
 -- AUTO_INCREMENT для таблицы `festival_participant`
 --
 ALTER TABLE `festival_participant`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_payment`
