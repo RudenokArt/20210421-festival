@@ -15,9 +15,5 @@
     echo '<meta http-equiv="refresh" content="0; url=judge.php" />';
   } ?>
 
-  <div class="test">
-    <?php var_dump($_SESSION['judge']) ?>
-    <br>
-    <?php var_dump($_SESSION['user_id']) ?>
-  </div>
+ 
 

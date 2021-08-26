@@ -26,15 +26,11 @@
     <li><a href="#tabs-9">Удаление</a></li>
   </ul>
   <div id="tabs-1"><?php include_once 'includes/admin_usertable.php' ?></div>
-  <div id="tabs-2">
-    <div class="test">
-      Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Переписали, запятой города имеет по всей жаренные родного реторический заманивший маленькая, подзаголовок залетают дорогу, вдали рукопись. Города, рыбными, имеет. Грустный, речью!
-    </div>
-  </div>
+  <div id="tabs-2"><?php include_once 'includes/admin_judge_list.php' ?></div>
   <div id="tabs-3"><?php include_once 'includes/admin_metadata.php'?></div>
   <div id="tabs-4"><?php include_once 'includes/admin_price.php' ?></div>
   <div id="tabs-5"><?php include_once 'includes/admin_payment.php' ?></div>
-  <div id="tabs-6"><?php include_once 'includes/admin_calculation.php'; ?></div>
+  <div id="tabs-6">см. в полной версии</div>
   <div id="tabs-7"><?php include_once 'includes/admin_package.php' ?></div>
   <div id="tabs-8"><?php include_once 'includes/admin_files.php' ?></div>
   <div id="tabs-9"><?php include_once 'includes/admin_remove.php' ?></div>
