@@ -27,7 +27,7 @@ var signin_form = new Vue({
   methods:{
     check_form: function(){
       if (!this.email_validate()) {
-        alert('Enter a valid e-mail!');
+        alert('Enter a valid email!');
 
       } else if (!this.password_validate()) {
         alert('The password must contain from 6 to 20'+

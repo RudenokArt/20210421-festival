@@ -1,9 +1,9 @@
+
 <div id="tabs" class="tabs">
-  <?php $judge_data = current_judge_data(); ?>
-  <?php judge_logout() ?>
-  <?php judge_update() ?>
   <ul>
-    <li><a href="#tabs-1">Profile</a></li>
+    <li><a href="#tabs-1">
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+    </a></li>
   </ul>
   <div id="tabs-1" class="tab">
     <div class="tag_item">
@@ -30,4 +30,5 @@
     </div>
   </div>
 </div>
+
 <?php include_once 'footer.php'; ?>

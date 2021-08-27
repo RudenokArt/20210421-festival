@@ -1,6 +1,7 @@
 <?php 
 
 include_once 'db_connect.php';
+Admin_judge::judge_delete();
 
 
 class Admin_judge {
@@ -16,10 +17,10 @@ class Admin_judge {
   } 
 
   public static function judge_delete() {
-    if (isset($_POST['judge_delete'])) {
-      global $mysqli;
-      $mysqli->query('DELETE FROM `festival_judge` WHERE `id`='.$_POST['judge_delete']);
-      echo '<meta http-equiv="refresh" content="; url=#tabs-1" />';
+    global $mysqli;
+    if (isset($_GET['judge_delete'])) {
+      $mysqli->query('DELETE FROM `festival_judge` WHERE `id`='.$_GET['judge_delete']);
+      echo "<meta http-equiv='refresh' content='0;url=admin_new.php'>";
     }
   }
 

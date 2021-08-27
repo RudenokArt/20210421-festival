@@ -222,3 +222,13 @@ function calculationTotal (node){
 
 // ========== JUDGE LIST ==========
 
+var judge_delete = new Vue({
+  el:'#judge_table',
+  methods: {
+    message: function (e) {
+      if (confirm('Удалить?')) {
+        e.target.parentNode.submit();
+      }
+    }
+  }
+})

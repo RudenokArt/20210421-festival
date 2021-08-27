@@ -1,6 +1,6 @@
-<?php include_once 'php/Admin_judge.php' ?>
+
 <div>
-  <table>
+  <table id="judge_table">
   <tr>
     <th>id</th>
     <th>email</th>
@@ -21,18 +21,16 @@
         </button>
       </td>
       <td>
-        <form action="" method="post">
+        <form action="" method="get">
           <input type="hidden" name="judge_delete" value="<?php echo $value['id'];?>">
-          <button>
+          <button v-on:click.prevent="message">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>
         </form>
+
         
       </td>
     </tr>                         
   <?php endforeach; ?> 
 </table>
-
 </div>
-
-<?php Admin_judge::judge_delete() ?>
