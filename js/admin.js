@@ -218,3 +218,7 @@ function calculationTotal (node){
   }
   $('.'+node+'-total').html(total);
 }
+
+
+// ========== JUDGE LIST ==========
+

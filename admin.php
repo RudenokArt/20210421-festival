@@ -8,7 +8,6 @@
 <?php include_once 'php/package_get_data.php' ?>
 <?php include_once 'php/price_get_data.php' ?>
 <?php include_once 'php/payments_get_data.php' ?>
-<?php include_once 'php/General_class.php' ?>
 
 <?php $profileMeta=array_keys(get_users_data()[0]); ?>
 <?php $profileData=get_users_data(); ?>
