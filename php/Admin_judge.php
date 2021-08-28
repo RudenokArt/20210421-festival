@@ -2,6 +2,7 @@
 
 include_once 'db_connect.php';
 Admin_judge::judge_delete();
+Admin_judge::judge_update();
 
 
 class Admin_judge {
@@ -20,8 +21,25 @@ class Admin_judge {
     global $mysqli;
     if (isset($_GET['judge_delete'])) {
       $mysqli->query('DELETE FROM `festival_judge` WHERE `id`='.$_GET['judge_delete']);
-      echo "<meta http-equiv='refresh' content='0;url=admin_new.php'>";
+      echo "<meta http-equiv='refresh' content='0;url=admin_app.php'>";
     }
+  }
+
+  public static function judge_update () {
+    global $mysqli;
+    if (isset($_GET['judge_update_id'])) {
+      $mysqli->query('UPDATE `festival_judge` 
+        SET `email`="'.$_GET['email'].'",
+        `name`="'.$_GET['name'].'",
+        `password`="'.$_GET['password'].'" 
+        WHERE `id`='.$_GET['judge_update_id']);
+      echo "<meta http-equiv='refresh' content='0;url=admin_app.php'>";
+    }
+    // return( 'UPDATE `festival_judge` 
+    //     SET `email`="'.$_GET['email'].'",
+    //     `name`="'.$_GET['name'].'",
+    //     `password`="'.$_GET['password'].'" 
+    //     WHERE `id`='.$_GET['judge_update_id']);
   }
 
 

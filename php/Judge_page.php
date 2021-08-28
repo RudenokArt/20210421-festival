@@ -2,6 +2,7 @@
 $judge_data = Judge_page::get_data();
 Judge_page::logout();
 Judge_page::judge_update();
+$_SESSION['message'] = '';
 
 /**
  * 

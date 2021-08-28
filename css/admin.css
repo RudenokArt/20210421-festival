@@ -176,3 +176,26 @@ button[name="price_popup-close"]{
 .files div{
   padding: 10px;
 }
+
+.wrapper_edit_form-active,
+.wrapper_edit_form {
+  background: rgba(0,0,0,0.4);
+  display: none;
+  left: 0;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  transition-duration: 1s;
+  width: 100vw;
+}
+.wrapper_edit_form-active{
+  transition-duration: 1s;
+  display: flex;
+}
+
+.edit_form{
+  background: white;
+  margin:auto;
+  text-align: center;
+  padding: 40px 20px 30px 20px;
+}
