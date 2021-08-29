@@ -1,4 +1,4 @@
-
+<?php include_once 'php/Admin_judge.php' ?>
 <div>
   <table id="judge_table">
     <tr>

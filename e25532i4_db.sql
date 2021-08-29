@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 24 2021 г., 06:56
+-- Время создания: Авг 29 2021 г., 22:56
 -- Версия сервера: 5.6.47
 -- Версия PHP: 7.2.29
 
@@ -24,6 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `festival_dates`
+--
+
+CREATE TABLE `festival_dates` (
+  `id` int(8) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_dates`
+--
+
+INSERT INTO `festival_dates` (`id`, `date`) VALUES
+(1, '0000-00-00'),
+(2, '0000-00-00'),
+(3, '2021-08-06'),
+(4, '2021-08-04'),
+(5, '2021-08-05'),
+(6, '2021-08-01'),
+(7, '2021-08-05'),
+(8, '2021-08-07');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `festival_judge`
 --
 
@@ -40,7 +65,7 @@ CREATE TABLE `festival_judge` (
 
 INSERT INTO `festival_judge` (`id`, `email`, `name`, `password`) VALUES
 (6, 'mail@mail.ru', 'test', 'Password_1'),
-(7, 'mail2@mail.ru', '', 'Password_2');
+(8, 'mail2@mail.ru', 'testName', 'Password_2');
 
 -- --------------------------------------------------------
 
@@ -1942,6 +1967,12 @@ INSERT INTO `festival_user_category` (`user`, `category`, `orchestra`) VALUES
 --
 
 --
+-- Индексы таблицы `festival_dates`
+--
+ALTER TABLE `festival_dates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `festival_judge`
 --
 ALTER TABLE `festival_judge`
@@ -1976,10 +2007,16 @@ ALTER TABLE `festival_price`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `festival_dates`
+--
+ALTER TABLE `festival_dates`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT для таблицы `festival_judge`
 --
 ALTER TABLE `festival_judge`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_meta`

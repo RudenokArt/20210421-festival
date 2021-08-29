@@ -206,8 +206,6 @@ $('button[name="delete_user"]').click(function(e){
   }
 });
 
-
-
 // ========== FUNCTIONS ==========
 
 function calculationTotal (node){

@@ -199,3 +199,7 @@ button[name="price_popup-close"]{
   text-align: center;
   padding: 40px 20px 30px 20px;
 }
+
+.tab_item{
+  padding: 10px;
+}
