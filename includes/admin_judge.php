@@ -51,3 +51,5 @@
     <?php endforeach; ?> 
   </table>
 </div>
+
+<script src="js/admin_judge.js"></script>

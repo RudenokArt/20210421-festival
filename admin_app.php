@@ -29,3 +29,5 @@ href="?page=admin_timetable">
 
   <script src="js/admin.js?v=<?php echo time() ?>"></script>
   <?php include_once 'footer.php'; ?>
+
+  
