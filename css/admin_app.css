@@ -1,3 +1,4 @@
+div {line-height: 1em;}
 .menu{
   border-bottom: 2px solid skyblue;
   padding: 20px;
@@ -26,4 +27,10 @@ input[name="festival_add_new_date"]{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.td_like{
+  width: 200px;
+  border: 1px solid grey;
+  padding: 10px;
 }

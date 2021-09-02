@@ -2,7 +2,7 @@
 <?php $dates_list = Admin_timetable::get_dates_list(); ?>
 <?php $halls_list = Admin_timetable::get_halls_list(); ?>
 <?php $parts_list = Admin_timetable::get_parts_list(); ?>
-<?php $nomination_list = Admin_timetable::get_nominations_list(); ?>
+<?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
 
 <div class="row">
   <div class="container">
@@ -101,7 +101,7 @@
             </td>
             <td>
               <form action="" method="get">
-                <button name="festival_part_delete">
+                <button name="festival_part_delete"  value="<?php echo $value['id'] ?>" >
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
               </form>
@@ -187,30 +187,53 @@
 </div>
 </div>
 
-<div class="row">
-  <div class="container">
-    <table>
-      <tr>
-        <th>id</th>
-        <th>Дата</th>
-        <th>Залл</th>
-        <th>Отделение</th>
-        <th>Номинация</th>
-      </tr>
-      <?php foreach ($nomination_list as $key => $value): ?>
-        <tr>
-          <td><?php echo $value['id'] ?></td>
-          <td><?php echo Admin_timetable::get_festival_date($value['date'])['date']; ?></td>
-          <td><?php echo Admin_timetable::get_festival_hall($value['hall'])['hall']; ?></td>
-          <td><?php echo Admin_timetable::get_festival_part($value['part'])['part']; ?></td>
-          <td><?php echo $value['nomination']; ?></td>
-        </tr>
-      <?php endforeach ?>
-    </table>
+
+
+<?php foreach ($nomination_list as $date_key => $date_value): ?>
+  <div class="row">
+    <div class="td_like">
+      <?php echo Admin_timetable::get_festival_date($date_key)['date'] ?>
+    </div>
+    <div class="">
+      <?php foreach ($date_value as $hall_key => $hall_value): ?>
+        <div class="row">
+          <div class="td_like">
+            <?php echo Admin_timetable::get_festival_hall($hall_key)['hall']; ?>
+          </div>
+          <div class="">
+            <?php foreach ($hall_value as $part_key => $part_value): ?>
+              <div class="row">
+                <div class="td_like">
+                  <?php echo Admin_timetable::get_festival_part($part_key)['part'];  ?>
+                </div>
+                <div class="td_like">
+                  <?php foreach ($part_value as $nomination_key => $nomination_value): ?>
+                    <div class="row" style="justify-content: flex-end;">
+                      <table>
+                        <tr>
+                          <td style="border:none">
+                            <?php echo $nomination_value['nomination'] ?>
+                          </td>
+                          <td style="border:none">
+                           <form action="" method="get">
+                            <button value="<?php echo $nomination_value['id'] ?>" name="festival_nomination_delete">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </form> 
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                <?php endforeach ?>
+              </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+      </div>
+    <?php endforeach ?>
   </div>
 </div>
+<?php endforeach ?>
 
-<pre>
-  <?php print_r(Admin_timetable::get_nominations_list()); ?>
-</pre>
+
 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 29 2021 г., 22:56
--- Версия сервера: 5.6.47
--- Версия PHP: 7.2.29
+-- Время создания: Сен 02 2021 г., 18:05
+-- Версия сервера: 10.3.22-MariaDB
+-- Версия PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `e25532i4_db`
+-- База данных: `m911958r_db`
 --
 
 -- --------------------------------------------------------
@@ -37,14 +37,27 @@ CREATE TABLE `festival_dates` (
 --
 
 INSERT INTO `festival_dates` (`id`, `date`) VALUES
-(1, '0000-00-00'),
-(2, '0000-00-00'),
-(3, '2021-08-06'),
-(4, '2021-08-04'),
-(5, '2021-08-05'),
-(6, '2021-08-01'),
-(7, '2021-08-05'),
-(8, '2021-08-07');
+(10, '2021-08-01'),
+(13, '2021-08-02');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_halls`
+--
+
+CREATE TABLE `festival_halls` (
+  `id` int(8) NOT NULL,
+  `hall` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_halls`
+--
+
+INSERT INTO `festival_halls` (`id`, `hall`) VALUES
+(1, 'red hall'),
+(3, 'blue hall');
 
 -- --------------------------------------------------------
 
@@ -65,7 +78,7 @@ CREATE TABLE `festival_judge` (
 
 INSERT INTO `festival_judge` (`id`, `email`, `name`, `password`) VALUES
 (6, 'mail@mail.ru', 'test', 'Password_1'),
-(8, 'mail2@mail.ru', 'testName', 'Password_2');
+(8, 'mail2@mail.ru', 'name 2', 'Password_2');
 
 -- --------------------------------------------------------
 
@@ -119,6 +132,35 @@ INSERT INTO `festival_meta` (`id`, `master`, `cd`, `orchestra`, `food`) VALUES
 (68, '', 'Классический ориенталь (группа)', '', ''),
 (70, '', 'Египетский и неегипетский фольклор (группа)', '', ''),
 (71, '', 'Шоу табла (группа)', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_nominations`
+--
+
+CREATE TABLE `festival_nominations` (
+  `id` int(8) NOT NULL,
+  `date` int(8) NOT NULL,
+  `hall` int(8) NOT NULL,
+  `part` int(8) NOT NULL,
+  `nomination` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_nominations`
+--
+
+INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) VALUES
+(10, 10, 1, 2, '1red1'),
+(11, 10, 3, 2, '1blue1'),
+(12, 10, 1, 3, '1red2'),
+(13, 10, 3, 3, '1blue2'),
+(14, 13, 1, 2, '2red1'),
+(15, 13, 3, 2, '2blue1'),
+(16, 13, 1, 3, '2red2'),
+(17, 13, 3, 3, '2blue2'),
+(19, 10, 3, 2, 'nomination1blue1');
 
 -- --------------------------------------------------------
 
@@ -263,6 +305,25 @@ INSERT INTO `festival_participant` (`id`, `password`, `email`, `fio`, `date`, `p
 (206, '1MPRE55ion90!', 'marinapervova@list.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '', ''),
 (207, 'wsxedc45', 'tenyukh-julia@mail.ru', 'Тенюх Юлия Анатольевна', '28.04.1988', '+7(981) 785-5731', 'Россия', 'Санкт-Петербург', 'Взрослые 2 (31-40лет)', 'Профессионалы', 'Жар-Птица', 'Юлия Тенюх', 0, 'mini', 'photo!!207!!Тенюх Юлия Анатольевна .jpeg', '', ''),
 (208, 'Password-2', 'mail@mail.ru', '', '', '', '', '', '', '', '', '', 0, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_parts`
+--
+
+CREATE TABLE `festival_parts` (
+  `id` int(8) NOT NULL,
+  `part` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_parts`
+--
+
+INSERT INTO `festival_parts` (`id`, `part`) VALUES
+(2, '1-st part'),
+(3, '2-nd part');
 
 -- --------------------------------------------------------
 
@@ -1973,6 +2034,12 @@ ALTER TABLE `festival_dates`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `festival_halls`
+--
+ALTER TABLE `festival_halls`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `festival_judge`
 --
 ALTER TABLE `festival_judge`
@@ -1985,9 +2052,21 @@ ALTER TABLE `festival_meta`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `festival_nominations`
+--
+ALTER TABLE `festival_nominations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `festival_participant`
 --
 ALTER TABLE `festival_participant`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `festival_parts`
+--
+ALTER TABLE `festival_parts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2010,7 +2089,13 @@ ALTER TABLE `festival_price`
 -- AUTO_INCREMENT для таблицы `festival_dates`
 --
 ALTER TABLE `festival_dates`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `festival_halls`
+--
+ALTER TABLE `festival_halls`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_judge`
@@ -2025,10 +2110,22 @@ ALTER TABLE `festival_meta`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
+-- AUTO_INCREMENT для таблицы `festival_nominations`
+--
+ALTER TABLE `festival_nominations`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT для таблицы `festival_participant`
 --
 ALTER TABLE `festival_participant`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+
+--
+-- AUTO_INCREMENT для таблицы `festival_parts`
+--
+ALTER TABLE `festival_parts`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_payment`
