@@ -114,6 +114,10 @@
       <form action="" method="get">
         <table>
           <tr>
+            <th>Новое отделение</th>
+            <th>Добавить</th>
+          </tr>
+          <tr>
             <td>
               <input type="text" name="festival_add_new_part">
             </td>

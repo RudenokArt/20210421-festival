@@ -17,7 +17,7 @@
       </form>
     </div>
     <div class="tag_item">
-      Your email/login: 
+      Your email / login: 
       <?php echo $judge_data['email'] ?>
     </div>
     <div class="tag_item">
