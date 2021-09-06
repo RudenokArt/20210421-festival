@@ -28,9 +28,14 @@ input[name="festival_add_new_date"]{
   flex-wrap: wrap;
   justify-content: center;
 }
+.tr_like{
+  display: flex; 
+  flex-wrap: nowrap;
+  justify-content: center;
+}
 
 .td_like{
-  width: 200px;
+  width: 400px;
   border: 1px solid grey;
   padding: 10px;
 }

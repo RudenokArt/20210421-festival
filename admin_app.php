@@ -3,21 +3,20 @@
 <link rel="stylesheet" href="css/admin_app.css?v=<?php echo time();?>">
 <?php include_once 'php/Admin_judge.php' ?>
 <?php include_once 'php/Admin_timetable.php' ?>
+<?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
 
 <div class="menu">
-  <a <?php if ($_GET['page']==''): ?>
-  class="active"
-<?php endif ?> 
-href="?" >
-Судьи
-</a>
-<a <?php if ($_GET['page']=='admin_timetable'): ?>
-class="active"
-<?php endif ?> 
-href="?page=admin_timetable">
-Расписание
-</a>
+  <a <?php if ($_GET['page']==''): ?> class="active"  <?php endif ?> href="?" >
+    Судьи
+  </a>
+  <a <?php if ($_GET['page']=='admin_timetable'): ?> class="active" <?php endif ?> href="?page=admin_timetable">
+    Расписание
+  </a>
+  <a <?php if ($_GET['page']=='admin_nomination_list'): ?> class="active" <?php endif ?> href="?page=admin_nomination_list">
+    Списки участников
+  </a>
 </div>
+
 <div class="container">
   <?php if (isset($_GET['page'])): ?>
     <?php include_once 'includes/'.$_GET['page'].'.php' ?>

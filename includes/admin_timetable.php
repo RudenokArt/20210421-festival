@@ -2,7 +2,7 @@
 <?php $dates_list = Admin_timetable::get_dates_list(); ?>
 <?php $halls_list = Admin_timetable::get_halls_list(); ?>
 <?php $parts_list = Admin_timetable::get_parts_list(); ?>
-<?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
+
 
 <div class="row">
   <div class="container">
@@ -194,25 +194,25 @@
 
 
 <?php foreach ($nomination_list as $date_key => $date_value): ?>
-  <div class="row">
-    <div class="td_like">
+  <div class="tr_like">
+    <div class="td_like" style="width: 120px">
       <?php echo Admin_timetable::get_festival_date($date_key)['date'] ?>
     </div>
     <div class="">
       <?php foreach ($date_value as $hall_key => $hall_value): ?>
-        <div class="row">
-          <div class="td_like">
+        <div class="tr_like" >
+          <div class="td_like" style="width: 200px">
             <?php echo Admin_timetable::get_festival_hall($hall_key)['hall']; ?>
           </div>
           <div class="">
             <?php foreach ($hall_value as $part_key => $part_value): ?>
-              <div class="row">
-                <div class="td_like">
+              <div class="tr_like">
+                <div class="td_like" style="width: 200px">
                   <?php echo Admin_timetable::get_festival_part($part_key)['part'];  ?>
                 </div>
                 <div class="td_like">
                   <?php foreach ($part_value as $nomination_key => $nomination_value): ?>
-                    <div class="row" style="justify-content: flex-end;">
+                    <div class="tr_like" style="justify-content: flex-end;">
                       <table>
                         <tr>
                           <td style="border:none">
