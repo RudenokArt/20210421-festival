@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 02 2021 г., 18:05
+-- Время создания: Сен 07 2021 г., 17:25
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -160,7 +160,29 @@ INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) 
 (15, 13, 3, 2, '2blue1'),
 (16, 13, 1, 3, '2red2'),
 (17, 13, 3, 3, '2blue2'),
-(19, 10, 3, 2, 'nomination1blue1');
+(22, 10, 1, 2, 'ПРОФЕССИОНАЛЫ+++++');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_nomination_list`
+--
+
+CREATE TABLE `festival_nomination_list` (
+  `id` int(8) NOT NULL,
+  `nomination` int(8) NOT NULL,
+  `participant` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_nomination_list`
+--
+
+INSERT INTO `festival_nomination_list` (`id`, `nomination`, `participant`) VALUES
+(1, 11, 65),
+(2, 11, 66),
+(3, 13, 70),
+(4, 22, 78);
 
 -- --------------------------------------------------------
 
@@ -2058,6 +2080,12 @@ ALTER TABLE `festival_nominations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `festival_nomination_list`
+--
+ALTER TABLE `festival_nomination_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `festival_participant`
 --
 ALTER TABLE `festival_participant`
@@ -2095,7 +2123,7 @@ ALTER TABLE `festival_dates`
 -- AUTO_INCREMENT для таблицы `festival_halls`
 --
 ALTER TABLE `festival_halls`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_judge`
@@ -2113,7 +2141,13 @@ ALTER TABLE `festival_meta`
 -- AUTO_INCREMENT для таблицы `festival_nominations`
 --
 ALTER TABLE `festival_nominations`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT для таблицы `festival_nomination_list`
+--
+ALTER TABLE `festival_nomination_list`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_participant`

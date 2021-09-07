@@ -6,19 +6,20 @@
 <?php include_once 'php/package_get_data.php' ?>
 <?php include_once 'php/price_get_data.php' ?>
 <?php include_once 'php/payments_get_data.php' ?>
-<?php $profileMeta=array_keys(get_users_data()[0]); ?>
 <?php $profileData=get_users_data(); ?>
+<?php $profileMeta=array_keys($profileData[0]); ?>
 <div style="display: none;"><?php include_once 'includes/admin_usertable.php' ?></div>
 
 <?php 
 
 function admin_calc_pagination () {
+  global $profileData;
   if (isset($_GET['pagination'])) {
     $current_page = $_GET['pagination'];
   } else {
     $current_page = 1;
   }
-  $user_quantity = sizeof(get_users_data());
+  $user_quantity = sizeof($profileData);
   $page_user_quantity = 10;
   $pages_quantity = ceil($user_quantity/$page_user_quantity);
   $last_page = $current_page * $page_user_quantity;
@@ -87,7 +88,7 @@ $pagination = admin_calc_pagination();
   </tr>
 
   <?php $i = 0; ?>
-  <?php foreach (get_users_data() as $key => $value) {?>
+  <?php foreach ($profileData as $key => $value) {?>
     <?php if ($i >= $pagination['first_page'] and $i <= $pagination['last_page']): ?>
       <tr class="user_calc_tr">
         <td><?php echo $value['id'] ?></td>
