@@ -7,17 +7,23 @@
 <?php include_once 'php/Admin_timetable.php' ?>
 <?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
 
+<?php
+if (isset($GET['page'])) {
+  $current_menu_page = $_GET['page'];
+} else {$current_menu_page = '';}
+?>
 <div class="menu">
-  <a <?php if ($_GET['page']==''): ?> class="active"  <?php endif ?> href="?" >
+  <a 
+  <?php if ($current_menu_page=='' ): ?> class="active"  <?php endif ?> href="?" >
     Судьи
   </a>
-  <a <?php if ($_GET['page']=='admin_timetable'): ?> class="active" <?php endif ?> href="?page=admin_timetable">
+  <a <?php if ($current_menu_page=='admin_timetable'): ?> class="active" <?php endif ?> href="?page=admin_timetable">
     Расписание
   </a>
-  <a <?php if ($_GET['page']=='admin_nomination_list'): ?> class="active" <?php endif ?> href="?page=admin_nomination_list">
+  <a <?php if ($current_menu_page=='admin_nomination_list'): ?> class="active" <?php endif ?> href="?page=admin_nomination_list">
     Списки участников
   </a>
-  <a <?php if ($_GET['page']=='admin_app_calculation'): ?> class="active" <?php endif ?> href="?page=admin_app_calculation">
+  <a <?php if ($current_menu_page=='admin_app_calculation'): ?> class="active" <?php endif ?> href="?page=admin_app_calculation">
     Расчеты
   </a>
 </div>
@@ -30,6 +36,7 @@
     <?php endif ?>
   </div>
 
+  
 
   <script src="js/admin.js?v=<?php echo time() ?>"></script>
   <?php include_once 'footer.php'; ?>
