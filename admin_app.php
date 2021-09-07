@@ -1,4 +1,6 @@
 <?php include_once 'header.php'; ?>
+
+
 <link rel="stylesheet" href="css/admin.css?v=<?php echo time();?>">
 <link rel="stylesheet" href="css/admin_app.css?v=<?php echo time();?>">
 <?php include_once 'php/Admin_judge.php' ?>
@@ -14,6 +16,9 @@
   </a>
   <a <?php if ($_GET['page']=='admin_nomination_list'): ?> class="active" <?php endif ?> href="?page=admin_nomination_list">
     Списки участников
+  </a>
+  <a <?php if ($_GET['page']=='admin_app_calculation'): ?> class="active" <?php endif ?> href="?page=admin_app_calculation">
+    Расчеты
   </a>
 </div>
 

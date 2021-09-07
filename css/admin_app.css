@@ -39,3 +39,14 @@ input[name="festival_add_new_date"]{
   border: 1px solid grey;
   padding: 10px;
 }
+
+.wrapper_pagination{
+  display: flex;
+}
+.pagination{
+  margin:auto;
+}
+.pagination a {
+  text-decoration: none;
+  color:grey;
+}
