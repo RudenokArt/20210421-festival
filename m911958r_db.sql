@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 07 2021 г., 17:25
+-- Время создания: Сен 08 2021 г., 16:10
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -153,14 +153,13 @@ CREATE TABLE `festival_nominations` (
 
 INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) VALUES
 (10, 10, 1, 2, '1red1'),
-(11, 10, 3, 2, '1blue1'),
+(11, 10, 3, 2, '1blue1 тест'),
 (12, 10, 1, 3, '1red2'),
 (13, 10, 3, 3, '1blue2'),
 (14, 13, 1, 2, '2red1'),
 (15, 13, 3, 2, '2blue1'),
 (16, 13, 1, 3, '2red2'),
-(17, 13, 3, 3, '2blue2'),
-(22, 10, 1, 2, 'ПРОФЕССИОНАЛЫ+++++');
+(17, 13, 3, 3, '2blue2');
 
 -- --------------------------------------------------------
 
@@ -180,9 +179,9 @@ CREATE TABLE `festival_nomination_list` (
 
 INSERT INTO `festival_nomination_list` (`id`, `nomination`, `participant`) VALUES
 (1, 11, 65),
-(2, 11, 66),
 (3, 13, 70),
-(4, 22, 78);
+(4, 22, 78),
+(5, 11, 67);
 
 -- --------------------------------------------------------
 
@@ -2117,13 +2116,13 @@ ALTER TABLE `festival_price`
 -- AUTO_INCREMENT для таблицы `festival_dates`
 --
 ALTER TABLE `festival_dates`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_halls`
 --
 ALTER TABLE `festival_halls`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_judge`
@@ -2141,13 +2140,13 @@ ALTER TABLE `festival_meta`
 -- AUTO_INCREMENT для таблицы `festival_nominations`
 --
 ALTER TABLE `festival_nominations`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_nomination_list`
 --
 ALTER TABLE `festival_nomination_list`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_participant`
@@ -2159,7 +2158,7 @@ ALTER TABLE `festival_participant`
 -- AUTO_INCREMENT для таблицы `festival_parts`
 --
 ALTER TABLE `festival_parts`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_payment`
