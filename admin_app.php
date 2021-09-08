@@ -8,7 +8,7 @@
 <?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
 
 <?php
-if (isset($GET['page'])) {
+if (isset($_GET['page'])) {
   $current_menu_page = $_GET['page'];
 } else {$current_menu_page = '';}
 ?>
@@ -35,8 +35,6 @@ if (isset($GET['page'])) {
       <?php include_once 'includes/admin_judge.php' ?>
     <?php endif ?>
   </div>
-
-  
 
   <script src="js/admin.js?v=<?php echo time() ?>"></script>
   <?php include_once 'footer.php'; ?>

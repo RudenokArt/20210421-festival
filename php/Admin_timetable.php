@@ -1,4 +1,6 @@
 <?php 
+print_r($_POST);
+
 include_once 'db_connect.php';
 Admin_timetable::add_new_date();
 Admin_timetable::festival_date_delete();
@@ -8,6 +10,7 @@ Admin_timetable::festival_add_new_part();
 Admin_timetable::festival_part_delete();
 Admin_timetable::fistival_nomination_add();
 Admin_timetable::festival_nomination_delete();
+Admin_timetable::edit_date();
 
 class Admin_timetable {
 
@@ -17,6 +20,16 @@ class Admin_timetable {
       $sql = $mysqli->query('INSERT INTO `festival_dates`(`date`) 
         VALUES ("'.trim($_GET['festival_add_new_date']).'")');
       echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    }
+  }
+
+  public static function edit_date () {
+    if (isset($_POST['festival_date_edit'])) {
+      global $mysqli;
+      $mysqli->query('UPDATE `festival_dates` 
+        SET `date`="'.$_POST['festival_date_edit'].'" 
+        WHERE `id`="'.$_POST['festival_date_id'].'"');
+       echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
     }
   }
 

@@ -19,6 +19,7 @@
 
   $( function() {
     $('input[name="festival_add_new_date"]' ).datepicker({dateFormat: "yy-mm-dd"});
+    $('input[name="festival_date_edit"]' ).datepicker({dateFormat: "yy-mm-dd"});
   } );
 
   $('input[name="phone"]').mask("+7(999) 999-9999");

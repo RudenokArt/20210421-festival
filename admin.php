@@ -34,10 +34,9 @@
   <div id="tabs-4"><?php include_once 'includes/admin_price.php' ?></div>
   <div id="tabs-5"><?php include_once 'includes/admin_payment.php' ?></div>
   <div id="tabs-6">
+    Расчеты переехали
    <a href="admin_app.php?page=admin_app_calculation">
-    <button>
-      Расчеты переехали сюда
-    </button>
+    сюда
   </a>
   <?php // include_once 'includes/admin_calculation.php'; ?>
 </div>

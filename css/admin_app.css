@@ -56,3 +56,26 @@ input[name="festival_add_new_date"]{
   text-decoration: none;
   color:grey;
 }
+.edit_popup_visible,
+.edit_popup_invisible {
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top:0;
+  transition-duration: 1s;
+  width: 100vw;
+  z-index: 10;
+}
+.edit_popup_invisible {
+  top:-100vh;
+  transition-duration: 1s;
+}
+
+.edit_popup_form {
+  background:white;
+  margin:auto;
+  padding: 20px;
+  text-align: center;
+}

@@ -3,7 +3,7 @@
 <?php $halls_list = Admin_timetable::get_halls_list(); ?>
 <?php $parts_list = Admin_timetable::get_parts_list(); ?>
 
-
+<div id="admin_timetable_page">
 <div class="row">
   <div class="container">
     <div class="title container">
@@ -16,8 +16,31 @@
             <td><?php echo $value['id'] ?></td>
             <td><?php echo $value['date'] ?></td>
             <td>
+              <button v-on:click="showPopup">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              <div class="edit_popup_invisible">
+                <div class="edit_popup_form">
+                  Изменить дату: <br><br>
+                  <form action="../php/Admin_timetable.php" method="post">
+                    <input name="festival_date_id" value="<?php echo $value['id'] ?>" type="hidden" >
+                    <input value="<?php echo $value['date'] ?>" readonly="readonly" 
+                    type="text" name="festival_date_edit">
+                  </form>
+                  <br>
+                  <button v-on:click="submitEditForm">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                  <button v-on:click="hidePopup" >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </td>
+            <td>
               <form action="" method="get">
-                <button name="festival_date_delete" value="<?php echo $value['id'] ?>">
+                <input value="<?php echo $value['id'] ?>" type="hidden" name="festival_date_delete">
+                <button v-on:click="submitDeleteForm">
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
               </form>
@@ -238,6 +261,7 @@
   </div>
 </div>
 <?php endforeach ?>
+ 
+</div>
 
-
-
+<script src="js/admin_timetable.js?v=<?php echo time(); ?>"></script>

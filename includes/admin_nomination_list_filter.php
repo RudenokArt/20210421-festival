@@ -11,8 +11,8 @@
           <?php endif ?>
           value="<?php echo $nomination_value['id'] ?>">
             <?php echo $nomination_value['nomination'] ?> (  
-            <?php echo Admin_timetable::get_festival_date($date_key)['date'];?>/
-            <?php echo Admin_timetable::get_festival_hall($hall_key)['hall'];?>/
+            <?php echo Admin_timetable::get_festival_date($date_key)['date'];?> ~
+            <?php echo Admin_timetable::get_festival_hall($hall_key)['hall'];?> ~
             <?php echo Admin_timetable::get_festival_part($part_key)['part'];?> )
           </option>
         <?php endforeach ?>
