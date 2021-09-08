@@ -146,6 +146,29 @@
               <td>
                 <?php echo $value['part'] ?>
               </td>
+
+              <td>
+                <button v-on:click="showPopup">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+                <div class="edit_popup_invisible">
+                  <div class="edit_popup_form">
+                    Редактировать отделение: <br><br>
+                    <form action="php/Admin_timetable.php" method="post">
+                      <input name="festival_part_id" value="<?php echo $value['id'] ?>" type="hidden" >
+                      <input value="<?php echo $value['part'] ?>" type="text" name="festival_part_edit">
+                    </form>
+                    <br>
+                    <button v-on:click="submitEditForm">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button v-on:click="hidePopup" >
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </td>
+
               <td>
                 <form action="php/Admin_timetable.php" method="get">
                   <input value="<?php echo $value['id'] ?>" type="hidden" name="festival_part_delete">
@@ -266,26 +289,51 @@
                           <td style="border:none">
                             <?php echo $nomination_value['nomination'] ?>
                           </td>
+
+                          <td style="border:none">
+                            <button v-on:click="showPopup">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="edit_popup_invisible">
+                              <div class="edit_popup_form">
+                                Редактировать номинацию: <br><br>
+                                <form action="php/Admin_timetable.php" method="post">
+                                  <input value="<?php echo $nomination_value['id'] ?>" 
+                                  name="festival_nomination_id" type="hidden" >
+                                  <input value="<?php echo $nomination_value['nomination'] ?>" 
+                                  type="text" name="festival_nomination_edit">
+                                </form>
+                                <br>
+                                <button v-on:click="submitEditForm">
+                                  <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                                <button v-on:click="hidePopup" >
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+
                           <td style="border:none">
                            <form action="php/Admin_timetable.php" method="get">
                             <input value="<?php echo $nomination_value['id'] ?>" type="hidden" name="festival_nomination_delete">
                             <button v-on:click="submitDeleteForm">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                              </button>
-                            </form> 
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  <?php endforeach ?>
-                </div>
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </form> 
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                <?php endforeach ?>
               </div>
-            <?php endforeach ?>
-          </div>
+            </div>
+          <?php endforeach ?>
         </div>
-      <?php endforeach ?>
-    </div>
+      </div>
+    <?php endforeach ?>
   </div>
+</div>
 <?php endforeach ?>
 
 </div>

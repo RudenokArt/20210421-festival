@@ -12,6 +12,8 @@ Admin_timetable::fistival_nomination_add();
 Admin_timetable::festival_nomination_delete();
 Admin_timetable::edit_date();
 Admin_timetable::edit_hall();
+Admin_timetable::edit_part();
+Admin_timetable::edit_nomination();
 
 class Admin_timetable {
 
@@ -115,6 +117,16 @@ public static function festival_add_new_part() {
   }
 }
 
+public static function edit_part () {
+    if (isset($_POST['festival_part_edit'])) {
+      global $mysqli;
+      $mysqli->query('UPDATE `festival_parts` 
+        SET `part`="'.$_POST['festival_part_edit'].'" 
+        WHERE `id`="'.$_POST['festival_part_id'].'"');
+       echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
+    }
+  }
+
 public static function get_parts_list () {
   $arr = [];
   global $mysqli;
@@ -151,6 +163,16 @@ public static function fistival_nomination_add () {
     echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
+
+public static function edit_nomination () {
+    if (isset($_POST['festival_nomination_edit'])) {
+      global $mysqli;
+      $mysqli->query('UPDATE `festival_nominations` 
+        SET `nomination`="'.$_POST['festival_nomination_edit'].'" 
+        WHERE `id`="'.$_POST['festival_nomination_id'].'"');
+       echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
+    }
+  }
 
 public static function get_nominations_list () {
   $arr = [];
