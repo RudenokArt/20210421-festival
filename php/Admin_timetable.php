@@ -11,6 +11,7 @@ Admin_timetable::festival_part_delete();
 Admin_timetable::fistival_nomination_add();
 Admin_timetable::festival_nomination_delete();
 Admin_timetable::edit_date();
+Admin_timetable::edit_hall();
 
 class Admin_timetable {
 
@@ -19,7 +20,7 @@ class Admin_timetable {
       global $mysqli;
       $sql = $mysqli->query('INSERT INTO `festival_dates`(`date`) 
         VALUES ("'.trim($_GET['festival_add_new_date']).'")');
-      echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+      echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
     }
   }
 
@@ -55,7 +56,7 @@ class Admin_timetable {
   if (isset($_GET['festival_date_delete'])) {
     global $mysqli;
     $sql = $mysqli->query('DELETE FROM `festival_dates` WHERE `id`='.trim($_GET['festival_date_delete']));
-    echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
 
@@ -64,9 +65,19 @@ public static function festival_add_new_hall () {
     global $mysqli;
     $mysqli->query('INSERT INTO `festival_halls`(`hall`) 
       VALUES ("'.trim($_GET['festival_add_new_hall']).'")');
-    echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
+
+public static function edit_hall () {
+    if (isset($_POST['festival_hall_edit'])) {
+      global $mysqli;
+      $mysqli->query('UPDATE `festival_halls` 
+        SET `hall`="'.$_POST['festival_hall_edit'].'" 
+        WHERE `id`="'.$_POST['festival_hall_id'].'"');
+       echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
+    }
+  }
 
 public static function get_halls_list () {
   $arr = [];
@@ -92,7 +103,7 @@ public static function festival_hall_delete () {
     global $mysqli;
     $mysqli->query('DELETE FROM `festival_halls` 
       WHERE `id`="'.trim($_GET['festival_hall_delete']).'"');
-    echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
 
@@ -100,7 +111,7 @@ public static function festival_add_new_part() {
   if (isset($_GET['festival_add_new_part'])) {
     global $mysqli;
     $mysqli->query('INSERT INTO `festival_parts`(`part`) VALUES ("'.trim($_GET['festival_add_new_part']).'")');
-    echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
 
@@ -119,7 +130,7 @@ public static function festival_part_delete () {
    global $mysqli;
    $mysqli->query('DELETE FROM `festival_parts` 
     WHERE `id`="'.trim($_GET['festival_part_delete']).'"');
-   echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+   echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
  }
 }
 
@@ -137,7 +148,7 @@ public static function fistival_nomination_add () {
     global $mysqli;
     $mysqli->query('INSERT INTO `festival_nominations`(`date`, `hall`, `part`, `nomination`) 
       VALUES ("'.$_GET['date'].'", "'.$_GET['hall'].'", "'.$_GET['part'].'", "'.$_GET['fistival_nomination_add'].'")');
-    echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+    echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
 
@@ -171,7 +182,7 @@ public static function festival_nomination_delete() {
     global $mysqli;
     $mysqli->query('DELETE FROM `festival_nominations` 
     WHERE `id`="'.trim($_GET['festival_nomination_delete']).'"');
-   echo "<meta http-equiv='refresh' content='0;url=admin_app.php?page=admin_timetable'>";
+   echo "<meta http-equiv='refresh' content='0;url=../admin_app.php?page=admin_timetable'>";
   }
 }
 
