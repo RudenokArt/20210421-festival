@@ -88,7 +88,7 @@ $pagination = admin_calc_pagination();
   </tr>
 
   <?php $i = 0; ?>
-  <?php foreach ($profileData as $key => $value) {?>
+  <?php foreach ($profileData as $key => $value) { ?>
     <?php if ($i >= $pagination['first_page'] and $i <= $pagination['last_page']): ?>
       <tr class="user_calc_tr">
         <td><?php echo $value['id'] ?></td>
@@ -109,9 +109,10 @@ $pagination = admin_calc_pagination();
           <button>
             <i class="fa fa-calculator" aria-hidden="true"></i>
           </button>
+
+
           <div class="admin_calculation-popup_wrapper">
             <div class="admin_calculation-popup">
-
               <div>
                 <div><b>Номинации:</b></div>
                 <div>
@@ -140,8 +141,8 @@ $pagination = admin_calc_pagination();
               <div>
                 <div><b>Оплаты:</b></div>
                 <div>
-                  <?php foreach(userPaymentsGetData($value['id']) as 
-                  $subkey=>$subvalue){?>
+                  <?php $userPaymentsGetDataID = userPaymentsGetData($value['id']); ?>
+                  <?php foreach($userPaymentsGetDataID as $subkey=>$subvalue){?>
                    <?php echo $subvalue['date'] ?>
                    <span>=</span>
                    <?php echo $subvalue['amount'] ?>
@@ -164,6 +165,8 @@ $pagination = admin_calc_pagination();
             </div>
           </div>
         </div>
+
+        
       </td>
     </tr>
   <?php endif ?>

@@ -1,5 +1,4 @@
 <?php 
-print_r($_POST);
 
 include_once 'db_connect.php';
 Admin_timetable::add_new_date();
