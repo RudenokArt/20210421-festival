@@ -1,5 +1,4 @@
-<?php include_once 'php/users_get_data.php'; ?>
-<?php include_once 'php/Admin_nomination_list.php' ?>
+
 <?php $users_list = get_users_data(); ?>
 
 <div class="container">
