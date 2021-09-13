@@ -3,11 +3,22 @@
   width: 275px;
 }
 .tabs li{
-  padding: 10px !important;
+  padding: 5px !important;
 }
-.tabs div{
+.tab *{
   line-height: 1em !important;
 }
 .tag_item{
   padding: 10px;
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  padding: 20px;
+}
+.quiz_step li{
+  padding: 10px !important;
 }
