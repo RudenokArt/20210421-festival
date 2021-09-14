@@ -63,7 +63,6 @@
               <?php echo Admin_nomination_list::get_nomination(
                 $value['nomination']
               )['nomination'];?>
-              //<?php echo $value['nomination']; ?>
             </td>
             <td> 
               <?php echo Admin_nomination_list::get_participant(

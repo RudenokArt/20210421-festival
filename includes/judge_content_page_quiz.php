@@ -5,20 +5,101 @@
 
 <div class="container">
   <div class="navigation">
-    <a href="judge.php#tabs-2">festival dates</a>
+    <a href="judge.php#tabs-2">Festival MiraMar</a>
     <?php if (isset($_GET['date'])): ?>
+      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
       <a href="judge.php?date=<?php echo $_GET['date'];?>#tabs-2">
         <?php echo Admin_timetable::get_festival_date($_GET['date'])['date'] ?>
       </a>
+    <?php endif ?>
+    <?php if (isset($_GET['hall'])): ?>
+      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+      <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $_GET['hall'];?>#tabs-2">
+        <?php echo Admin_timetable::get_festival_hall($_GET['hall'])['hall'] ?>
+      </a>
+    <?php endif ?>
+    <?php if (isset($_GET['part'])): ?>
+      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+      <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $_GET['hall'];?>&part=<?php echo $_GET['part'];?>#tabs-2">
+        <?php echo Admin_timetable::get_festival_part($_GET['part'])['part'] ?>
+      </a>
+    <?php endif ?>
+    <?php if (isset($_GET['nomination'])): ?>
+      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+      <?php echo $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['nomination'] ;?>
     <?php endif ?>
   </div>
 </div>
 
 
-<?php if (isset($_GET['date'])): ?>
-  <pre>
-    <?php print_r($nomination_list[$_GET['date']]) ?>
-  </pre>
+
+<?php if (isset($_GET['date']) and isset($_GET['hall']) and isset($_GET['part']) and isset($_GET['nomination']) ): ?>
+<?php $nomination_id = $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['id']; ?>
+<table>
+  <?php foreach (Admin_nomination_list::get_list($nomination_id) as $key => $value): ?>
+    <tr>
+      <td>
+        <?php echo Admin_nomination_list::get_participant($value['participant'])['fio']; ?>
+      </td>
+      <td>
+        <div class="select_wrapper" style="width: 100px;">
+          <select style="width: 100px;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  <?php endforeach ?>
+</table>
+
+
+<?php elseif (isset($_GET['date']) and isset($_GET['hall']) and isset($_GET['part']) ): ?>
+<div class="row">
+  <div class="container">
+    <ul class="quiz_step">
+      <?php foreach ($nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']] as $key => $value): ?>
+        <li>
+          <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $_GET['hall'];?>&part=<?php echo $_GET['part']?>&nomination=<?php echo $key;?>#tabs-2">
+            <?php echo $value['nomination']; ?>
+          </a>
+        </li>
+      <?php endforeach ?>
+    </ul>
+  </div>
+</div>
+
+<?php elseif (isset($_GET['date']) and isset($_GET['hall'])): ?>
+<div class="row">
+  <div class="container">
+    <ul class="quiz_step">
+      <?php foreach ($nomination_list[$_GET['date']][$_GET['hall']] as $key => $value): ?>
+        <li>
+          <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $_GET['hall'];?>&part=<?php echo $key;?>#tabs-2">
+            <?php echo Admin_timetable::get_festival_part($key)['part']; ?>
+          </a>
+        </li>
+      <?php endforeach ?>
+    </ul>
+  </div>
+</div>
+
+<?php elseif (isset($_GET['date'])): ?>
+  <div class="row">
+    <div class="container">
+      <ul class="quiz_step">
+        <?php foreach ($nomination_list[$_GET['date']] as $key => $value): ?>
+          <li>
+            <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $key;?>#tabs-2">
+              <?php echo Admin_timetable::get_festival_hall($key)['hall']; ?>
+            </a>
+          </li>
+        <?php endforeach ?>
+      </ul>
+    </div>
+  </div>
+
   <?php else: ?>
     <div class="row">
      <div class="container">

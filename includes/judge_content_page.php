@@ -8,7 +8,7 @@
     </li>
     <li>
       <a href="#tabs-2">
-        <i class="fa fa-indent" aria-hidden="true"></i>
+        <i class="fa fa-list" aria-hidden="true"></i>
       </a>
     </li>
   </ul>
