@@ -55,3 +55,18 @@ var signin_form = new Vue({
     }
   }
 });
+
+
+new Vue ({
+  el:'#mark_table',
+  methods:{
+    popupHide: function (e) {
+      e.target.parentNode.parentNode.parentNode.style.display = 'none';
+    },
+    popupShow: function (e) {
+      var arr = e.target.parentNode.childNodes;
+      arr[arr.length-1].childNodes[0].style.display = 'block';
+    }
+  }
+
+})

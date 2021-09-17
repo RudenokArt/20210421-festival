@@ -1,17 +1,19 @@
 
-.table_wrapper {
-  background: rgba(0,150,250,0.1);
+table {
+  margin: auto;
 }
 tr{
   background: rgba(0,150,250,0.1);
+  cursor: pointer;
 }
 td {
   padding: 5px;
 }
-body *{
-  color: royalblue !important;
-}
 
+.table_wrapper {
+  background: rgba(0,150,250,0.1);
+  /*min-height: 100vh;*/
+}
 .navigation_item {
   display: block;
   padding: 10px;
@@ -60,16 +62,10 @@ body *{
   padding: 5px !important;
 }
 
-.mark_input {
-  height: 40px !important;
-  width: 30px !important;
+.criterion_mark {
   background: rgba(0,150,250,0.1);
-  border:none !important;
-  padding-left: 5px !important;
 }
-.mark_input:focus {
-  background: lightblue;
-}
+
 
 .nomination_title{
   font-weight: bold;
@@ -80,4 +76,39 @@ body *{
     max-width: 100px;
     overflow:hidden;
   }
+}
+
+.wrapper_mark_popup {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  top:0;
+  left: 0;
+  display: none;
+}
+
+
+.mark_popup{
+  width: 100%;
+  height:100%;
+  display: flex;
+}
+.mark_popup_form {
+  margin:auto;
+  background: white;
+  padding: 20px;
+  padding: 10px;
+  position: relative;
+}
+.mark_popup_form form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 250px;
+}
+.mark_popup_form_close {
+  position: absolute;
+  top:-25px;
+  right: -10px;
 }
