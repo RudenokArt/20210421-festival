@@ -61,6 +61,25 @@ class Judge_page_mark_table {
   return $arr;
  }
 
+ public static function next_nomination () {
+  global $nomination_list;
+  $nomination = $_GET['nomination']+1;
+  if ($nomination >= count($nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']])) {
+    $nomination = $_GET['nomination'];
+  }
+  return $nomination;
+ }
+
+ public static function back_nomination () {
+  global $nomination_list;
+  $nomination = $_GET['nomination']-1;
+  if ($nomination < 0) {
+    $nomination = 0;
+  }
+  return $nomination;
+ }
+
+
 
 
 }

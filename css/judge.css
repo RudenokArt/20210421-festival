@@ -112,3 +112,10 @@ td {
   top:-25px;
   right: -10px;
 }
+
+.nomination_page_title {
+  margin:auto;
+  font-weight: bold;
+  color:skyblue;
+  padding: 10px;
+}

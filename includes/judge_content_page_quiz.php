@@ -7,10 +7,6 @@
 <?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
 <?php $participants_mark_list = Mark_table::participants_mark_list($_GET['nomination'], $_SESSION['judge']); ?>
 
-<pre>
-  <?php print_r($participants_mark_list); ?>
-</pre>
-
 <div class="navigation">
   <a href="judge.php#tabs-2" class="navigation_item">Festival MiraMar</a>
   <?php if (isset($_GET['date'])): ?>
@@ -40,11 +36,33 @@
 </div>
 
 
+
 <div class="table_wrapper" id="mark_table">
+  
+<div class="row">
+  <div class="nomination_scroll_button">
+    <a href="http://festival-miramar/judge.php?date=10&hall=3&part=3&nomination=<?php echo Mark_table::back_nomination();?>#tabs-2">
+      <button>
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
+    </a>
+  </div>
+  <div class="row">
+    <div class="nomination_page_title">
+      <?php echo $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['nomination'] ?>
+    </div>
+  </div>
+  <div class="nomination_scroll_button">
+    <a href="http://festival-miramar/judge.php?date=10&hall=3&part=3&nomination=<?php echo Mark_table::next_nomination();?>#tabs-2">
+     <button>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </a>
+</div>
+</div>
+
   <?php if (isset($_GET['date']) and isset($_GET['hall']) and isset($_GET['part']) and isset($_GET['nomination']) ): ?>
   <?php $nomination_id = $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['id']; ?>
-
-  
   <table>
     <tr>
       <th></th>
@@ -64,11 +82,11 @@
         <td class="width_control">
           <?php echo $participant['fio']; ?>
         </td>
-        <?php foreach ($participants_mark_list[$participant['id']] as $key => $value): ?>
+        <?php for ($i=1; $i < 6; $i++) : ?>
           <td class="criterion_mark">
-            <?php echo $value; ?>
+            <?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>
           </td>
-        <?php endforeach ?>
+        <?php endfor; ?>
         <td>
           <div class="wrapper_mark_popup">
             <div class="mark_popup">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 08 2021 г., 16:10
+-- Время создания: Сен 17 2021 г., 12:05
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -155,11 +155,14 @@ INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) 
 (10, 10, 1, 2, '1red1'),
 (11, 10, 3, 2, '1blue1 тест'),
 (12, 10, 1, 3, '1red2'),
-(13, 10, 3, 3, '1blue2'),
+(13, 10, 3, 3, '1blue2 test'),
 (14, 13, 1, 2, '2red1'),
 (15, 13, 3, 2, '2blue1'),
 (16, 13, 1, 3, '2red2'),
-(17, 13, 3, 3, '2blue2');
+(17, 13, 3, 3, '2blue2'),
+(26, 10, 3, 3, '1 nomination 2'),
+(27, 10, 3, 3, 'test 2'),
+(28, 10, 3, 3, 'Очень длинное название номинации');
 
 -- --------------------------------------------------------
 
@@ -181,7 +184,12 @@ INSERT INTO `festival_nomination_list` (`id`, `nomination`, `participant`) VALUE
 (1, 11, 65),
 (3, 13, 70),
 (4, 22, 78),
-(5, 11, 67);
+(5, 11, 67),
+(6, 10, 65),
+(7, 10, 66),
+(8, 26, 65),
+(9, 26, 67),
+(10, 26, 79);
 
 -- --------------------------------------------------------
 
@@ -689,6 +697,33 @@ INSERT INTO `festival_price` (`id`, `date`, `meta_type`, `meta`, `price`) VALUES
 (565, '2021-07-01', 'package', 'study', 13500),
 (566, '2021-07-01', 'package', 'all_ws', 22500),
 (567, '2021-07-01', 'package', 'group', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `festival_results`
+--
+
+CREATE TABLE `festival_results` (
+  `id` int(8) NOT NULL,
+  `judge` int(8) NOT NULL,
+  `nomination` int(8) NOT NULL,
+  `participant` int(8) NOT NULL,
+  `criterion_1` int(8) NOT NULL,
+  `criterion_2` int(8) NOT NULL,
+  `criterion_3` int(8) NOT NULL,
+  `criterion_4` int(8) NOT NULL,
+  `criterion_5` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `festival_results`
+--
+
+INSERT INTO `festival_results` (`id`, `judge`, `nomination`, `participant`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`, `criterion_5`) VALUES
+(4, 6, 0, 67, 5, 5, 5, 5, 5),
+(8, 6, 0, 65, 4, 4, 4, 4, 4),
+(10, 6, 0, 79, 3, 3, 3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -2109,6 +2144,12 @@ ALTER TABLE `festival_price`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `festival_results`
+--
+ALTER TABLE `festival_results`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -2140,13 +2181,13 @@ ALTER TABLE `festival_meta`
 -- AUTO_INCREMENT для таблицы `festival_nominations`
 --
 ALTER TABLE `festival_nominations`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_nomination_list`
 --
 ALTER TABLE `festival_nomination_list`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_participant`
@@ -2171,6 +2212,12 @@ ALTER TABLE `festival_payment`
 --
 ALTER TABLE `festival_price`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=568;
+
+--
+-- AUTO_INCREMENT для таблицы `festival_results`
+--
+ALTER TABLE `festival_results`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
