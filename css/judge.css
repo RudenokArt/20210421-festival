@@ -1,6 +1,7 @@
 
 table {
   margin: auto;
+  max-width: 100%;
 }
 tr{
   background: rgba(0,150,250,0.1);
@@ -8,6 +9,7 @@ tr{
 }
 td {
   padding: 5px;
+  font-size:20px;
 }
 
 .table_wrapper {
@@ -27,6 +29,10 @@ td {
   justify-content: flex-start;
   line-height: 1em !important;
   background: rgba(0,150,250,0.1);
+}
+
+.navigation a{
+  font-size:20px !important;
 }
 
 .tab *{
@@ -69,6 +75,7 @@ td {
 
 .nomination_title{
   font-weight: bold;
+  font-size:20px !important;
 }
 
 @media screen and (max-width: 320px){
@@ -86,6 +93,7 @@ td {
   top:0;
   left: 0;
   display: none;
+  border:1px solid red;
 }
 
 

@@ -61,11 +61,20 @@ new Vue ({
   el:'#mark_table',
   methods:{
     popupHide: function (e) {
-      e.target.parentNode.parentNode.parentNode.style.display = 'none';
+      var arr = document.getElementsByClassName('wrapper_mark_popup');
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].style.display = 'none';
+      }
+      
     },
     popupShow: function (e) {
+      console.log(e.target);
       var arr = e.target.parentNode.childNodes;
-      arr[arr.length-1].childNodes[0].style.display = 'block';
+      var popUp = arr[arr.length-1].childNodes[0];
+      popUp.onclick = function (e) {
+        e.stopPropagation();
+      };
+      popUp.style.display = 'flex';
     }
   }
 

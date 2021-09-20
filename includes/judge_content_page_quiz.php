@@ -75,11 +75,13 @@
     <th></th>
     <th></th>
   </tr>
+  <?php $participant_counter = 0; ?>
   <?php foreach (Admin_nomination_list::get_list($nomination_id) as $key => $value): ?>
+    <?php $participant_counter++ ?>
     <?php $participant =  Admin_nomination_list::get_participant($value['participant']); ?>
     <tr v-on:click="popupShow">
       <td>
-        <?php echo $participant['id']; ?>
+        <?php echo $participant_counter; ?>
       </td>
       <td class="width_control">
         <?php echo $participant['fio']; ?>
