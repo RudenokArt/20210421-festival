@@ -17,6 +17,15 @@ class Admin_judge {
     return $arr;
   } 
 
+  public static function get_judge ($judge_id) {
+    global $mysqli;
+    $sql = $mysqli->query('SELECT * FROM `festival_judge` WHERE `id`="'.$judge_id.'"');
+    while ($item=mysqli_fetch_assoc($sql)) {
+      $result = $item;
+    }
+    return $result;
+  } 
+
   public static function judge_delete() {
     global $mysqli;
     if (isset($_GET['judge_delete'])) {
@@ -35,11 +44,6 @@ class Admin_judge {
         WHERE `id`='.$_GET['judge_update_id']);
       echo "<meta http-equiv='refresh' content='0;url=admin_app.php'>";
     }
-    // return( 'UPDATE `festival_judge` 
-    //     SET `email`="'.$_GET['email'].'",
-    //     `name`="'.$_GET['name'].'",
-    //     `password`="'.$_GET['password'].'" 
-    //     WHERE `id`='.$_GET['judge_update_id']);
   }
 
 

@@ -14,6 +14,7 @@
             <?php echo Admin_timetable::get_festival_date($date_key)['date'];?> ~
             <?php echo Admin_timetable::get_festival_hall($hall_key)['hall'];?> ~
             <?php echo Admin_timetable::get_festival_part($part_key)['part'];?> )
+            <?php echo $nomination_value['id']; ?>
           </option>
         <?php endforeach ?>
       <?php endforeach ?>

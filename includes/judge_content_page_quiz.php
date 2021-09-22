@@ -5,7 +5,8 @@
 <?php include_once 'php/users_get_data.php'; ?>
 <?php include_once 'php/Admin_nomination_list.php' ?>
 <?php $nomination_list = Admin_timetable::normalize_nomination_list(); ?>
-<?php $participants_mark_list = Mark_table::participants_mark_list($_GET['nomination'], $_SESSION['judge']); ?>
+<?php $nomination_id = $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['id']?>
+<?php $participants_mark_list = Mark_table::participants_mark_list($nomination_id, $_SESSION['judge']); ?>
 
 <div class="navigation">
   <a href="judge.php#tabs-2" class="navigation_item">Festival MiraMar</a>
@@ -40,8 +41,7 @@
 <div class="table_wrapper" id="mark_table">
 
   <?php if (isset($_GET['date']) and isset($_GET['hall']) and isset($_GET['part']) and isset($_GET['nomination']) ): ?>
-  <?php $nomination_id = $nomination_list[$_GET['date']][$_GET['hall']][$_GET['part']][$_GET['nomination']]['id']; ?>
-
+  
   <div class="row">
     <div class="nomination_scroll_button">
       <a href="judge.php?date=<?php echo $_GET['date'];?>&hall=<?php echo $_GET['hall'];?>&part=<?php echo $_GET['part'];?>&nomination=<?php echo Mark_table::back_nomination();?>#tabs-2">
@@ -101,7 +101,9 @@
               <?php echo $participant['id']; ?><br>
               <?php echo $participant['fio']; ?><br><br>
               <form action="" method="post">
-                <input type="hidden" value="<?php echo $_GET['nomination'];?>" name="nomination">
+                <input 
+                value="<?php echo $nomination_id;?>" 
+                type="hidden" name="nomination">
                 <input type="hidden" value="<?php echo $participant['id'];?>" name="participant">
                 <input type="hidden" value="<?php echo $_SESSION['judge'];?>" name="judge">
                 <?php for ($i=1; $i < 6; $i++) : ?>
