@@ -79,3 +79,7 @@ input[name="festival_add_new_date"]{
   padding: 20px;
   text-align: center;
 }
+
+.winner{
+  text-align: center;
+}

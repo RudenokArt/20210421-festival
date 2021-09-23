@@ -1,5 +1,6 @@
 <?php spl_autoload_register(); ?>
 <?php use \Php\Judge_page_mark_table as Mark_table;  ?>
+<?php use \Php\Mark_criterions  as Mark_criterions; ?>
 <?php Mark_table::mark_set(); ?>
 <?php include_once 'php/Admin_timetable.php' ?>
 <?php include_once 'php/users_get_data.php'; ?>
@@ -65,14 +66,16 @@
 </div>
 
 
-<table>
+<table style="margin-top: 50px;">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>№</th>
+    <th>Participant</th>
+    <?php foreach (Mark_criterions::$criterions as $key => $value): ?>
+      <th style="writing-mode: vertical-rl;">
+        <?php echo $value; ?>
+          
+        </th>
+    <?php endforeach ?>
     <th></th>
   </tr>
   <?php $participant_counter = 0; ?>
@@ -107,12 +110,23 @@
                 <input type="hidden" value="<?php echo $participant['id'];?>" name="participant">
                 <input type="hidden" value="<?php echo $_SESSION['judge'];?>" name="judge">
                 <?php for ($i=1; $i < 6; $i++) : ?>
+                  <div>
+                    <span style="writing-mode: vertical-rl; height: 150px;
+                    line-height: 0;text-align: center; margin:5px;">
+                      <?php echo Mark_criterions::$criterions[$i-1] ?>
+                    </span><br>
                   <input type="text" name="criterion_<?php echo $i;?>" style="width: 40px;" 
                   value="<?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>" >
+                  </div>
                 <?php endfor; ?>
+                <div>
+                  <span style="writing-mode: vertical-rl; height: 150px;
+                    line-height: 0;text-align: center; margin:5px;">
+                    </span><br>
                 <button name="mark_set" value="true">
                   <i class="fa fa-check" aria-hidden="true"></i>
                 </button>
+                </div>
               </form>
             </div>
           </div>
