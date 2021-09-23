@@ -176,7 +176,7 @@ public static function edit_nomination () {
 public static function get_nominations_list () {
   $arr = [];
   global $mysqli;
-  $sql = $mysqli->query('SELECT * FROM `festival_nominations` ORDER BY `nomination`');
+  $sql = $mysqli->query('SELECT * FROM `festival_nominations`');
   while ($nomination = mysqli_fetch_assoc($sql)) {
     array_push($arr, $nomination);
   }
