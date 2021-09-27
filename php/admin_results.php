@@ -130,6 +130,21 @@ class Admin_results {
     ];
   }
 
+  public static function results_public_page_get () {
+    $data = file_get_contents('data/settings.json');
+    $data=json_decode($data);
+    return $data->results_public_page;
+  }
+
+  public static function results_public_page_set () {
+    if (isset($_GET['results_public_page'])) {
+      $data = file_get_contents('data/settings.json');
+      $data=json_decode($data);
+      $data->results_public_page = $_GET['results_public_page'];
+      $str=json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+      file_put_contents('data/settings.json', $str);
+    }
+  }
 
 }
 

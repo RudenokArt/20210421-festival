@@ -1,4 +1,3 @@
-<?php include_once 'header.php'; ?>
 <?php spl_autoload_register(); ?>
 <link rel="stylesheet" href="css/admin.css?v=<?php echo time();?>">
 <link rel="stylesheet" href="css/admin_app.css?v=<?php echo time();?>">
@@ -8,8 +7,50 @@
 <?php include_once 'php/Admin_nomination_list.php' ?>
 <?php use \Php\Admin_results  as Admin_results; ?>
 <?php use \Php\Mark_criterions  as Mark_criterions; ?>
+<?php Admin_results::results_public_page_set(); ?>
+<?php $results_public_page_status = Admin_results::results_public_page_get(); ?>
+
+
+<?php if ($_GET['page'] == 'admin_app_results'): ?> <!-- Фильтр для админки -->
 
 <div class="row">
+  <div class="container">
+    <table>
+      <tr>
+        <td>Публичная страница результатов:</td>
+        <td>
+          <form action="admin_app.php" method="get" id="results_public_page_form">
+            <input type="hidden" name="page" value="admin_app_results">
+            <div class="select_wrapper" style="width: 100px;">
+              <select name="results_public_page" v-on:change="submitForm" style="width: 100px;">
+                <option value="true">on</option>
+                <option 
+                <?php if ($results_public_page_status == "false"): ?>
+                  selected="selected"
+                <?php endif ?>
+                value="false">off</option>
+              </select>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <?php if (isset($_GET['results_public_page'])): ?>
+       <tr>
+        <td colspan="2">
+          Доступ к публичной странице
+          <?php if ($_GET['results_public_page']=='true'): ?>
+            открыт
+            <?php else: ?>
+              заблокирован
+            <?php endif ?>
+          </td>
+        </tr>
+      <?php endif ?>
+    </table>
+  </div>
+</div>
+
+  <div class="row">
   <div class="container">
     <form action="admin_app.php" method="get">
       <table>
@@ -31,6 +72,9 @@
     </form>
   </div>
 </div> 
+
+<?php endif ?>
+
 
 <div class="row">
   <div class="container">
@@ -79,52 +123,49 @@
                   <div class="row">
                     <?php foreach ($judge_value as $criterion_key => $critetion_value): ?>
                       <div style="width: 30px; text-align: center;">
-                      <?php echo $critetion_value; ?>
-                    </div>
-                  <?php endforeach ?>
+                        <?php echo $critetion_value; ?>
+                      </div>
+                    <?php endforeach ?>
+                  </div>
                 </div>
-              </div>
-            <?php endif ?>
-          <?php endforeach ?>
-        </td>
-        <td>
-          <div class="row">
-            <?php foreach ($participant_value['average_criterion_mark'] as $key => $value): ?>
-              <div 
-              <?php if ($arr_max_average_mark[$key.'_max'] == $value): ?>
-               style="width: 30px; background:lightskyblue; border:1px solid white;"
-               <?php else: ?>
-                 style="width: 30px;"
-               <?php endif ?>
-               class="winner">
-               <?php echo $value; ?> 
-             </div>
-           <?php endforeach ?>
-         </div>
-       </td>
-       <td 
-       <?php if ($arr_max_average_mark['max1'] == $participant_value['average_mark']): ?>
-        style="background: gold;"
-      <?php endif ?>
-      <?php if ($arr_max_average_mark['max2'] == $participant_value['average_mark']): ?>
-        style="background: silver;"
-      <?php endif ?>
-      <?php if ($arr_max_average_mark['max3'] == $participant_value['average_mark']): ?>
-        style="background:burlywood ;"
-      <?php endif ?>
-      class="winner">
-      <?php echo $participant_value['average_mark']; ?>
-    </td>
-  </tr>
-<?php endforeach ?>
+              <?php endif ?>
+            <?php endforeach ?>
+          </td>
+          <td>
+            <div class="row">
+              <?php foreach ($participant_value['average_criterion_mark'] as $key => $value): ?>
+                <div 
+                <?php if ($arr_max_average_mark[$key.'_max'] == $value): ?>
+                 style="width: 30px; background:lightskyblue; border:1px solid white;"
+                 <?php else: ?>
+                   style="width: 30px;"
+                 <?php endif ?>
+                 class="winner">
+                 <?php echo $value; ?> 
+               </div>
+             <?php endforeach ?>
+           </div>
+         </td>
+         <td 
+         <?php if ($arr_max_average_mark['max1'] == $participant_value['average_mark']): ?>
+          style="background: gold;"
+        <?php endif ?>
+        <?php if ($arr_max_average_mark['max2'] == $participant_value['average_mark']): ?>
+          style="background: silver;"
+        <?php endif ?>
+        <?php if ($arr_max_average_mark['max3'] == $participant_value['average_mark']): ?>
+          style="background:burlywood ;"
+        <?php endif ?>
+        class="winner">
+        <?php echo $participant_value['average_mark']; ?>
+      </td>
+    </tr>
+  <?php endforeach ?>
 </table>
 <?php endif ?>
 </div>
 </div>
 
+<script src="js/admin_results.js?v=<?php echo time(); ?>"></script>
 
 
-
-
-<script src="js/admin.js?v=<?php echo time() ?>"></script>
-<?php include_once 'footer.php'; ?>

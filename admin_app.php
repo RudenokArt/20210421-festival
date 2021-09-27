@@ -40,7 +40,7 @@ href="?page=admin_app_calculation">
 Расчеты
 </a>
 <a 
-<?php if ($current_menu_page=='admin_app_calculation'): ?> 
+<?php if ($current_menu_page=='admin_app_results'): ?> 
   class="active" 
 <?php endif ?> 
 href="?page=admin_app_results">
