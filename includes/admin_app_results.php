@@ -97,7 +97,7 @@
           </div>
         </th>
         <th>
-          Cредний балл в <br> разрезе номинаций
+          Сумма баллов в <br> разрезе номинаций
           <div style="display: flex; flex-wrap: nowrap; justify-content: flex-end;">
             <?php foreach (Mark_criterions::$criterions as $key => $value): ?>
               <div style="writing-mode: vertical-rl; width: 30px; text-align: right;">
@@ -106,7 +106,7 @@
             <?php endforeach ?>
           </div>
         </th>
-        <th>Общий <br> средний <br> балл</th>
+        <th>Общая <br> сумма <br> баллов</th>
       </tr>
       <?php foreach ($arr_results_table as $participant_key => $participant_value): ?>
         <?php $participant = Admin_nomination_list::get_participant($participant_key);?>
@@ -134,13 +134,7 @@
           <td>
             <div class="row">
               <?php foreach ($participant_value['average_criterion_mark'] as $key => $value): ?>
-                <div 
-                <?php if ($arr_max_average_mark[$key.'_max'] == $value): ?>
-                 style="width: 30px; background:lightskyblue; border:1px solid white;"
-                 <?php else: ?>
-                   style="width: 30px;"
-                 <?php endif ?>
-                 class="winner">
+                <div style="width: 30px;" class="winner">
                  <?php echo $value; ?> 
                </div>
              <?php endforeach ?>
