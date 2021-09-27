@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 17 2021 г., 12:05
+-- Время создания: Сен 27 2021 г., 15:39
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -152,9 +152,6 @@ CREATE TABLE `festival_nominations` (
 --
 
 INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) VALUES
-(10, 10, 1, 2, '1red1'),
-(11, 10, 3, 2, '1blue1 тест'),
-(12, 10, 1, 3, '1red2'),
 (13, 10, 3, 3, '1blue2 test'),
 (14, 13, 1, 2, '2red1'),
 (15, 13, 3, 2, '2blue1'),
@@ -162,7 +159,13 @@ INSERT INTO `festival_nominations` (`id`, `date`, `hall`, `part`, `nomination`) 
 (17, 13, 3, 3, '2blue2'),
 (26, 10, 3, 3, '1 nomination 2'),
 (27, 10, 3, 3, 'test 2'),
-(28, 10, 3, 3, 'Очень длинное название номинации');
+(28, 10, 3, 3, 'Очень длинное название номинации'),
+(32, 10, 1, 2, '1 red 1'),
+(33, 10, 1, 2, '1 red 2'),
+(34, 10, 1, 2, '1 red 3'),
+(35, 10, 1, 3, '2 red 1'),
+(36, 10, 1, 3, '2 red 2'),
+(37, 10, 1, 3, '2 red 3');
 
 -- --------------------------------------------------------
 
@@ -185,11 +188,13 @@ INSERT INTO `festival_nomination_list` (`id`, `nomination`, `participant`) VALUE
 (3, 13, 70),
 (4, 22, 78),
 (5, 11, 67),
-(6, 10, 65),
-(7, 10, 66),
 (8, 26, 65),
 (9, 26, 67),
-(10, 26, 79);
+(10, 26, 79),
+(11, 13, 67),
+(12, 26, 66),
+(13, 26, 78),
+(14, 26, 86);
 
 -- --------------------------------------------------------
 
@@ -709,11 +714,11 @@ CREATE TABLE `festival_results` (
   `judge` int(8) NOT NULL,
   `nomination` int(8) NOT NULL,
   `participant` int(8) NOT NULL,
-  `criterion_1` int(8) NOT NULL,
-  `criterion_2` int(8) NOT NULL,
-  `criterion_3` int(8) NOT NULL,
-  `criterion_4` int(8) NOT NULL,
-  `criterion_5` int(8) NOT NULL
+  `criterion_1` varchar(8) NOT NULL,
+  `criterion_2` varchar(8) NOT NULL,
+  `criterion_3` varchar(8) NOT NULL,
+  `criterion_4` varchar(8) NOT NULL,
+  `criterion_5` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -721,9 +726,19 @@ CREATE TABLE `festival_results` (
 --
 
 INSERT INTO `festival_results` (`id`, `judge`, `nomination`, `participant`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`, `criterion_5`) VALUES
-(4, 6, 0, 67, 5, 5, 5, 5, 5),
-(8, 6, 0, 65, 4, 4, 4, 4, 4),
-(10, 6, 0, 79, 3, 3, 3, 3, 3);
+(16, 6, 26, 67, '3', '3', '3', '3', '3'),
+(20, 6, 13, 67, '5', '5', '5', '5', '5'),
+(22, 8, 26, 65, '1', '1', '1', '1', '1'),
+(23, 8, 26, 67, '2', '2', '2', '2', '2'),
+(24, 8, 26, 79, '3', '3', '3', '3', '3'),
+(26, 8, 13, 70, '5', '5', '5', '5', '5'),
+(27, 8, 13, 67, '6', '6', '6', '6', '6'),
+(28, 8, 26, 66, '1', '1', '1', '1', '1'),
+(30, 6, 26, 65, '1', '2', '3', '4', '5'),
+(35, 6, 26, 78, '4', '5', '2', '7', '1'),
+(37, 6, 26, 66, '1', '8', '1', '6', '1'),
+(39, 6, 26, 79, '2', '9', '2', '2', '2'),
+(62, 6, 13, 70, '6', '6', '6', '6', '6');
 
 -- --------------------------------------------------------
 
@@ -2181,13 +2196,13 @@ ALTER TABLE `festival_meta`
 -- AUTO_INCREMENT для таблицы `festival_nominations`
 --
 ALTER TABLE `festival_nominations`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_nomination_list`
 --
 ALTER TABLE `festival_nomination_list`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_participant`
@@ -2199,7 +2214,7 @@ ALTER TABLE `festival_participant`
 -- AUTO_INCREMENT для таблицы `festival_parts`
 --
 ALTER TABLE `festival_parts`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `festival_payment`
@@ -2217,7 +2232,7 @@ ALTER TABLE `festival_price`
 -- AUTO_INCREMENT для таблицы `festival_results`
 --
 ALTER TABLE `festival_results`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

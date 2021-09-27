@@ -54,17 +54,18 @@ class Admin_results {
       $result_arr['criterion_4'] = $result_arr['criterion_4'] + $value['criterion_4'];
       $result_arr['criterion_5'] = $result_arr['criterion_5'] + $value['criterion_5'];
     }
-    $result_arr['criterion_1'] = round($result_arr['criterion_1'] / count($arr),1);
-    $result_arr['criterion_2'] = round($result_arr['criterion_2'] / count($arr),1);
-    $result_arr['criterion_3'] = round($result_arr['criterion_3'] / count($arr),1);
-    $result_arr['criterion_4'] = round($result_arr['criterion_4'] / count($arr),1);
-    $result_arr['criterion_5'] = round($result_arr['criterion_5'] / count($arr),1);
+    // $result_arr['criterion_1'] = round($result_arr['criterion_1'] / count($arr),1);
+    // $result_arr['criterion_2'] = round($result_arr['criterion_2'] / count($arr),1);
+    // $result_arr['criterion_3'] = round($result_arr['criterion_3'] / count($arr),1);
+    // $result_arr['criterion_4'] = round($result_arr['criterion_4'] / count($arr),1);
+    // $result_arr['criterion_5'] = round($result_arr['criterion_5'] / count($arr),1);
     return $result_arr;
   }
 
   public static function average_mark_set (&$arr) {
     $arr['average_criterion_mark'] = self::average_mark_get($arr);
-    $arr['average_mark'] = array_sum($arr['average_criterion_mark'])/count($arr['average_criterion_mark']);
+    $arr['average_mark'] = array_sum($arr['average_criterion_mark']);
+    // $arr['average_mark'] = array_sum($arr['average_criterion_mark'])/count($arr['average_criterion_mark']);
 
   }
 

@@ -71,11 +71,14 @@
     <th>№</th>
     <th>Participant</th>
     <?php foreach (Mark_criterions::$criterions as $key => $value): ?>
-      <th style="writing-mode: vertical-rl;">
+      <th style="writing-mode: vertical-rl; padding: 10px; width: 40px;">
         <?php echo $value; ?>
-          
-        </th>
+
+      </th>
     <?php endforeach ?>
+    <th style="writing-mode: vertical-rl; padding: 10px; width: 40px;">
+      TOTAL
+    </th>
     <th></th>
   </tr>
   <?php $participant_counter = 0; ?>
@@ -94,6 +97,7 @@
           <?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>
         </td>
       <?php endfor; ?>
+      <td><?php echo array_sum($participants_mark_list[$participant['id']]) ?></td>
       <td>
         <div class="wrapper_mark_popup">
           <div class="mark_popup">
@@ -112,28 +116,29 @@
                 <?php for ($i=1; $i < 6; $i++) : ?>
                   <div>
                     <span style="writing-mode: vertical-rl; height: 150px;
-                    line-height: 0;text-align: center; margin:5px;">
-                      <?php echo Mark_criterions::$criterions[$i-1] ?>
-                    </span><br>
-                  <input type="text" name="criterion_<?php echo $i;?>" style="width: 40px;" 
-                  value="<?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>" >
-                  </div>
-                <?php endfor; ?>
-                <div>
-                  <span style="writing-mode: vertical-rl; height: 150px;
-                    line-height: 0;text-align: center; margin:5px;">
-                    </span><br>
-                <button name="mark_set" value="true">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </button>
+                    margin:10px;text-align: right; margin:5px;">
+                    <?php echo Mark_criterions::$criterions[$i-1] ?>
+                  </span><br>
+                  <input name="criterion_<?php echo $i;?>" class="mark_popup_input"
+                  value="<?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>"
+                  v-on:input="max_value_check" type="number" step="0.1" max="10">
                 </div>
-              </form>
+              <?php endfor; ?>
+              <div>
+                <span style="writing-mode: vertical-rl; height: 150px;
+                line-height: 0;text-align: right; margin:5px;">
+              </span><br>
+              <button name="mark_set" value="true">
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </button>
             </div>
-          </div>
+          </form>
         </div>
-      </td>
-    </tr>
-  <?php endforeach ?>
+      </div>
+    </div>
+  </td>
+</tr>
+<?php endforeach ?>
 </table>
 
 

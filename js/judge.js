@@ -1,4 +1,5 @@
-var login_form = new Vue ({
+
+new Vue ({
   el:'#login_form',
   data:{
     email:'',
@@ -17,7 +18,7 @@ var login_form = new Vue ({
   }
 });
 
-var signin_form = new Vue({
+new Vue({
   el:'#signin_form',
   data: {
     email: '',
@@ -65,17 +66,26 @@ new Vue ({
       for (var i = 0; i < arr.length; i++) {
         arr[i].style.display = 'none';
       }
-      
     },
+
     popupShow: function (e) {
-      console.log(e.target);
       var arr = e.target.parentNode.childNodes;
       var popUp = arr[arr.length-1].childNodes[0];
       popUp.onclick = function (e) {
         e.stopPropagation();
       };
       popUp.style.display = 'flex';
-    }
-  }
+    },
+
+    max_value_check: function (e) {
+      if (Number(e.target.value) > 10 || 
+        Number(e.target.value)==0 || 
+        e.target.value.length > 3) {
+        e.target.value = '';
+      }
+    },
+
+
+  },
 
 })
