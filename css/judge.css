@@ -30,7 +30,7 @@ td {
 
 .table_wrapper {
   background: rgba(0,150,250,0.1);
-  /*min-height: 100vh;*/
+  overflow:auto;
 }
 .navigation_item {
   display: block;

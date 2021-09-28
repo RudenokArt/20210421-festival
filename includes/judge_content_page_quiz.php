@@ -121,7 +121,7 @@
                   </span><br>
                   <input name="criterion_<?php echo $i;?>" class="mark_popup_input"
                   value="<?php echo $participants_mark_list[$participant['id']]['criterion_'.$i] ?>"
-                  v-on:input="max_value_check" type="number" step="0.1" max="10">
+                  v-on:input="max_value_check" type="text">
                 </div>
               <?php endfor; ?>
               <div>
