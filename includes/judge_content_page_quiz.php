@@ -71,13 +71,20 @@
     <th>№</th>
     <th>Participant</th>
     <?php foreach (Mark_criterions::$criterions as $key => $value): ?>
-      <th style="writing-mode: vertical-rl; padding: 10px; width: 40px;">
-        <?php echo $value; ?>
-
+      <th class="criterion_th">
+        <div class="criterion_th_wrapper_content">
+          <div class="criterion_th_content">
+            <?php echo $value; ?>
+          </div>
+        </div>
       </th>
     <?php endforeach ?>
-    <th style="writing-mode: vertical-rl; padding: 10px; width: 40px;">
-      TOTAL
+    <th class="criterion_th">
+      <div class="criterion_th_wrapper_content">
+          <div class="criterion_th_content">
+            TOTAL
+          </div>
+        </div>
     </th>
     <th></th>
   </tr>
