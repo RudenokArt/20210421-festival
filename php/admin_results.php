@@ -26,16 +26,20 @@ class Admin_results {
       $arr[$value['nomination']][$value['participant']]=[];
     }
     foreach ($data as $key => $value) {
+      if (\Admin_judge::get_judge($value['judge'])!=NULL) {
       $arr[$value['nomination']][$value['participant']][$value['judge']]=[];
+      }
     }
     foreach ($data as $key => $value) {
-      $arr[$value['nomination']][$value['participant']][$value['judge']]=[
-        'criterion_1' => $value['criterion_1'],
-        'criterion_2' => $value['criterion_2'],
-        'criterion_3' => $value['criterion_3'],
-        'criterion_4' => $value['criterion_4'],
-        'criterion_5' => $value['criterion_5'],
-      ];
+      if (\Admin_judge::get_judge($value['judge'])!=NULL) {
+        $arr[$value['nomination']][$value['participant']][$value['judge']]=[
+          'criterion_1' => $value['criterion_1'],
+          'criterion_2' => $value['criterion_2'],
+          'criterion_3' => $value['criterion_3'],
+          'criterion_4' => $value['criterion_4'],
+          'criterion_5' => $value['criterion_5'],
+        ];
+      }
     }
     return $arr;
   }
