@@ -46,6 +46,13 @@ href="?page=admin_app_calculation">
 href="?page=admin_app_results">
 Результаты
 </a>
+<a 
+<?php if ($current_menu_page=='admin_app_links'): ?> 
+  class="active" 
+<?php endif ?> 
+href="?page=admin_app_links">
+Ссылки
+</a>
 </div>
 
 <div class="container">

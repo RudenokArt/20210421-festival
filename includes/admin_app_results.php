@@ -162,11 +162,3 @@
 
 <script src="js/admin_results.js?v=<?php echo time(); ?>"></script>
 
-
-<pre>
-  <?php var_dump(Admin_judge::get_judge(8)); ?>
-</pre>
-<hr>
-<pre>
-  <?php print_r(Admin_results::normalize_results()) ?>
-</pre>

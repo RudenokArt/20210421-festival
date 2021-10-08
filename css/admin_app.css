@@ -130,3 +130,7 @@ input[name="festival_add_new_date"]{
   top: -10px;
   right: -10px;
 }
+
+.sitemap p{
+  padding: 10px;
+}
